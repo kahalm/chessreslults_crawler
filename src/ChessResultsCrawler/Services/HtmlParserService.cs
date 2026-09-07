@@ -316,6 +316,15 @@ public class HtmlParserService
             {
                 details.Location = value;
             }
+            // Die Bedenkzeit steht je nach Sprache und Turnierart unter verschiedenen Namen; das
+            // Feld ist Freitext („90 min + 30 sec / Zug"), nicht auswertbar geordnet.
+            else if (label.Equals("Bedenkzeit", StringComparison.OrdinalIgnoreCase) ||
+                     label.Equals("Zeitkontrolle", StringComparison.OrdinalIgnoreCase) ||
+                     label.Equals("Time control", StringComparison.OrdinalIgnoreCase) ||
+                     label.Equals("Rate of play", StringComparison.OrdinalIgnoreCase))
+            {
+                details.TimeControl = value;
+            }
         }
 
         return details;
@@ -1011,6 +1020,14 @@ public class ParsedTournamentDetails
 {
     public string? DateText { get; set; }
     public string? Location { get; set; }
+
+    /// <summary>
+    /// Die Bedenkzeit als ROHTEXT, wie chess-results sie fuehrt („90 min + 30 sec / Zug",
+    /// „5 Min + 3 sec"). Bewusst nicht hier schon in eine Kategorie uebersetzt: der Crawler ist
+    /// zustandslos und gibt weiter, was auf der Seite steht — welche Klasse daraus wird, ist eine
+    /// fachliche Entscheidung und liegt in RookHub.
+    /// </summary>
+    public string? TimeControl { get; set; }
 }
 
 /// <summary>
@@ -1044,6 +1061,19 @@ public class ParsedPlayerTournament
 }
 
 /// <summary>Eine Runde mit ihrem Termin, aus dem Rundenplan (art=14).</summary>
+/// <summary>
+/// Kopfdaten eines Turniers, ohne Import — Termin, Ort, Rundenzahl und Bedenkzeit (Rohtext).
+/// </summary>
+public class ParsedTournamentInfo
+{
+    public string ChessResultsId { get; set; } = "";
+    public string? Name { get; set; }
+    public string? DateText { get; set; }
+    public string? Location { get; set; }
+    public string? TimeControl { get; set; }
+    public int? TotalRounds { get; set; }
+}
+
 public class ParsedRoundDate
 {
     public int Number { get; set; }

@@ -317,6 +317,41 @@ public class HtmlParserServiceTests
         Assert.Equal("München", details.Location);
     }
 
+    /// <summary>
+    /// Die Bedenkzeit ist der Grund, warum diese Ansicht ueberhaupt geholt wird: die Spielersuche
+    /// liefert sie nicht, und ohne sie steht eine Blitz-Performance neben einer aus dem
+    /// Turnierschach, als waeren die zwei Zahlen vergleichbar.
+    /// </summary>
+    [Theory]
+    [InlineData("Bedenkzeit", "90 min + 30 sec / Zug")]
+    [InlineData("Zeitkontrolle", "5 min + 3 sec")]
+    [InlineData("Time control", "15 min + 10 sec")]
+    [InlineData("Rate of play", "G/90")]
+    public async Task ParseTournamentDetailsAsync_ReadsTheTimeControl(string label, string value)
+    {
+        var html = $@"<html><body><table>
+            <tr><td>Datum</td><td>17.05.2026</td></tr>
+            <tr><td>{label}</td><td>{value}</td></tr>
+            </table></body></html>";
+
+        var details = await _parser.ParseTournamentDetailsAsync(html);
+
+        Assert.Equal(value, details.TimeControl);
+    }
+
+    /// <summary>Steht keine Bedenkzeit auf der Seite, bleibt das Feld leer — kein Raten hier.</summary>
+    [Fact]
+    public async Task ParseTournamentDetailsAsync_WithoutATimeControl_LeavesItNull()
+    {
+        var html = @"<html><body><table>
+            <tr><td>Ort</td><td>Innsbruck</td></tr>
+            </table></body></html>";
+
+        var details = await _parser.ParseTournamentDetailsAsync(html);
+
+        Assert.Null(details.TimeControl);
+    }
+
     [Fact]
     public async Task ParseTournamentDetailsAsync_DateRange_PreservesFullText()
     {

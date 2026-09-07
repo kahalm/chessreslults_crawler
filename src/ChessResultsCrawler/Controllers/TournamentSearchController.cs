@@ -120,6 +120,26 @@ public class TournamentSearchController : ControllerBase
     }
 
     /// <summary>
+    /// Kopfdaten EINES Turniers, ohne es zu importieren: Termin, Ort, Rundenzahl — und die
+    /// BEDENKZEIT als Rohtext.
+    ///
+    /// <para>Die Spielersuche liefert Termin, Platz und Rundenzahl, aber keine Bedenkzeit. Ohne die
+    /// stehen im Turnierverlauf Blitz- und Turnierschach-Ergebnisse in derselben Spalte, als
+    /// waeren sie vergleichbar. Welche KLASSE daraus wird, entscheidet der Aufrufer — hier steht
+    /// nur, was auf der Seite steht.</para>
+    /// </summary>
+    [HttpGet("tournament-info")]
+    public async Task<ActionResult<TournamentInfoResponse>> TournamentInfo(
+        [FromQuery] string id, CancellationToken ct = default)
+    {
+        if (string.IsNullOrWhiteSpace(id) || !TournamentIdPattern.IsMatch(id.Trim()))
+            return BadRequest(new { message = "Invalid tournament ID." });
+
+        var info = await _crawlerService.FetchTournamentInfoAsync(id.Trim(), ct);
+        return Ok(TournamentInfoResponse.FromParsed(info));
+    }
+
+    /// <summary>
     /// Der Rundenplan eines Turniers: je Runde Nummer, Datum und Uhrzeit. Zustandslos, ein
     /// Seitenabruf.
     ///

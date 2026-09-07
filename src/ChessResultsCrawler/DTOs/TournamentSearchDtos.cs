@@ -104,3 +104,28 @@ public class RoundDateResponse
         Time = r.TimeText,
     };
 }
+
+/// <summary>
+/// Kopfdaten eines Turniers ohne Import — vor allem die BEDENKZEIT, die die Spielersuche nicht
+/// mitliefert. Der Text bleibt roh: welche Klasse daraus wird (Blitz/Schnell/Turnier), entscheidet
+/// der Aufrufer.
+/// </summary>
+public class TournamentInfoResponse
+{
+    public string TournamentId { get; set; } = "";
+    public string? Name { get; set; }
+    public string? DateText { get; set; }
+    public string? Location { get; set; }
+    public string? TimeControl { get; set; }
+    public int? TotalRounds { get; set; }
+
+    public static TournamentInfoResponse FromParsed(ParsedTournamentInfo i) => new()
+    {
+        TournamentId = i.ChessResultsId,
+        Name = i.Name,
+        DateText = i.DateText,
+        Location = i.Location,
+        TimeControl = i.TimeControl,
+        TotalRounds = i.TotalRounds,
+    };
+}

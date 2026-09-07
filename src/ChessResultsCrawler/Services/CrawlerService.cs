@@ -977,6 +977,34 @@ public class CrawlerService
     }
 
     /// <summary>
+    /// Kopfdaten EINES Turniers, ohne es zu importieren: Termin, Ort, Rundenzahl und die
+    /// BEDENKZEIT. Ein Seitenabruf (art=0 mit turdet=YES — nur diese Ansicht traegt die
+    /// Turnierdetails), zustandslos wie die Rundenplan- und Vereins-Abfrage.
+    ///
+    /// <para>Gebraucht fuer den Turnierverlauf: die Spielersuche liefert Termin, Platz und
+    /// Rundenzahl, aber KEINE Bedenkzeit — und ohne die laesst sich eine Performance im Blitz
+    /// nicht von einer im Turnierschach trennen, obwohl beide Zahlen dieselbe Einheit haben.</para>
+    /// </summary>
+    public async Task<ParsedTournamentInfo> FetchTournamentInfoAsync(
+        string chessResultsId, CancellationToken ct = default)
+    {
+        await RateLimitAsync(ct);
+        var html = await FetchPageAsync(
+            $"https://chess-results.com/tnr{chessResultsId}.aspx", "lan=1&art=0&turdet=YES", ct);
+
+        var details = await _parser.ParseTournamentDetailsAsync(html);
+        return new ParsedTournamentInfo
+        {
+            ChessResultsId = chessResultsId,
+            Name = await _parser.ParseTournamentNameAsync(html),
+            DateText = details.DateText,
+            Location = details.Location,
+            TimeControl = details.TimeControl,
+            TotalRounds = await _parser.ParseTotalRoundsAsync(html),
+        };
+    }
+
+    /// <summary>
     /// Eine Trefferliste der Turniersuche. <paramref name="art"/> ist die chess-results-Turnierart:
     /// "5" alle (Vorgabe), "0" Schweizer System, "1" Rundenturnier, "2" Rundenturnier fuer
     /// MANNSCHAFTEN, "3" Schweizer System fuer MANNSCHAFTEN. Damit laesst sich Einzel gegen
