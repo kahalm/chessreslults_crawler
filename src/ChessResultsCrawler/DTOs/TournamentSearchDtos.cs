@@ -88,3 +88,19 @@ public class PlayerCardResponse
         HasResult = c.HasResult,
     };
 }
+
+/// <summary>Eine Runde mit ihrem Termin.</summary>
+public class RoundDateResponse
+{
+    public int Round { get; set; }
+    /// <summary>ISO-Datum (yyyy-MM-dd).</summary>
+    public string Date { get; set; } = "";
+    public string? Time { get; set; }
+
+    public static RoundDateResponse FromParsed(ParsedRoundDate r) => new()
+    {
+        Round = r.Number,
+        Date = r.Date.ToString("yyyy-MM-dd"),
+        Time = r.TimeText,
+    };
+}

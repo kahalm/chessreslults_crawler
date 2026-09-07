@@ -549,6 +549,72 @@ public class HtmlParserService
     }
 
     /// <summary>
+    /// Der RUNDENPLAN eines Turniers (art=14): je Runde Nummer, Datum und Uhrzeit.
+    ///
+    /// <para>Warum das gebraucht wird: Start- und Enddatum sagen bei einer Liga NICHT, wann
+    /// gespielt wird. „2026-09-26 bis 2027-04-17" sind elf Runden mit zwei bis fuenf Wochen
+    /// Abstand — im Kalender stand die Liga damit an rund 200 Tagen, an denen nichts
+    /// stattfindet, und verdeckte die Turniere, die es wirklich gibt.</para>
+    ///
+    /// <para>Die Tabelle wird ueber ihre Kopfzeile gesucht („Round"/„Runde" + „Date"/„Datum"),
+    /// nicht ueber die Klasse — dieselbe Lehre wie bei der Spielerkarte. Eine leere Liste heisst
+    /// „kein Rundenplan hinterlegt"; das ist bei vielen Turnieren der Normalfall.</para>
+    /// </summary>
+    public async Task<List<ParsedRoundDate>> ParseRoundPlanAsync(string html)
+    {
+        var results = new List<ParsedRoundDate>();
+        var context = BrowsingContext.New(Configuration.Default);
+        var document = await context.OpenAsync(req => req.Content(html));
+
+        var table = FindTableByHeaders(document, ["Round", "Date"])
+                    ?? FindTableByHeaders(document, ["Runde", "Datum"]);
+        if (table is null) return results;
+
+        var headerCells = table.QuerySelectorAll(":scope > tr, :scope > thead > tr, :scope > tbody > tr")
+            .FirstOrDefault()
+            ?.QuerySelectorAll("th, td")
+            .Select((cell, idx) => (Name: cell.TextContent.Trim(), Index: idx))
+            .ToList() ?? [];
+        var headers = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+        foreach (var h in headerCells) headers.TryAdd(h.Name, h.Index);
+
+        foreach (var row in table.QuerySelectorAll(":scope > tr, :scope > tbody > tr").Skip(1))
+        {
+            var cells = row.QuerySelectorAll(":scope > td").ToList();
+            if (cells.Count < 2) continue;
+
+            if (!int.TryParse(GetCellValue(cells, headers, "Round") ?? GetCellValue(cells, headers, "Runde"),
+                    out var number)) continue;
+
+            var date = ParseDate(GetCellValue(cells, headers, "Date") ?? GetCellValue(cells, headers, "Datum"));
+            if (date is null) continue;
+
+            results.Add(new ParsedRoundDate
+            {
+                Number = number,
+                Date = date.Value,
+                // „14:00 Uhr" — die Einheit steht mit drin und bleibt Rohtext: fuer den Kalender
+                // zaehlt der TAG, und eine halb geparste Uhrzeit waere nur eine Fehlerquelle.
+                TimeText = GetCellValue(cells, headers, "Time") ?? GetCellValue(cells, headers, "Zeit"),
+            });
+        }
+
+        return results;
+    }
+
+    /// <summary>
+    /// Ein Datum der Seite. Bei lan=1 kommt „yyyy/MM/dd", bei lan=0 „dd.MM.yyyy" — beide Formate
+    /// werden gelesen, damit ein Sprachwechsel den Rundenplan nicht still leer laeuft.
+    /// </summary>
+    private static DateOnly? ParseDate(string? text)
+    {
+        if (string.IsNullOrWhiteSpace(text)) return null;
+        string[] formats = ["yyyy/MM/dd", "yyyy-MM-dd", "dd.MM.yyyy", "d.M.yyyy"];
+        return DateOnly.TryParseExact(text.Trim(), formats, CultureInfo.InvariantCulture,
+            DateTimeStyles.None, out var date) ? date : null;
+    }
+
+    /// <summary>
     /// Der „Player info"-Block der Spielerkarte (art=9): Punkte, Platz, Performance-Rating und
     /// Elo-Aenderung eines Spielers in EINEM Turnier.
     ///
@@ -957,6 +1023,15 @@ public class ParsedPlayerTournament
     public int? Rounds { get; set; }
     /// <summary>Teilnehmerzahl des Turniers (Spalte „n").</summary>
     public int? PlayerCount { get; set; }
+}
+
+/// <summary>Eine Runde mit ihrem Termin, aus dem Rundenplan (art=14).</summary>
+public class ParsedRoundDate
+{
+    public int Number { get; set; }
+    public DateOnly Date { get; set; }
+    /// <summary>Rohtext der Uhrzeit („14:00 Uhr") — fuer den Kalender zaehlt der Tag.</summary>
+    public string? TimeText { get; set; }
 }
 
 /// <summary>

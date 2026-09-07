@@ -120,6 +120,25 @@ public class TournamentSearchController : ControllerBase
     }
 
     /// <summary>
+    /// Der Rundenplan eines Turniers: je Runde Nummer, Datum und Uhrzeit. Zustandslos, ein
+    /// Seitenabruf.
+    ///
+    /// <para>Gebraucht, weil Start- und Enddatum einer LIGA nicht sagen, wann gespielt wird:
+    /// elf Runden von September bis April liegen Wochen auseinander. Eine leere Liste ist der
+    /// Normalfall bei Turnieren ohne hinterlegten Plan, kein Fehler.</para>
+    /// </summary>
+    [HttpGet("rounds")]
+    public async Task<ActionResult<List<RoundDateResponse>>> Rounds(
+        [FromQuery] string id, CancellationToken ct = default)
+    {
+        if (string.IsNullOrWhiteSpace(id) || !TournamentIdPattern.IsMatch(id.Trim()))
+            return BadRequest(new { message = "Invalid tournament ID." });
+
+        var rounds = await _crawlerService.FetchRoundPlanAsync(id.Trim(), ct);
+        return Ok(rounds.Select(RoundDateResponse.FromParsed).ToList());
+    }
+
+    /// <summary>
     /// Die Spielerkarte: Punkte, Platz, Performance-Rating und Elo-Aenderung eines Spielers in
     /// EINEM Turnier. Zustandslos, ein Seitenabruf.
     ///

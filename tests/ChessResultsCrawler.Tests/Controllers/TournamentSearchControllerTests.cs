@@ -57,6 +57,16 @@ public class TournamentSearchControllerTests : IDisposable
     }
 
     [Theory]
+    [InlineData("abc")]
+    [InlineData("12345678901")]
+    [InlineData("")]
+    public async Task Rounds_InvalidId_ReturnsBadRequest(string id)
+    {
+        var result = await CreateController().Rounds(id);
+        Assert.IsType<BadRequestObjectResult>(result.Result);
+    }
+
+    [Theory]
     [InlineData("abc", 1)]
     [InlineData("12345678901", 1)]
     [InlineData("1107064", 0)]

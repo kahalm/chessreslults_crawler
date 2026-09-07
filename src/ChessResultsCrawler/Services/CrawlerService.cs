@@ -1094,6 +1094,23 @@ public class CrawlerService
     }
 
     /// <summary>
+    /// Der Rundenplan eines Turniers (art=14) — je Runde Nummer, Datum und Uhrzeit. Zustandslos,
+    /// ein Seitenabruf; art=14 ist die kleinste Ansicht, die die Termine traegt (17 kB gegen
+    /// 33 kB bei art=2 und 182 kB bei art=3).
+    ///
+    /// <para>Eine leere Liste heisst „kein Rundenplan hinterlegt" — bei vielen Turnieren der
+    /// Normalfall und kein Fehler.</para>
+    /// </summary>
+    public async Task<List<ParsedRoundDate>> FetchRoundPlanAsync(
+        string chessResultsId, CancellationToken ct = default)
+    {
+        await RateLimitAsync(ct);
+        var html = await FetchPageAsync(
+            $"https://chess-results.com/tnr{chessResultsId}.aspx", "lan=1&art=14", ct);
+        return await _parser.ParseRoundPlanAsync(html);
+    }
+
+    /// <summary>
     /// Die Spielerkarte EINES Spielers in EINEM Turnier (art=9) — Punkte, Platz,
     /// Performance-Rating und Elo-Aenderung. Zustandslos, ein Seitenabruf.
     ///

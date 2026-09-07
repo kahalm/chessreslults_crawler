@@ -136,4 +136,57 @@ public class PlayerHistoryParserTests
         Assert.Equal("Bodrov Timofey", round.OpponentName);
         Assert.Equal(2129, round.OpponentElo);
     }
+
+    // ----- Rundenplan -------------------------------------------------------
+
+    /// <summary>
+    /// Start und Ende einer LIGA sagen nicht, wann gespielt wird: elf Runden von September bis
+    /// April liegen zwei bis fuenf Wochen auseinander. Im Kalender stand die Liga damit an rund
+    /// 200 Tagen, an denen nichts stattfindet.
+    /// </summary>
+    [Fact]
+    public async Task ParseRoundPlanAsync_RealLeaguePlan_ReadsEveryRound()
+    {
+        var rounds = await _parser.ParseRoundPlanAsync(Fixture("round-plan.html"));
+
+        Assert.Equal(11, rounds.Count);
+        Assert.Equal(1, rounds[0].Number);
+        Assert.Equal(new DateOnly(2026, 9, 26), rounds[0].Date);
+        Assert.Equal(new DateOnly(2027, 4, 17), rounds[^1].Date);
+        Assert.Equal(11, rounds[^1].Number);
+        Assert.Contains("14:00", rounds[0].TimeText);
+
+        // Und der Beweis, dass Start bis Ende die falsche Auskunft ist: zwischen der ersten und
+        // der zweiten Runde liegen zwei Wochen ohne Schach.
+        Assert.Equal(14, rounds[1].Date.DayNumber - rounds[0].Date.DayNumber);
+    }
+
+    /// <summary>
+    /// Kein hinterlegter Plan ist der Normalfall bei den meisten Turnieren — eine leere Liste,
+    /// kein Fehler. Der Kalender faellt dann auf Start bis Ende zurueck, was bei einem
+    /// Wochenend-Open auch richtig ist.
+    /// </summary>
+    [Fact]
+    public async Task ParseRoundPlanAsync_PageWithoutAPlan_ReturnsEmpty()
+    {
+        Assert.Empty(await _parser.ParseRoundPlanAsync("<html><body><p>nichts</p></body></html>"));
+    }
+
+    /// <summary>
+    /// Beide Datumsformate: „yyyy/MM/dd" liefert die englische Seite (lan=1), „dd.MM.yyyy" die
+    /// deutsche. Ein Sprachwechsel darf den Rundenplan nicht still leer laufen lassen.
+    /// </summary>
+    [Theory]
+    [InlineData("2026/09/26")]
+    [InlineData("26.09.2026")]
+    public async Task ParseRoundPlanAsync_BothDateFormats_AreRead(string date)
+    {
+        var html = $"""
+            <table class="CRs1"><tr><th>Round</th><th>Date</th><th>Time</th></tr>
+            <tr><td>1</td><td>{date}</td><td>14:00 Uhr</td></tr></table>
+            """;
+
+        var round = Assert.Single(await _parser.ParseRoundPlanAsync(html));
+        Assert.Equal(new DateOnly(2026, 9, 26), round.Date);
+    }
 }
