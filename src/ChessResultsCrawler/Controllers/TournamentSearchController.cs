@@ -22,6 +22,9 @@ public class TournamentSearchController : ControllerBase
 
     private static readonly Regex FederationPattern = new(@"^[A-Za-z]{3}$", RegexOptions.Compiled);
 
+    /// <summary>Die chess-results-Turniernummer ist rein numerisch — nichts anderes wird geholt.</summary>
+    private static readonly Regex TournamentIdPattern = new(@"^\d{1,10}$", RegexOptions.Compiled);
+
     private readonly CrawlerService _crawlerService;
 
     public TournamentSearchController(CrawlerService crawlerService)
@@ -59,6 +62,20 @@ public class TournamentSearchController : ControllerBase
 
         var now = DateTime.UtcNow;
         return Ok(results.Select(r => DirectoryTournamentResponse.FromParsed(r, now)).ToList());
+    }
+
+    /// <summary>
+    /// Die Vereins-/Mannschaftsnamen eines Turniers. Zustandslos wie die Suche — ein Seitenabruf,
+    /// nichts wird gespeichert. RookHub benutzt sie, um einen mehrdeutigen Spielort aufzuloesen
+    /// („St.Veit" ist Tirol ODER Kaernten; „SV ASKOE St. Veit/Glan" sagt, welches).
+    /// </summary>
+    [HttpGet("teams")]
+    public async Task<ActionResult<List<string>>> Teams([FromQuery] string id, CancellationToken ct = default)
+    {
+        if (string.IsNullOrWhiteSpace(id) || !TournamentIdPattern.IsMatch(id.Trim()))
+            return BadRequest(new { message = "Invalid tournament ID." });
+
+        return Ok(await _crawlerService.FetchTeamNamesAsync(id.Trim(), ct));
     }
 
     private static bool TryParseIsoDate(string? text, out DateOnly date)

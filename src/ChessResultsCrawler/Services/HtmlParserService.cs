@@ -597,6 +597,54 @@ public class HtmlParserService
     /// deutschen Synonymen: eine Server-Node, die den lan-Parameter ignoriert, wuerde sonst still
     /// eine leere Liste liefern statt aufzufallen.
     /// </summary>
+    /// <summary>
+    /// Die Vereins-/Mannschaftsnamen der Startrangliste einer Mannschaftsveranstaltung.
+    ///
+    /// <para>Zweck ist NICHT die Turnierauswertung, sondern die Verortung: chess-results nennt den
+    /// Spielort als Freitext und oft abgekuerzt („Mayrhofen, St.Veit"), und derselbe Ortsname
+    /// existiert mehrfach — „St. Veit" liegt in Tirol UND (als „St. Veit an der Glan") in
+    /// Kaernten. Die Vereinsnamen tragen die Unterscheidung dagegen mit: „SV - Das Wien -
+    /// St.Veit/Glan". Sie sind damit ein Hinweis, den es sonst nirgends gibt, und kosten keinen
+    /// eigenen Seitenabruf: die Startrangliste steht auf der Turnierseite selbst.</para>
+    ///
+    /// <para>Leere Liste heisst „keine Mannschaftsveranstaltung oder keine Tabelle gefunden" —
+    /// das ist kein Fehler, die meisten Turniere sind Einzelturniere.</para>
+    /// </summary>
+    public async Task<List<string>> ParseTeamNamesAsync(string html)
+    {
+        var names = new List<string>();
+        var context = BrowsingContext.New(Configuration.Default);
+        var document = await context.OpenAsync(req => req.Content(html));
+
+        var table = FindTableByHeaders(document, ["Team"])
+            ?? FindTableByHeaders(document, ["Mannschaft"]);
+        if (table is null) return names;
+
+        var headerCells = table.QuerySelectorAll(":scope > tr, :scope > thead > tr, :scope > tbody > tr").FirstOrDefault()
+            ?.QuerySelectorAll("th, td")
+            .Select((cell, idx) => (Name: cell.TextContent.Trim(), Index: idx))
+            .ToList() ?? [];
+        var headers = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+        foreach (var h in headerCells)
+        {
+            headers.TryAdd(h.Name, h.Index);
+        }
+
+        foreach (var row in table.QuerySelectorAll(":scope > tr, :scope > tbody > tr").Skip(1))
+        {
+            var cells = row.QuerySelectorAll("td").ToList();
+            if (cells.Count == 0) continue;
+
+            var name = GetCellValue(cells, headers, "Team") ?? GetCellValue(cells, headers, "Mannschaft");
+            if (string.IsNullOrWhiteSpace(name)) continue;
+
+            var cleaned = CleanTeamName(name);
+            if (cleaned.Length > 0 && !names.Contains(cleaned, StringComparer.OrdinalIgnoreCase))
+                names.Add(cleaned);
+        }
+        return names;
+    }
+
     public async Task<List<ParsedDirectoryTournament>> ParseTournamentSearchAsync(string html)
     {
         var results = new List<ParsedDirectoryTournament>();

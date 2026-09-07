@@ -956,6 +956,21 @@ public class CrawlerService
     /// Der Datumsfilter der Suche greift auf das END-Datum eines Turniers, nicht auf den Beginn -
     /// ein im Fenster endendes Langzeitturnier taucht also auch dann auf, wenn es davor begann.
     /// </summary>
+    /// <summary>
+    /// Die Vereins-/Mannschaftsnamen eines Turniers — EIN Seitenabruf, nichts wird gespeichert.
+    ///
+    /// <para>Gedacht als Hinweisgeber fuer die Verortung in RookHub: der Spielort steht dort als
+    /// Freitext und oft abgekuerzt, die Vereinsnamen tragen die Unterscheidung mit („SV - Das
+    /// Wien - St.Veit/Glan" statt bloss „St.Veit"). Einzelturniere liefern eine leere Liste, das
+    /// ist der Normalfall und kein Fehler.</para>
+    /// </summary>
+    public async Task<List<string>> FetchTeamNamesAsync(string chessResultsId, CancellationToken ct = default)
+    {
+        await RateLimitAsync(ct);
+        var html = await FetchPageAsync($"https://chess-results.com/tnr{chessResultsId}.aspx", "lan=1", ct);
+        return await _parser.ParseTeamNamesAsync(html);
+    }
+
     public async Task<List<ParsedDirectoryTournament>> SearchTournamentsAsync(
         string federation, DateOnly from, DateOnly to, int maxRows = 2000, CancellationToken ct = default)
     {
