@@ -910,6 +910,81 @@ public class HtmlParserService
         return names;
     }
 
+    /// <summary>
+    /// Den Ankuendigungskalender auseinandernehmen.
+    ///
+    /// <para>Die Tabelle <c>#datenxx</c> mischt zwei Zeilenarten: MONATSUEBERSCHRIFTEN
+    /// („Start-Date | End-Date | Feb. 2026 | FED | URL | DOC", sechs Zellen) und Datenzeilen mit
+    /// ACHT Zellen — Wochentag, Beginn, Wochentag, Ende, Name, Foederation, Verweis,
+    /// Ausschreibung. Unterschieden wird nicht ueber die Zellenzahl allein, sondern darueber, ob
+    /// in der zweiten Zelle ein Datum im Format <c>yyyy/MM/dd</c> steht: die Kopfzeilen wiederholen
+    /// sich je Monat, und eine kuenftige Layout-Aenderung soll nicht stillschweigend Kopfzeilen
+    /// als Turniere einlesen.</para>
+    /// </summary>
+    public async Task<List<ParsedCalendarEntry>> ParseCalendarAsync(string html)
+    {
+        var results = new List<ParsedCalendarEntry>();
+        var context = BrowsingContext.New(Configuration.Default);
+        var document = await context.OpenAsync(req => req.Content(html));
+
+        var table = document.QuerySelector("#datenxx") ?? document.QuerySelector("table.CRs2");
+        if (table is null) return results;
+
+        foreach (var row in table.QuerySelectorAll("tr"))
+        {
+            var cells = row.QuerySelectorAll("td, th");
+            if (cells.Length != 8) continue;
+
+            var start = ParseCalendarDate(cells[1].TextContent);
+            if (start is null) continue;   // Monatsueberschrift oder Fussnote
+
+            var links = row.QuerySelectorAll("a")
+                .Select(a => a.GetAttribute("href") ?? "")
+                .Where(h => h.Length > 0)
+                .ToList();
+
+            results.Add(new ParsedCalendarEntry
+            {
+                StartDate = start,
+                EndDate = ParseCalendarDate(cells[3].TextContent) ?? start,
+                Name = Collapse(cells[4].TextContent),
+                Federation = Collapse(cells[5].TextContent) is { Length: 3 } fed ? fed : null,
+                CalendarId = links.Select(CalendarIdFrom).FirstOrDefault(id => id is not null),
+                Url = links.FirstOrDefault(h => h.StartsWith("http", StringComparison.OrdinalIgnoreCase)
+                                                && !h.Contains("chess-results", StringComparison.OrdinalIgnoreCase)),
+                ChessResultsId = links.Select(TournamentIdFrom).FirstOrDefault(id => id is not null),
+            });
+        }
+        return results;
+    }
+
+    /// <summary>Der Kalender schreibt <c>yyyy/MM/dd</c> — anders als die Trefferliste der Suche.</summary>
+    private static DateOnly? ParseCalendarDate(string? text) =>
+        DateOnly.TryParseExact((text ?? "").Trim(), "yyyy/MM/dd",
+            CultureInfo.InvariantCulture, DateTimeStyles.None, out var d) ? d : null;
+
+    private static readonly Regex CalendarIdPattern =
+        new(@"key6=DL&(?:amp;)?id=(\d+)", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+
+    private static string? CalendarIdFrom(string href)
+    {
+        var m = CalendarIdPattern.Match(href);
+        return m.Success ? m.Groups[1].Value : null;
+    }
+
+    private static readonly Regex CalendarTnrPattern =
+        new(@"chess-results\.com/[Tt]nr(\d+)\.aspx", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+
+    private static string? TournamentIdFrom(string href)
+    {
+        var m = CalendarTnrPattern.Match(href);
+        return m.Success ? m.Groups[1].Value : null;
+    }
+
+    /// <summary>Mehrfache Leerzeichen und Umbrueche aus dem Markup zusammenziehen.</summary>
+    private static string Collapse(string? text) =>
+        Regex.Replace(text ?? "", @"\s+", " ").Trim();
+
     public async Task<List<ParsedDirectoryTournament>> ParseTournamentSearchAsync(string html)
     {
         var results = new List<ParsedDirectoryTournament>();
@@ -1187,6 +1262,38 @@ public class ParsedPlayerResult
     public string? Result { get; set; }
 }
 
+
+/// <summary>
+/// Ein Eintrag des chess-results-ANKUENDIGUNGSkalenders (<c>Kalender.aspx</c>).
+///
+/// <para>Bewusst mager: der Kalender fuehrt Termin, Name, Foederation und Verweise — und sonst
+/// NICHTS. Kein Ort, keine Bedenkzeit, keine Rundenzahl. Er ist eine Ankuendigung, keine
+/// Turnierseite; sein Wert liegt allein im VORLAUF.</para>
+/// </summary>
+public class ParsedCalendarEntry
+{
+    public string Name { get; set; } = "";
+    public string? Federation { get; set; }
+    public DateOnly? StartDate { get; set; }
+    public DateOnly? EndDate { get; set; }
+
+    /// <summary>
+    /// Die Nummer des Kalendereintrags aus dem Ausschreibungs-Verweis
+    /// (<c>Kalender.aspx?key6=DL&amp;id=10814</c>). Sie ist die einzige stabile Kennung, die der
+    /// Kalender hergibt — und sie fehlt bei rund einem Fuenftel der Eintraege.
+    /// </summary>
+    public string? CalendarId { get; set; }
+
+    /// <summary>Verweis des Veranstalters (eigene Seite). Selten ein chess-results-Link.</summary>
+    public string? Url { get; set; }
+
+    /// <summary>
+    /// Die chess-results-Turniernummer, WENN der Verweis auf eine Turnierseite zeigt. Nur bei
+    /// wenigen Eintraegen (an AUT gemessen: 6 von 146) — die Zuordnung zu bestehenden Eintraegen
+    /// muss deshalb ueber Termin und Namen laufen, nicht ueber diese Nummer.
+    /// </summary>
+    public string? ChessResultsId { get; set; }
+}
 
 public class ParsedDirectoryTournament
 {

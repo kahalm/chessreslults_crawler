@@ -1090,6 +1090,58 @@ public class CrawlerService
     }
 
     /// <summary>
+    /// Der ANKUENDIGUNGS-Kalender (<c>Kalender.aspx</c>) — der zweite Datenbestand von
+    /// chess-results, und ein anderer als die Turniersuche.
+    ///
+    /// <para><b>Warum es beide gibt.</b> Die Turniersuche fuellt sich, wenn der Veranstalter seine
+    /// Swiss-Manager-Datei hochlaedt — typisch Tage bis Wochen vor dem Turnier. Der Kalender wird
+    /// vom Veranstalter VORAB gepflegt. Fuer AUT am 2026-09-07 gemessen: die Turniersuche kennt 8
+    /// im November beginnende Turniere und 7 im Dezember, der Kalender 23 und 16. Von 143
+    /// kuenftigen Kalendereintraegen fehlten <b>93</b> in der Turniersuche.</para>
+    ///
+    /// <para><b>Ein Abruf genuegt fuer alles.</b> Die Laenderauswahl kennt neben 16 Foederationen
+    /// den Wert <c>-</c> („All entries"), und der liefert sie zusammen: 209 kuenftige Eintraege,
+    /// davon AUT 143, GER 21, SUI 21, CZE 7, ITA 4, POL 3. Der Kalender ist also KEIN Ersatz fuer
+    /// die Turniersuche (die deckt 261 Foederationen ab), sondern ein Vorlauf-Zusatz fuer die
+    /// Laender, die ihn benutzen.</para>
+    ///
+    /// <para>Der Ablauf ist derselbe ASP.NET-Postback wie bei der Turniersuche: GET fuer die
+    /// versteckten Felder, dann POST mit <c>__EVENTTARGET</c> auf die Laenderauswahl — es ist ein
+    /// Auswahl-Postback, kein Suchknopf.</para>
+    /// </summary>
+    /// <param name="federation">Dreibuchstabiger Code, oder <c>-</c> fuer alle.</param>
+    public async Task<List<ParsedCalendarEntry>> FetchCalendarAsync(
+        string federation = "-", CancellationToken ct = default)
+    {
+        var url = "https://chess-results.com/Kalender.aspx?lan=1";
+        var (resolvedUrl, formHtml) = await FetchWithRedirectAsync(url, ct);
+
+        EnsureChessResultsHost(resolvedUrl);
+
+        var formData = new Dictionary<string, string>
+        {
+            // Die Laenderauswahl loest den Postback aus; ein Suchknopf existiert hier nicht.
+            ["__EVENTTARGET"] = "ctl00$P1$combo_landsel$DropDownList1",
+            ["__EVENTARGUMENT"] = "",
+            ["__VIEWSTATE"] = ExtractHiddenField(formHtml, "__VIEWSTATE") ?? "",
+            ["__VIEWSTATEGENERATOR"] = ExtractHiddenField(formHtml, "__VIEWSTATEGENERATOR") ?? "",
+            ["__EVENTVALIDATION"] = ExtractHiddenField(formHtml, "__EVENTVALIDATION") ?? "",
+            ["ctl00$P1$combo_landsel$DropDownList1"] = federation,
+            // 0 = alle Kategorien (2 Jugend, 3 Senioren, 5 Frauen).
+            ["ctl00$P1$combo_kat$DropDownList1"] = "0",
+        };
+
+        await RateLimitAsync(ct);
+        using var response = await SendFollowingRedirectsAsync(
+            HttpMethod.Post, new Uri(resolvedUrl), () => new FormUrlEncodedContent(formData), ct);
+
+        var resultHtml = await ReadBodyBoundedAsync(response, ct);
+        response.EnsureSuccessStatusCode();
+
+        return await _parser.ParseCalendarAsync(resultHtml);
+    }
+
+    /// <summary>
     /// Das Zeilenlimit der Suche ist ein Dropdown-INDEX, kein Zahlenwert: 0=100, 1=250, 2=500,
     /// 3=1000, 4=1500, 5=2000. Gewaehlt wird die kleinste Stufe, die maxRows noch abdeckt.
     /// </summary>

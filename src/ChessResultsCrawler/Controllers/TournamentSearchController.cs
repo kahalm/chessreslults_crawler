@@ -140,6 +140,36 @@ public class TournamentSearchController : ControllerBase
     }
 
     /// <summary>
+    /// Der ANKUENDIGUNGS-Kalender — der ZWEITE Datenbestand von chess-results, nicht die
+    /// Turniersuche. Zustandslos, ein Seitenabruf.
+    ///
+    /// <para><b>Warum es beide gibt.</b> Die Turniersuche fuellt sich, wenn der Veranstalter seine
+    /// Swiss-Manager-Datei hochlaedt — typisch Tage bis Wochen vorher. Der Kalender wird VORAB
+    /// gepflegt. Am 2026-09-07 fuer AUT gemessen: Turniersuche 8 im November beginnende Turniere
+    /// und 7 im Dezember, Kalender 23 und 16; von 143 kuenftigen Kalendereintraegen fehlten 93 in
+    /// der Turniersuche.</para>
+    ///
+    /// <para><b>Ein Abruf genuegt fuer alles.</b> Ohne <paramref name="fed"/> (bzw. mit <c>-</c>)
+    /// kommen alle Foederationen zusammen: 209 kuenftige Eintraege, davon AUT 143, GER 21, SUI 21,
+    /// CZE 7. Der Kalender kennt nur 16 Foederationen — er ersetzt die Turniersuche also nicht
+    /// (die deckt 261 ab), sondern ergaenzt sie um Vorlauf.</para>
+    ///
+    /// <para>Was er NICHT liefert: Ort, Bedenkzeit, Rundenzahl. Es ist eine Ankuendigung, keine
+    /// Turnierseite.</para>
+    /// </summary>
+    [HttpGet("calendar")]
+    public async Task<ActionResult<List<CalendarEntryResponse>>> Calendar(
+        [FromQuery] string? fed = null, CancellationToken ct = default)
+    {
+        var federation = string.IsNullOrWhiteSpace(fed) ? "-" : fed.Trim().ToUpperInvariant();
+        if (federation != "-" && !FederationPattern.IsMatch(federation))
+            return BadRequest(new { message = "fed must be a three-letter code or '-' for all." });
+
+        var entries = await _crawlerService.FetchCalendarAsync(federation, ct);
+        return Ok(entries.Select(CalendarEntryResponse.FromParsed).ToList());
+    }
+
+    /// <summary>
     /// Der Rundenplan eines Turniers: je Runde Nummer, Datum und Uhrzeit. Zustandslos, ein
     /// Seitenabruf.
     ///
