@@ -2,6 +2,35 @@
 
 Spezialisierter Web-Crawler der Turnierdaten von chess-results.com extrahiert. Gehoert zusammen mit **RookHub** (`C:/git/rookhub`) – bei Aenderungen immer beide Projekte beruecksichtigen.
 
+
+## Zweite Quelle: der FIDE-Kalender
+
+Dieses Repo ist nicht mehr nur der chess-results-Crawler, sondern **die Komponente, die nach
+draussen crawlt** — hier sitzen der Rate-Limiter, der VPN-Tunnel und der SSRF-Schutz. Der
+FIDE-Kalender ist die zweite Quelle: `Services/FideCalendarService.cs` +
+`Controllers/FideCalendarController.cs` (`GET /api/fide-calendar?year=`), zustandslos wie alles
+hier.
+
+**Warum**: von 139 FIDE-Ereignissen des Jahres 2026 fanden sich (2026-09-07 gemessen) **132 nicht**
+im RookHub-Verzeichnis — Tata Steel, Rilton Cup, Prague Masters, Aeroflot Open, das
+Frauen-Kandidatenturnier, die Freestyle-WM. Die grossen internationalen Turniere schreiben nicht
+(oder erst spaet) auf chess-results aus.
+
+**Der richtige Endpunkt ist nicht der naheliegende.** `calendar_server.php` mit `show=table` bzw.
+`show=apilist` liefert saubere JSON-Zeilen — aus einer Tabelle, die bei 2025 stehen geblieben ist
+(661 Ereignisse, keines in der Zukunft). Gepflegt wird die JAHRESansicht `show=showYear` mit
+`page=<Jahr>`: HTML statt JSON, dafuer aktuell (2026: 143 Zeilen/139 verwertbar, 2027: 15).
+`cat_filter`/`cat_cont` duerfen NICHT leer mitgeschickt werden — der Server antwortet dann 500.
+
+**Eigener HttpClient, eigener Host-Schutz.** `EnsureChessResultsHost` waere hier falsch; der
+FIDE-Dienst prueft `calendar.fide.com` exakt, erzwingt https und folgt Redirects nicht automatisch.
+
+**Der Jahreswechsel ist der eine Sonderfall.** Die Jahresansicht nennt nur Tag und Monat. Ein
+Ereignis wie „27 Dec - 05 Jan" (Rilton Cup) steht in zwei Jahresansichten mit derselben
+Zeichenkette; die Antwort liest es als „beginnt im abgefragten Jahr". Der Aufrufer muss die Jahre
+also **aufsteigend** abfragen und je Ereignis-Nummer den ERSTEN Treffer behalten. Betroffen war
+1 von 139.
+
 ## Zusammenspiel der Projekte
 
 ```

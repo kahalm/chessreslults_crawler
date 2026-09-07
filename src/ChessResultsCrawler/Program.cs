@@ -67,6 +67,17 @@ try
     .ConfigurePrimaryHttpMessageHandler(() => new SocketsHttpHandler { AllowAutoRedirect = false });
     // Timeout + optionaler X-API-Key (Gluetun:ApiKey) für alle Control-Server-Aufrufe —
     // zentral in GluetunClientSetup, damit CrawlerService und VpnReadinessGate identisch laufen.
+    // Der FIDE-Kalender: eigener Client, weil der Host ein anderer ist und der SSRF-Schutz des
+    // CrawlerService auf chess-results.com prueft. Redirects auch hier NICHT automatisch folgen —
+    // ein 3xx kommt als Antwort zurueck und scheitert an EnsureSuccessStatusCode, statt blind
+    // irgendwohin zu laufen.
+    builder.Services.AddHttpClient<FideCalendarService>(client =>
+    {
+        client.DefaultRequestHeaders.Add("User-Agent", "ChessResultsCrawler/1.0 (+RookHub)");
+        client.Timeout = TimeSpan.FromSeconds(30);
+    })
+    .ConfigurePrimaryHttpMessageHandler(() => new SocketsHttpHandler { AllowAutoRedirect = false });
+
     builder.Services.AddHttpClient("Gluetun",
         client => GluetunClientSetup.Configure(client, builder.Configuration));
     builder.Services.AddScoped<HtmlParserService>();
