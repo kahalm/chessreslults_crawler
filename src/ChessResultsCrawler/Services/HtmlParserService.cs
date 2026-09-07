@@ -723,10 +723,26 @@ public class HtmlParserService
         return match.Success ? match.Groups[1].Value : null;
     }
 
+    /// <summary>
+    /// Die Tabelle, deren erste Zeile die verlangten Kopfnamen traegt.
+    ///
+    /// <para><b>Bevorzugt wird eine Tabelle OHNE verschachtelte Tabelle</b> — und das ist der
+    /// ganze Witz dieser Methode. chess-results baut sein Layout aus Tabellen: die Datentabelle
+    /// steckt mehrere Ebenen tief (beim Rundenplan drei). <c>TextContent</c> ist REKURSIV, also
+    /// „enthaelt" schon die aeusserste Wrapper-Tabelle jeden Kopfnamen, der irgendwo darin
+    /// vorkommt. Ohne diese Bevorzugung kam die WRAPPER-Tabelle zurueck, deren eigene Zeilen
+    /// keine Datenzeilen sind — das Ergebnis war eine leere Liste, ohne Fehler und ohne Hinweis.
+    /// Auf dem Dev-Stand gemessen: 337 geprueften Turnieren standen 0 Spieltermine gegenueber.
+    /// Eine Datentabelle ist immer ein BLATT.</para>
+    ///
+    /// <para>Findet sich kein Blatt, gilt der erste Treffer wie bisher — besser die Wrapper-
+    /// Tabelle als gar nichts, falls eine Seite ihre Daten doch verschachtelt fuehrt.</para>
+    /// </summary>
     private static IElement? FindTableByHeaders(IDocument document, string[] requiredHeaders)
     {
-        var tables = document.QuerySelectorAll("table");
-        foreach (var table in tables)
+        IElement? fallback = null;
+
+        foreach (var table in document.QuerySelectorAll("table"))
         {
             var firstRow = table.QuerySelector("tr");
             if (firstRow is null) continue;
@@ -735,13 +751,15 @@ public class HtmlParserService
                 .Select(c => c.TextContent.Trim())
                 .ToList();
 
-            if (requiredHeaders.All(h =>
-                headerTexts.Any(ht => ht.Contains(h, StringComparison.OrdinalIgnoreCase))))
-            {
-                return table;
-            }
+            var matches = requiredHeaders.All(h =>
+                headerTexts.Any(ht => ht.Contains(h, StringComparison.OrdinalIgnoreCase)));
+            if (!matches) continue;
+
+            if (table.QuerySelector("table") is null) return table;    // Blatt = Datentabelle
+            fallback ??= table;
         }
-        return null;
+
+        return fallback;
     }
 
     private static string? GetCellValue(List<IElement> cells, Dictionary<string, int> headers, string headerName)

@@ -166,6 +166,33 @@ public class PlayerHistoryParserTests
     /// kein Fehler. Der Kalender faellt dann auf Start bis Ende zurueck, was bei einem
     /// Wochenend-Open auch richtig ist.
     /// </summary>
+    /// <summary>
+    /// DIE GANZE Seite, nicht der ausgeschnittene Rundenplan.
+    ///
+    /// <para>Der Fehler, den nur das findet: auf der echten Seite steckt die Rundenplan-Tabelle
+    /// DREI Tabellen tief. <c>FindTableByHeaders</c> nahm die erste Tabelle, deren erste Zeile
+    /// die Kopfnamen „enthaelt" — und <c>TextContent</c> ist REKURSIV, also enthaelt schon die
+    /// aeusserste Wrapper-Tabelle „Round" und „Date". Zurueck kam die Wrapper-Tabelle, deren
+    /// eigene Zeilen keine Runden sind: das Ergebnis war eine LEERE Liste.</para>
+    ///
+    /// <para>Auf dem Dev-Stand nachgemessen, nachdem es ausgerollt war: 337 Turniere geprueft,
+    /// <b>0 Spieltermine</b> gespeichert. Die getrimmte Fixture konnte das nicht zeigen — dort
+    /// haengt die Tabelle direkt unter einem <c>div</c>. Deshalb steht sie hier vollstaendig.</para>
+    /// </summary>
+    [Fact]
+    public async Task ParseRoundPlanAsync_VollstaendigeSeite_LiestDieRunden()
+    {
+        var rounds = await _parser.ParseRoundPlanAsync(Fixture("roundplan-tnr1488755.html"));
+
+        Assert.Equal(10, rounds.Count);
+        Assert.Equal(1, rounds[0].Number);
+        Assert.Equal(new DateOnly(2026, 9, 26), rounds[0].Date);
+        Assert.Equal("15:00 Uhr", rounds[0].TimeText);
+        Assert.Equal(new DateOnly(2027, 4, 10), rounds[^1].Date);
+        // Und die Abstaende sind der Grund, warum es das Feature gibt: Wochen, nicht Tage.
+        Assert.True((rounds[1].Date.DayNumber - rounds[0].Date.DayNumber) > 14);
+    }
+
     [Fact]
     public async Task ParseRoundPlanAsync_PageWithoutAPlan_ReturnsEmpty()
     {
