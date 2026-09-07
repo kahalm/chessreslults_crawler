@@ -971,8 +971,15 @@ public class CrawlerService
         return await _parser.ParseTeamNamesAsync(html);
     }
 
+    /// <summary>
+    /// Eine Trefferliste der Turniersuche. <paramref name="art"/> ist die chess-results-Turnierart:
+    /// "5" alle (Vorgabe), "0" Schweizer System, "1" Rundenturnier, "2" Rundenturnier fuer
+    /// MANNSCHAFTEN, "3" Schweizer System fuer MANNSCHAFTEN. Damit laesst sich Einzel gegen
+    /// Mannschaft aus der Quelle beantworten, statt es am Turniernamen zu raten.
+    /// </summary>
     public async Task<List<ParsedDirectoryTournament>> SearchTournamentsAsync(
-        string federation, DateOnly from, DateOnly to, int maxRows = 2000, CancellationToken ct = default)
+        string federation, DateOnly from, DateOnly to, int maxRows = 2000, string art = "5",
+        CancellationToken ct = default)
     {
         var url = "https://chess-results.com/TurnierSuche.aspx?lan=1";
         var (resolvedUrl, formHtml) = await FetchWithRedirectAsync(url, ct);
@@ -995,7 +1002,7 @@ public class CrawlerService
             ["ctl00$P1$combo_land"] = federation,
             ["ctl00$P1$txt_von_tag"] = from.ToString("dd.MM.yyyy", invariant),
             ["ctl00$P1$txt_bis_tag"] = to.ToString("dd.MM.yyyy", invariant),
-            ["ctl00$P1$combo_art"] = "5",        // alle Turnierarten
+            ["ctl00$P1$combo_art"] = art,        // 5 = alle Turnierarten, 2/3 = Mannschaften
             ["ctl00$P1$combo_bedenkzeit"] = "0", // alle Bedenkzeiten
             ["ctl00$P1$combo_sort"] = "3",       // nach Start-Datum
             ["ctl00$P1$combo_anzahl_zeilen"] = RowCountOption(maxRows),

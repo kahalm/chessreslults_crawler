@@ -55,6 +55,24 @@ public class CrawlerServiceTournamentSearchTests : IDisposable
         Assert.Equal("VSG-TOKEN", captured.Form["__VIEWSTATEGENERATOR"]);
     }
 
+    /// <summary>
+    /// Die Turnierart geht mit. Die Arten 2 und 3 („Rundenturnier/Schweizer System fuer
+    /// Mannschaften") sind der einzige Weg, Einzel von Mannschaft zu unterscheiden, ohne den
+    /// Turniernamen zu deuten — RookHub fragt sie in einem zweiten Durchgang gezielt ab.
+    /// </summary>
+    [Theory]
+    [InlineData("2")]
+    [InlineData("3")]
+    public async Task SearchTournamentsAsync_TeamTournamentType_GoesIntoTheForm(string art)
+    {
+        var (service, captured) = CreateService();
+
+        await service.SearchTournamentsAsync(
+            "AUT", new DateOnly(2026, 9, 1), new DateOnly(2026, 12, 31), art: art);
+
+        Assert.Equal(art, captured.Form!["ctl00$P1$combo_art"]);
+    }
+
     [Fact]
     public async Task SearchTournamentsAsync_MaxRows_PicksSmallestDropdownStepAndTruncates()
     {

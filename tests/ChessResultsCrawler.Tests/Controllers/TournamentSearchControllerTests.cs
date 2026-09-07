@@ -30,6 +30,22 @@ public class TournamentSearchControllerTests : IDisposable
 
     public void Dispose() => _db.Dispose();
 
+    /// <summary>
+    /// Die Turnierart ist ein Dropdown-INDEX der Suchmaske. Ein erfundener Index laesst ASP.NET
+    /// die Auswahl verwerfen — die Suche liefert dann stillschweigend etwas anderes als bestellt,
+    /// und RookHub hielte den ganzen Bestand fuer Einzelturniere.
+    /// </summary>
+    [Theory]
+    [InlineData("4")]
+    [InlineData("9")]
+    [InlineData("team")]
+    [InlineData("2; DROP")]
+    public async Task Search_InvalidTournamentType_ReturnsBadRequest(string art)
+    {
+        var result = await CreateController().Search("AUT", "2026-09-01", "2026-12-31", art: art);
+        Assert.IsType<BadRequestObjectResult>(result.Result);
+    }
+
     [Theory]
     [InlineData("")]
     [InlineData("A")]

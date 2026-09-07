@@ -22,6 +22,15 @@ public class TournamentSearchController : ControllerBase
 
     private static readonly Regex FederationPattern = new(@"^[A-Za-z]{3}$", RegexOptions.Compiled);
 
+    /// <summary>Turnierart „alle" — der Vorgabewert der Suchmaske.</summary>
+    public const string AllTournamentTypes = "5";
+
+    /// <summary>
+    /// Die Turnierarten der Suchmaske: 0 Schweizer System, 1 Rundenturnier, 2 Rundenturnier fuer
+    /// Mannschaften, 3 Schweizer System fuer Mannschaften, 5 alle.
+    /// </summary>
+    private static readonly string[] AllowedTypes = ["0", "1", "2", "3", AllTournamentTypes];
+
     /// <summary>Die chess-results-Turniernummer ist rein numerisch — nichts anderes wird geholt.</summary>
     private static readonly Regex TournamentIdPattern = new(@"^\d{1,10}$", RegexOptions.Compiled);
 
@@ -38,6 +47,7 @@ public class TournamentSearchController : ControllerBase
         [FromQuery] string from,
         [FromQuery] string to,
         [FromQuery] int maxRows = MaxRowsCap,
+        [FromQuery] string? art = null,
         CancellationToken ct = default)
     {
         if (string.IsNullOrWhiteSpace(fed) || !FederationPattern.IsMatch(fed.Trim()))
@@ -57,8 +67,16 @@ public class TournamentSearchController : ControllerBase
 
         maxRows = Math.Clamp(maxRows, 1, MaxRowsCap);
 
+        // Die Turnierart ist ein Dropdown-INDEX der Suchmaske. Nur die tatsaechlich vorhandenen
+        // Werte durchlassen: ein erfundener Index laesst ASP.NET die Auswahl verwerfen, die Suche
+        // liefert dann stillschweigend etwas anderes als bestellt.
+        var artValue = (art ?? "").Trim();
+        if (artValue.Length == 0) artValue = AllTournamentTypes;
+        if (!AllowedTypes.Contains(artValue))
+            return BadRequest(new { message = $"art must be one of {string.Join(", ", AllowedTypes)}." });
+
         var results = await _crawlerService.SearchTournamentsAsync(
-            fed.Trim().ToUpperInvariant(), fromDate, toDate, maxRows, ct);
+            fed.Trim().ToUpperInvariant(), fromDate, toDate, maxRows, artValue, ct);
 
         var now = DateTime.UtcNow;
         return Ok(results.Select(r => DirectoryTournamentResponse.FromParsed(r, now)).ToList());
