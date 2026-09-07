@@ -680,6 +680,7 @@ public class HtmlParserService
 
         // Ohne Punkte und ohne Platz ist es ein Turnier, das noch nicht gespielt wurde.
         card.HasResult = card.Points is not null || card.Rank is not null;
+        card.GamesPlayed = CountGames(document);
         return card;
     }
 
@@ -747,6 +748,39 @@ public class HtmlParserService
     /// <para>Findet sich kein Blatt, gilt der erste Treffer wie bisher — besser die Wrapper-
     /// Tabelle als gar nichts, falls eine Seite ihre Daten doch verschachtelt fuehrt.</para>
     /// </summary>
+    /// <summary>
+    /// Wie viele Partien der Spieler in diesem Turnier WIRKLICH gespielt hat.
+    ///
+    /// <para>Die Rundenzahl des Turniers taugt dafuer nicht: in einer Liga steht ein Spieler an
+    /// Brett 17 und wird an drei von elf Terminen aufgestellt. Gezaehlt werden deshalb die Zeilen
+    /// der Partien-Tabelle unter dem Player-info-Block — und zwar nur die mit einem GEGNER: eine
+    /// Zeile ohne Namen ist ein Freilos oder eine nicht gespielte Runde und keine Partie.</para>
+    ///
+    /// <para>Bewusst NICHT ueber Spaltenindizes: die Datenzeilen haben eine Zelle weniger als die
+    /// Kopfzeile (eine leere Spalte fehlt dort), jeder feste Index zeigt also auf die falsche
+    /// Spalte. Eine Zeile zaehlt, wenn sie mit einer Rundennummer beginnt und irgendwo einen
+    /// Namen traegt.</para>
+    /// </summary>
+    private static int? CountGames(IDocument document)
+    {
+        var table = FindTableByHeaders(document, ["Rd.", "Name"])
+            ?? FindTableByHeaders(document, ["Rd", "Name"])
+            ?? FindTableByHeaders(document, ["Ru.", "Name"]);
+        if (table is null) return null;
+
+        var games = 0;
+        foreach (var row in table.QuerySelectorAll("tr").Skip(1))
+        {
+            var cells = row.QuerySelectorAll("td, th").Select(c => c.TextContent.Trim()).ToList();
+            if (cells.Count < 3) continue;
+            if (!int.TryParse(cells[0], out var round) || round < 1) continue;
+
+            // Ein Name hat Buchstaben; Zahlen, Striche und Wertungen zaehlen nicht.
+            if (cells.Skip(1).Any(c => c.Length >= 3 && c.Any(char.IsLetter))) games++;
+        }
+        return games;
+    }
+
     private static IElement? FindTableByHeaders(IDocument document, string[] requiredHeaders)
     {
         IElement? fallback = null;
@@ -1088,6 +1122,13 @@ public class ParsedRoundDate
 /// </summary>
 public class ParsedPlayerCard
 {
+    /// <summary>
+    /// Tatsaechlich gespielte Partien (Zeilen der Partien-Tabelle mit Gegner). <c>null</c>, wenn
+    /// die Seite keine solche Tabelle hat. NICHT die Rundenzahl des Turniers: in einer Liga wird
+    /// ein Spieler an einem Teil der Termine aufgestellt.
+    /// </summary>
+    public int? GamesPlayed { get; set; }
+
     public string? Name { get; set; }
     public string? Federation { get; set; }
     public string? Club { get; set; }

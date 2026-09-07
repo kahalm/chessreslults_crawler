@@ -67,11 +67,18 @@ public class PlayerCardResponse
     public decimal? Points { get; set; }
     public decimal? RatingChange { get; set; }
 
+    /// <summary>
+    /// Tatsaechlich gespielte Partien — NICHT die Rundenzahl des Turniers: in einer Liga wird ein
+    /// Spieler nur an einem Teil der Termine aufgestellt.
+    /// </summary>
+    public int? GamesPlayed { get; set; }
+
     /// <summary>false = das Turnier wurde noch nicht gespielt (kein Fehler).</summary>
     public bool HasResult { get; set; }
 
     public static PlayerCardResponse FromParsed(ParsedPlayerCard c) => new()
     {
+        GamesPlayed = c.GamesPlayed,
         Name = c.Name,
         Federation = c.Federation,
         Club = c.Club,

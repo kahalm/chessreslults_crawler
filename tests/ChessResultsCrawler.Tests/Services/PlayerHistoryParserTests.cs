@@ -101,6 +101,41 @@ public class PlayerHistoryParserTests
     }
 
     /// <summary>
+    /// Gezaehlt werden die tatsaechlich gespielten Partien, nicht die Rundenzahl des Turniers: in
+    /// einer Liga steht ein Spieler an Brett 17 und wird an einem TEIL der Termine aufgestellt.
+    /// Eine Zeile ohne Gegnernamen ist ein Freilos und keine Partie.
+    /// </summary>
+    [Fact]
+    public async Task ParsePlayerCardAsync_CountsTheGamesActuallyPlayed()
+    {
+        var card = await _parser.ParsePlayerCardAsync(Fixture("player-card.html"));
+
+        Assert.Equal(1, card!.GamesPlayed);
+    }
+
+    /// <summary>Eine Zeile ohne Gegner (Freilos, nicht angetreten) zaehlt nicht mit.</summary>
+    [Fact]
+    public async Task ParsePlayerCardAsync_ByeRowsDoNotCount()
+    {
+        var html = """
+            <html><body>
+              <table><tr><td>Name</td><td>Oberschmid Patrik</td></tr>
+                     <tr><td>Points</td><td>2</td></tr></table>
+              <table>
+                <tr><td>Rd.</td><td>Bo.</td><td>SNo</td><td>Name</td><td>Res.</td></tr>
+                <tr><td>1</td><td>16</td><td>16</td><td>Bodrov Timofey</td><td>1</td></tr>
+                <tr><td>2</td><td></td><td></td><td></td><td>-</td></tr>
+                <tr><td>3</td><td>8</td><td>9</td><td>Musterfrau Anna</td><td>0</td></tr>
+              </table>
+            </body></html>
+            """;
+
+        var card = await _parser.ParsePlayerCardAsync(html);
+
+        Assert.Equal(2, card!.GamesPlayed);
+    }
+
+    /// <summary>
     /// chess-results schreibt Kommazahlen mit KOMMA, auch auf der englischen Seite: „1,5" und
     /// „-51,6". Mit invarianter Kultur allein gelesen wuerde aus 1,5 Punkten eine 15 und aus
     /// -51,6 Elo eine -516.
