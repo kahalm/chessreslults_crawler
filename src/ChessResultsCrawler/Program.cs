@@ -61,10 +61,9 @@ try
         client.DefaultRequestHeaders.Add("User-Agent", "ChessResultsCrawler/1.0");
         client.Timeout = TimeSpan.FromSeconds(30);
     })
-    // SSRF-Schutz: Redirects NICHT automatisch folgen. CrawlerService folgt ihnen manuell und prüft
-    // jeden Hop (chess-results.com + https) VOR dem Absenden — sonst würde HttpClient eine
-    // Redirect-Kette (bis 50 Hops) blind bis zu einem internen Host folgen und erst danach prüfen.
-    .ConfigurePrimaryHttpMessageHandler(() => new SocketsHttpHandler { AllowAutoRedirect = false });
+    // SSRF-Schutz (keine automatischen Redirects) UND kurze Pool-Lebensdauer, damit keine
+    // Verbindung eine VPN-Rotation ueberlebt — Begruendung und Messung in CrawlHttpHandler.
+    .ConfigurePrimaryHttpMessageHandler(CrawlHttpHandler.Create);
     // Timeout + optionaler X-API-Key (Gluetun:ApiKey) für alle Control-Server-Aufrufe —
     // zentral in GluetunClientSetup, damit CrawlerService und VpnReadinessGate identisch laufen.
     // Der FIDE-Kalender: eigener Client, weil der Host ein anderer ist und der SSRF-Schutz des
@@ -76,7 +75,9 @@ try
         client.DefaultRequestHeaders.Add("User-Agent", "ChessResultsCrawler/1.0 (+RookHub)");
         client.Timeout = TimeSpan.FromSeconds(30);
     })
-    .ConfigurePrimaryHttpMessageHandler(() => new SocketsHttpHandler { AllowAutoRedirect = false });
+    // Derselbe Handler: dieser Client laeuft durch denselben Tunnel (network_mode: service:gluetun)
+    // und trifft nach einer Rotation dieselben toten Verbindungen.
+    .ConfigurePrimaryHttpMessageHandler(CrawlHttpHandler.Create);
 
     builder.Services.AddHttpClient("Gluetun",
         client => GluetunClientSetup.Configure(client, builder.Configuration));

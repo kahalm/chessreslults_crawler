@@ -29,7 +29,12 @@ public class CrawlerService
     private static readonly SemaphoreSlim _rateLimiter = new(1, 1);
     private static DateTime _lastRequest = DateTime.MinValue;
     private static int _requestCount;
-    private const int DefaultMinDelayMs = 1500;
+    /// <summary>
+    /// Mindestabstand zweier Crawl-Abrufe. `internal`, weil <see cref="CrawlHttpHandler"/> KUERZER
+    /// leben muss als dieser Abstand — sonst ueberlebt eine Verbindung die Rotationspause. Ein
+    /// Test nagelt die Beziehung fest.
+    /// </summary>
+    internal const int DefaultMinDelayMs = 1500;
     private const int DefaultVpnRestartPauseMs = 3000;
     private const int DefaultRotateAfterRequests = 20;
     private const int DefaultRetryDelayMs = 5000;
