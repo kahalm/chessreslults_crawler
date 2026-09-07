@@ -96,6 +96,51 @@ public class TournamentSearchController : ControllerBase
         return Ok(await _crawlerService.FetchTeamNamesAsync(id.Trim(), ct));
     }
 
+    /// <summary>
+    /// Die Turnierhistorie eines Spielers — EIN Seitenabruf, der alle Teilnahmen liefert
+    /// (vergangene UND kuenftige), je Zeile mit Turnier-Id, Enddatum, Platz, Rundenzahl,
+    /// Teilnehmerzahl und der STARTNUMMER (die nur im Link steht und die Spielerkarte adressiert).
+    ///
+    /// <para>Gesucht wird ueber den NAMEN, weil chess-results keine Suche ueber die Ident-Nummer
+    /// anbietet. Die Zeilen tragen Ident-Nummer und Fide-ID mit, damit der Aufrufer bei
+    /// Namensgleichheit die richtige Person auswaehlen kann — und weil bei Auslandsturnieren die
+    /// Ident-Nummer „0" ist und nur die Fide-ID die Identitaet traegt.</para>
+    /// </summary>
+    [HttpGet("player-history")]
+    public async Task<ActionResult<List<PlayerTournamentResponse>>> PlayerHistory(
+        [FromQuery] string lastName, [FromQuery] string? firstName = null, CancellationToken ct = default)
+    {
+        if (string.IsNullOrWhiteSpace(lastName) || lastName.Trim().Length < 2)
+            return BadRequest(new { message = "lastName must have at least 2 characters." });
+
+        var results = await _crawlerService.SearchPlayerTournamentsAsync(
+            lastName.Trim(), firstName?.Trim(), ct);
+
+        return Ok(results.Select(PlayerTournamentResponse.FromParsed).ToList());
+    }
+
+    /// <summary>
+    /// Die Spielerkarte: Punkte, Platz, Performance-Rating und Elo-Aenderung eines Spielers in
+    /// EINEM Turnier. Zustandslos, ein Seitenabruf.
+    ///
+    /// <para>204, wenn die Seite keinen Player-info-Block hat (falsche Startnummer). Ein
+    /// KUENFTIGES Turnier antwortet dagegen mit 200 und <c>hasResult: false</c> — der
+    /// Unterschied ist wesentlich: das eine ist ein Fehler, das andere der Normalfall.</para>
+    /// </summary>
+    [HttpGet("player-card")]
+    public async Task<ActionResult<PlayerCardResponse>> PlayerCard(
+        [FromQuery] string id, [FromQuery] int snr, CancellationToken ct = default)
+    {
+        if (string.IsNullOrWhiteSpace(id) || !TournamentIdPattern.IsMatch(id.Trim()))
+            return BadRequest(new { message = "Invalid tournament ID." });
+
+        if (snr is < 1 or > 10000)
+            return BadRequest(new { message = "snr must be between 1 and 10000." });
+
+        var card = await _crawlerService.FetchPlayerCardAsync(id.Trim(), snr, ct);
+        return card is null ? NoContent() : Ok(PlayerCardResponse.FromParsed(card));
+    }
+
     private static bool TryParseIsoDate(string? text, out DateOnly date)
     {
         date = default;

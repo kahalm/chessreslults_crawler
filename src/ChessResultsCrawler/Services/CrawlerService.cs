@@ -1093,10 +1093,29 @@ public class CrawlerService
         return deduplicated;
     }
 
+    /// <summary>
+    /// Die Spielerkarte EINES Spielers in EINEM Turnier (art=9) — Punkte, Platz,
+    /// Performance-Rating und Elo-Aenderung. Zustandslos, ein Seitenabruf.
+    ///
+    /// <para>Die Startnummer kommt aus der Spielersuche
+    /// (<see cref="SearchPlayerTournamentsAsync"/>); ohne sie ist die Karte nicht adressierbar.
+    /// <c>null</c> heisst „die Seite hat keinen Player-info-Block" — bei einer falschen
+    /// Startnummer der Normalfall.</para>
+    /// </summary>
+    public async Task<ParsedPlayerCard?> FetchPlayerCardAsync(
+        string chessResultsId, int snr, CancellationToken ct = default)
+    {
+        await RateLimitAsync(ct);
+        var html = await FetchPageAsync(
+            $"https://chess-results.com/tnr{chessResultsId}.aspx", $"lan=1&art=9&snr={snr}", ct);
+        return await _parser.ParsePlayerCardAsync(html);
+    }
+
     public async Task<List<ParsedPlayerTournament>> SearchPlayerTournamentsAsync(string lastName, string? firstName, CancellationToken ct = default)
     {
-        // Same POST flow as SearchPlayersAsync
-        var url = "https://chess-results.com/SpielerSuche.aspx?lan=0";
+        // lan=1 (englisch): der Parser sucht die Spalten ueber ihre KOPFZEILEN, und die
+        // englische Fassung liefert zusaetzlich Datumsangaben als "yyyy/MM/dd".
+        var url = "https://chess-results.com/SpielerSuche.aspx?lan=1";
         var (resolvedUrl, formHtml) = await FetchWithRedirectAsync(url, ct);
 
         EnsureChessResultsHost(resolvedUrl);
@@ -1112,7 +1131,7 @@ public class CrawlerService
             ["__VIEWSTATEGENERATOR"] = viewStateGenerator ?? "",
             ["ctl00$P1$txt_nachname"] = lastName,
             ["ctl00$P1$txt_vorname"] = firstName ?? "",
-            ["ctl00$P1$cb_suchen"] = "Suchen"
+            ["ctl00$P1$cb_suchen"] = "Search"
         };
 
         await RateLimitAsync(ct);

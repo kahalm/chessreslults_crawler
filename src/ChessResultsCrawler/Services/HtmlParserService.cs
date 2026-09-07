@@ -1,3 +1,4 @@
+using System.Globalization;
 using AngleSharp;
 using AngleSharp.Dom;
 using ChessResultsCrawler.Models;
@@ -437,12 +438,36 @@ public class HtmlParserService
                     endDate = dateText;
             }
 
-            results.Add(new ParsedPlayerTournament
+            var entry = new ParsedPlayerTournament
             {
                 TournamentId = tournamentId,
                 TournamentName = tournamentName,
-                EndDate = endDate
-            });
+                EndDate = endDate,
+            };
+
+            // Die Startnummer steht NUR im Link auf den Spielernamen
+            // (tnr<id>.aspx?lan=1&art=9&snr=<n>) - es gibt keine Spalte dafuer. Ohne sie ist die
+            // Spielerkarte dieses Turniers nicht erreichbar, und mit ihr genau EIN Abruf.
+            var cardLink = row.QuerySelectorAll("a[href]")
+                .Select(a => Regex.Match(a.GetAttribute("href") ?? "", @"tnr(\d+)\.aspx[^""]*[?&]snr=(\d+)"))
+                .FirstOrDefault(m => m.Success);
+            if (cardLink is { Success: true } && int.TryParse(cardLink.Groups[2].Value, out var snr))
+                entry.Snr = snr;
+
+            entry.IdentNumber = GetCellValue(cells, headers, "ID") ?? GetCellValue(cells, headers, "Ident-Number");
+            entry.FideId = GetCellValue(cells, headers, "FideID") ?? GetCellValue(cells, headers, "Fide-ID");
+            entry.Club = GetCellValue(cells, headers, "Club/City") ?? GetCellValue(cells, headers, "Verein/Ort");
+            entry.Federation = GetCellValue(cells, headers, "FED") ?? GetCellValue(cells, headers, "Land");
+            entry.PlayerName = GetCellValue(cells, headers, "Name");
+
+            // "-" heisst: noch nicht gespielt. Das ist die Unterscheidung zwischen einem kuenftigen
+            // und einem abgeschlossenen Turnier - ein Kartenabruf lohnt nur beim zweiten.
+            if (int.TryParse(GetCellValue(cells, headers, "Rk.") ?? GetCellValue(cells, headers, "Rg."), out var rank))
+                entry.Rank = rank;
+            if (int.TryParse(GetCellValue(cells, headers, "Rd."), out var rounds)) entry.Rounds = rounds;
+            if (int.TryParse(GetCellValue(cells, headers, "n"), out var count)) entry.PlayerCount = count;
+
+            results.Add(entry);
         }
 
         // Deduplicate by TournamentId
@@ -456,6 +481,12 @@ public class HtmlParserService
     /// Parses art=9 page (player detail / Einzelergebnisse).
     /// Columns: Rd. | Br. | Snr | Name | Elo | Land | Verein/Ort | Pkt. | Erg.
     /// Returns list of parsed results per round.
+    ///
+    /// <para>Die Tabelle wird ueber ihre KOPFZEILE gesucht, nicht ueber die Klasse. Auf der
+    /// art=9-Seite gibt es ZWEI Tabellen mit der Klasse CRs1, und die erste ist der
+    /// zweispaltige „Player info"-Block. Die frueher zuerst versuchte Klassen-Auswahl griff
+    /// also den falschen Block; dessen Zeilen haben zwei Zellen, fielen durch die
+    /// Mindestzellen-Pruefung und die Rundenliste kam LEER zurueck.</para>
     /// </summary>
     public async Task<List<ParsedPlayerResult>> ParsePlayerDetailPageAsync(string html)
     {
@@ -463,15 +494,11 @@ public class HtmlParserService
         var context = BrowsingContext.New(Configuration.Default);
         var document = await context.OpenAsync(req => req.Content(html));
 
-        var table = document.QuerySelector("table.CRs1")
-            ?? document.QuerySelector("table.CRs2")
-            ?? FindTableByHeaders(document, ["Rd.", "Name"]);
-        if (table is null)
-        {
-            // Try German header variant
-            table = FindTableByHeaders(document, ["Rd.", "Erg."]);
-            if (table is null) return results;
-        }
+        var table = FindTableByHeaders(document, ["Rd.", "Name"])
+            ?? FindTableByHeaders(document, ["Rd.", "Erg."])
+            ?? document.QuerySelector("table.CRs1")
+            ?? document.QuerySelector("table.CRs2");
+        if (table is null) return results;
 
         var headerCells = table.QuerySelectorAll(":scope > tr, :scope > thead > tr, :scope > tbody > tr").FirstOrDefault()
             ?.QuerySelectorAll("th, td")
@@ -503,7 +530,13 @@ public class HtmlParserService
 
             result.OpponentName = GetCellValue(cells, headers, "Name");
 
-            var eloText = GetCellValue(cells, headers, "Rtg") ?? GetCellValue(cells, headers, "Elo");
+            // „RtgI"/„RtgN" sind die heutigen Spaltennamen (international/national); „Rtg"/„Elo"
+            // bleiben als aeltere Varianten stehen. Die INTERNATIONALE Wertung zuerst — sie ist
+            // die, mit der gerechnet wird, und bei Spielern ohne nationale Wertung die einzige.
+            var eloText = GetCellValue(cells, headers, "RtgI")
+                          ?? GetCellValue(cells, headers, "Rtg")
+                          ?? GetCellValue(cells, headers, "Elo")
+                          ?? GetCellValue(cells, headers, "RtgN");
             if (int.TryParse(eloText, out var elo)) result.OpponentElo = elo;
 
             result.Points = GetCellValue(cells, headers, "Pkt.") ?? GetCellValue(cells, headers, "Pts.");
@@ -514,6 +547,106 @@ public class HtmlParserService
 
         return results;
     }
+
+    /// <summary>
+    /// Der „Player info"-Block der Spielerkarte (art=9): Punkte, Platz, Performance-Rating und
+    /// Elo-Aenderung eines Spielers in EINEM Turnier.
+    ///
+    /// <para>Das ist die einzige Quelle fuer diese vier Werte — die Spielersuche nennt nur den
+    /// Platz, und die Turnierseite selbst hat sie je Spieler nur in der Tabelle, nicht als
+    /// abfragbares Feld. Ein Abruf je Turnier und Spieler.</para>
+    ///
+    /// <para>Ein KUENFTIGES Turnier hat den Block, aber ohne Werte. Deshalb
+    /// <see cref="ParsedPlayerCard.HasResult"/>: fehlen Punkte UND Platz, gab es noch kein
+    /// Ergebnis — das ist der Normalfall vor dem Turnier und kein Fehler.</para>
+    ///
+    /// <para>Die Zahlen tragen ein Dezimal-KOMMA („1,5", „-51,6"), auch auf der englischen
+    /// Seite (lan=1). Deshalb wird mit der invarianten UND der deutschen Kultur geparst.</para>
+    /// </summary>
+    public async Task<ParsedPlayerCard?> ParsePlayerCardAsync(string html)
+    {
+        var context = BrowsingContext.New(Configuration.Default);
+        var document = await context.OpenAsync(req => req.Content(html));
+
+        // Der Block wird ueber seine ZEILEN erkannt (Beschriftung + Wert), nicht ueber die
+        // Klasse: „Player info" ist eine Ueberschrift daneben, und die Klasse CRs1 tragen auf
+        // dieser Seite mehrere Tabellen.
+        var fields = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+        foreach (var table in document.QuerySelectorAll("table"))
+        {
+            foreach (var row in table.QuerySelectorAll(":scope > tr, :scope > tbody > tr"))
+            {
+                var cells = row.QuerySelectorAll(":scope > td").ToList();
+                if (cells.Count != 2) continue;
+                var label = cells[0].TextContent.Trim().TrimEnd(':').Trim();
+                if (label.Length == 0) continue;
+                fields.TryAdd(label, cells[1].TextContent.Trim());
+            }
+        }
+
+        if (fields.Count == 0) return null;
+
+        var card = new ParsedPlayerCard
+        {
+            Name = Field(fields, "Name", "Namen"),
+            Federation = Field(fields, "Federation", "Foederation", "Land"),
+            Club = Field(fields, "Club/City", "Verein/Ort"),
+            IdentNumber = Field(fields, "Ident-Number", "Ident-Nummer"),
+            FideId = Field(fields, "Fide-ID", "FideID"),
+            StartingRank = Int(fields, "Starting rank", "Startrang"),
+            RatingNational = Int(fields, "Rating national", "Rating national"),
+            RatingInternational = Int(fields, "Rating international", "Rating international"),
+            PerformanceRating = Int(fields, "Performance rating", "Rating-Performance", "Performance"),
+            Rank = Int(fields, "Rank", "Rang", "Platz"),
+            YearOfBirth = Int(fields, "Year of birth", "Geburtsjahr"),
+            Points = Decimal(fields, "Points", "Punkte"),
+            RatingChange = Decimal(fields, "FIDE rtg +/-", "Rtg +/-", "Elo +/-"),
+        };
+
+        // Ohne Punkte und ohne Platz ist es ein Turnier, das noch nicht gespielt wurde.
+        card.HasResult = card.Points is not null || card.Rank is not null;
+        return card;
+    }
+
+    private static string? Field(Dictionary<string, string> fields, params string[] labels)
+    {
+        foreach (var label in labels)
+        {
+            if (fields.TryGetValue(label, out var value) && value.Length > 0) return value;
+        }
+        return null;
+    }
+
+    private static int? Int(Dictionary<string, string> fields, params string[] labels) =>
+        int.TryParse(Field(fields, labels), NumberStyles.Integer, CultureInfo.InvariantCulture, out var value)
+            ? value : null;
+
+    /// <summary>
+    /// Eine Kommazahl der Seite. chess-results schreibt „1,5" und „-51,6" — auch auf der
+    /// englischen Fassung (lan=1).
+    ///
+    /// <para><b>Die Reihenfolge und der Stil sind beides wesentlich.</b> Mit
+    /// <c>NumberStyles.Number</c> ist das Tausendertrennzeichen erlaubt, und in der invarianten
+    /// Kultur IST das Komma genau das: „1,5" wird dort erfolgreich als <b>15</b> gelesen, „-51,6"
+    /// als <b>-516</b>. Ein erfolgreicher Fehlwert also, den kein Fallback mehr korrigiert.
+    /// Deshalb ohne <c>AllowThousands</c> und mit dem Dezimal-KOMMA zuerst: „1,5" scheitert dann
+    /// invariant und gelingt deutsch, „1.5" umgekehrt.</para>
+    /// </summary>
+    private static decimal? Decimal(Dictionary<string, string> fields, params string[] labels)
+    {
+        var text = Field(fields, labels);
+        if (string.IsNullOrWhiteSpace(text)) return null;
+
+        const NumberStyles style = NumberStyles.AllowLeadingSign | NumberStyles.AllowDecimalPoint
+                                                                 | NumberStyles.AllowLeadingWhite
+                                                                 | NumberStyles.AllowTrailingWhite;
+
+        return decimal.TryParse(text, style, GermanCulture, out var german)
+            ? german
+            : decimal.TryParse(text, style, CultureInfo.InvariantCulture, out var invariant) ? invariant : null;
+    }
+
+    private static readonly CultureInfo GermanCulture = new("de-DE");
 
     /// <summary>
     /// Extracts the SNode (s1/s2/s3) from a redirect URL or page content.
@@ -796,11 +929,64 @@ public class ParsedTournamentDetails
     public string? Location { get; set; }
 }
 
+/// <summary>
+/// Eine Zeile der Spielersuche: die Teilnahme EINES Spielers an EINEM Turnier. Ein Abruf liefert
+/// die ganze Historie — vergangene und kuenftige Turniere.
+/// </summary>
 public class ParsedPlayerTournament
 {
     public string TournamentId { get; set; } = "";
     public string TournamentName { get; set; } = "";
     public string? EndDate { get; set; }
+
+    /// <summary>
+    /// Startnummer des Spielers in diesem Turnier — steht NUR im Link auf den Namen und ist der
+    /// Schluessel zur Spielerkarte (Punkte, Platz, Performance).
+    /// </summary>
+    public int? Snr { get; set; }
+
+    public string? PlayerName { get; set; }
+    /// <summary>chess-results-Ident-Nummer; bei Auslandsturnieren steht dort „0".</summary>
+    public string? IdentNumber { get; set; }
+    public string? FideId { get; set; }
+    public string? Club { get; set; }
+    public string? Federation { get; set; }
+
+    /// <summary>Platz; <c>null</c> heisst „noch nicht gespielt" (Spalte enthaelt „-").</summary>
+    public int? Rank { get; set; }
+    public int? Rounds { get; set; }
+    /// <summary>Teilnehmerzahl des Turniers (Spalte „n").</summary>
+    public int? PlayerCount { get; set; }
+}
+
+/// <summary>
+/// Punkte, Platz, Performance-Rating und Elo-Aenderung eines Spielers in EINEM Turnier — der
+/// „Player info"-Block der Spielerkarte (art=9).
+/// </summary>
+public class ParsedPlayerCard
+{
+    public string? Name { get; set; }
+    public string? Federation { get; set; }
+    public string? Club { get; set; }
+    public string? IdentNumber { get; set; }
+    public string? FideId { get; set; }
+    public int? StartingRank { get; set; }
+    public int? RatingNational { get; set; }
+    public int? RatingInternational { get; set; }
+    /// <summary>Turnier-Leistung („Performance rating") — die Zahl, um die es hier eigentlich geht.</summary>
+    public int? PerformanceRating { get; set; }
+    public int? Rank { get; set; }
+    public int? YearOfBirth { get; set; }
+    /// <summary>Erreichte Punkte; Bruchteile kommen als Kommazahl („1,5").</summary>
+    public decimal? Points { get; set; }
+    /// <summary>Elo-Aenderung aus diesem Turnier („FIDE rtg +/-").</summary>
+    public decimal? RatingChange { get; set; }
+
+    /// <summary>
+    /// Gab es schon ein Ergebnis? Ein kuenftiges Turnier liefert den Block ohne Werte — das ist
+    /// der Normalfall und kein Fehler, aber es darf nicht als „null Punkte" gespeichert werden.
+    /// </summary>
+    public bool HasResult { get; set; }
 }
 
 public class ParsedPlayerSearchResult

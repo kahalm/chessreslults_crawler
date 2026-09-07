@@ -48,6 +48,27 @@ public class TournamentSearchControllerTests : IDisposable
 
     [Theory]
     [InlineData("")]
+    [InlineData(" ")]
+    [InlineData("O")]
+    public async Task PlayerHistory_TooShortLastName_ReturnsBadRequest(string lastName)
+    {
+        var result = await CreateController().PlayerHistory(lastName);
+        Assert.IsType<BadRequestObjectResult>(result.Result);
+    }
+
+    [Theory]
+    [InlineData("abc", 1)]
+    [InlineData("12345678901", 1)]
+    [InlineData("1107064", 0)]
+    [InlineData("1107064", 10001)]
+    public async Task PlayerCard_InvalidArguments_ReturnBadRequest(string id, int snr)
+    {
+        var result = await CreateController().PlayerCard(id, snr);
+        Assert.IsType<BadRequestObjectResult>(result.Result);
+    }
+
+    [Theory]
+    [InlineData("")]
     [InlineData("A")]
     [InlineData("AUSTRIA")]
     [InlineData("AU1")]

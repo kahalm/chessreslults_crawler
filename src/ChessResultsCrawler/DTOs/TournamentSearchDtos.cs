@@ -49,3 +49,42 @@ public class DirectoryTournamentResponse
         LastUpdatedApproxUtc = p.LastUpdateAge is { } age ? nowUtc - age : null,
     };
 }
+
+/// <summary>Punkte, Platz, Performance-Rating und Elo-Aenderung in EINEM Turnier.</summary>
+public class PlayerCardResponse
+{
+    public string? Name { get; set; }
+    public string? Federation { get; set; }
+    public string? Club { get; set; }
+    public string? IdentNumber { get; set; }
+    public string? FideId { get; set; }
+    public int? StartingRank { get; set; }
+    public int? RatingNational { get; set; }
+    public int? RatingInternational { get; set; }
+    public int? PerformanceRating { get; set; }
+    public int? Rank { get; set; }
+    public int? YearOfBirth { get; set; }
+    public decimal? Points { get; set; }
+    public decimal? RatingChange { get; set; }
+
+    /// <summary>false = das Turnier wurde noch nicht gespielt (kein Fehler).</summary>
+    public bool HasResult { get; set; }
+
+    public static PlayerCardResponse FromParsed(ParsedPlayerCard c) => new()
+    {
+        Name = c.Name,
+        Federation = c.Federation,
+        Club = c.Club,
+        IdentNumber = c.IdentNumber,
+        FideId = c.FideId,
+        StartingRank = c.StartingRank,
+        RatingNational = c.RatingNational,
+        RatingInternational = c.RatingInternational,
+        PerformanceRating = c.PerformanceRating,
+        Rank = c.Rank,
+        YearOfBirth = c.YearOfBirth,
+        Points = c.Points,
+        RatingChange = c.RatingChange,
+        HasResult = c.HasResult,
+    };
+}
