@@ -54,4 +54,29 @@ public class FideCalendarController : ControllerBase
         var events = await _fide.FetchYearAsync(year, ct);
         return Ok(events.Select(FideEventResponse.FromParsed).ToList());
     }
+
+    /// <summary>
+    /// Die Detailangaben EINES Ereignisses — Bedenkzeit, Turniersystem, Runden- und
+    /// Teilnehmerzahl und die Anschrift des Spielorts. Zustandslos, ein Seitenabruf.
+    ///
+    /// <para><b>Warum es diese Route braucht.</b> Die Jahresansicht traegt je Ereignis genau
+    /// einen Textabschnitt („01 May - 07 May / Malmo (SWE)") und sonst nichts, und ihre Filter
+    /// helfen nicht weiter: <c>show=showYear</c> ignoriert <c>event_type</c> und
+    /// <c>time_control</c> — alle sechs Varianten liefern dieselben 143 Ereignisse. Den billigen
+    /// Sammel-Weg, den chess-results ueber <c>art=</c> anbietet, gibt es hier also nicht; die
+    /// Angaben kosten einen Abruf je Ereignis.</para>
+    ///
+    /// <para>404 bei einer Nummer, die keine ist. Ein Ereignis OHNE gepflegte Angaben ist dagegen
+    /// kein Fehler: die Antwort kommt dann mit lauter <c>null</c>-Feldern, und der Aufrufer soll
+    /// genau das als „nachgesehen, nichts hinterlegt" vermerken koennen.</para>
+    /// </summary>
+    [HttpGet("event")]
+    public async Task<ActionResult<FideEventDetailResponse>> Event(
+        [FromQuery] string id, CancellationToken ct = default)
+    {
+        var detail = await _fide.FetchEventAsync(id?.Trim() ?? "", ct);
+        if (detail is null) return NotFound(new { message = "Invalid FIDE event id." });
+
+        return Ok(FideEventDetailResponse.FromParsed(detail));
+    }
 }

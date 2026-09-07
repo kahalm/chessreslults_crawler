@@ -1,4 +1,6 @@
 using ChessResultsCrawler.Services;
+using Microsoft.Extensions.Logging;
+using Moq;
 
 namespace ChessResultsCrawler.Tests.Services;
 
@@ -147,5 +149,106 @@ public class FideCalendarServiceTests
     public async Task ParseYearAsync_PageWithoutEvents_ReturnsEmpty()
     {
         Assert.Empty(await FideCalendarService.ParseYearAsync("<html><body>leer</body></html>", 2026));
+    }
+
+    // ---------------------------------------------------------------------------------------
+    // Detailangaben EINES Ereignisses (calendar_server.php?id=)
+    // ---------------------------------------------------------------------------------------
+
+    /// <summary>
+    /// Das Fragment eines vollstaendig gepflegten Ereignisses — hier stehen alle Felder, die die
+    /// Jahresansicht NICHT hergibt. id=17954, ein Norm-Turnier in Zaragoza.
+    /// </summary>
+    [Fact]
+    public async Task ParseEventAsync_FullEvent_ReadsEveryField()
+    {
+        var d = await FideCalendarService.ParseEventAsync(Fixture("fide-event-17954.html"), "17954");
+
+        Assert.Equal("17954", d.EventId);
+        Assert.Equal("Over-the-Board Tournament", d.EventType);
+        Assert.Equal("Standard", d.TimeControl);
+        Assert.Equal("90 minutes with 30 second increment from move 1", d.TimeControlText);
+        Assert.Equal("Round-Robin", d.System);
+        Assert.Equal(9, d.Rounds);
+        Assert.Equal(10, d.Players);
+        Assert.Equal("Spain", d.Country);
+        Assert.Equal("Zaragoza", d.City);
+        // Der eigentliche Gewinn: eine Anschrift MIT Postleitzahl.
+        Assert.Contains("50012", d.VenueAddress);
+        Assert.Contains("Zaragoza", d.VenueAddress);
+    }
+
+    /// <summary>
+    /// Und der karge Fall, der die Regel bestimmt: die 46. Schacholympiade (id=5072) hat weder
+    /// Bedenkzeit-Beschreibung noch Runden- noch Teilnehmerzahl, und ihre Anschrift ist leer.
+    /// Fehlende Felder muessen <c>null</c> sein — NICHT der Wert der naechsten Zeile.
+    /// </summary>
+    [Fact]
+    public async Task ParseEventAsync_SparseEvent_LeavesMissingFieldsNull()
+    {
+        var d = await FideCalendarService.ParseEventAsync(Fixture("fide-event-5072.html"), "5072");
+
+        Assert.Equal("Standard", d.TimeControl);
+        Assert.Equal("Other", d.System);
+        Assert.Equal("Uzbekistan", d.Country);
+        Assert.Equal("Samarkand", d.City);
+
+        Assert.Null(d.TimeControlText);
+        Assert.Null(d.Rounds);
+        Assert.Null(d.Players);
+        Assert.Null(d.VenueAddress);
+    }
+
+    /// <summary>
+    /// Der Fehler, den ein „Beschriftung, dann naechste Textzeile"-Parser macht: bei einem LEEREN
+    /// Feld sammelt er die naechste BESCHRIFTUNG als Wert ein. An der Team-Blitz-WM nachgestellt,
+    /// wo auf diesem Weg <c>City = "Venue"</c> herauskam. Keine Angabe darf jemals der Name eines
+    /// anderen Feldes sein.
+    /// </summary>
+    [Theory]
+    [InlineData("fide-event-17954.html", "17954")]
+    [InlineData("fide-event-5072.html", "5072")]
+    public async Task ParseEventAsync_NeverReturnsAnotherFieldsLabelAsAValue(string fixture, string id)
+    {
+        var d = await FideCalendarService.ParseEventAsync(Fixture(fixture), id);
+
+        string[] labels =
+        [
+            "Type of event", "Time control", "Time control description", "Tournament system",
+            "Number of rounds", "Number of players", "Country", "City", "Venue", "Address",
+            "Website", "E-mail", "Contacts", "Organizers", "Arbiters",
+        ];
+        string?[] values =
+        [
+            d.EventType, d.TimeControl, d.TimeControlText, d.System,
+            d.Country, d.City, d.VenueAddress, d.Website,
+        ];
+
+        Assert.All(values, v => Assert.DoesNotContain(labels, l =>
+            string.Equals(l, v, StringComparison.OrdinalIgnoreCase)));
+    }
+
+    /// <summary>
+    /// Eine Ereignis-Nummer, die keine Zahl ist, darf NICHT in eine URL wandern — dieselbe Regel
+    /// wie beim Turnier-Bezeichner im CrawlerService.
+    /// </summary>
+    [Theory]
+    [InlineData("")]
+    [InlineData("../../etc")]
+    [InlineData("17954&x=1")]
+    [InlineData("abc")]
+    public async Task FetchEventAsync_RefusesAnIdThatIsNotANumber(string id)
+    {
+        var service = new FideCalendarService(
+            new HttpClient(new ThrowingHandler()), Mock.Of<ILogger<FideCalendarService>>());
+
+        Assert.Null(await service.FetchEventAsync(id));
+    }
+
+    /// <summary>Schlaegt an, sobald doch eine Anfrage rausgeht.</summary>
+    private sealed class ThrowingHandler : HttpMessageHandler
+    {
+        protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage r, CancellationToken ct) =>
+            throw new InvalidOperationException($"Es haette keine Anfrage geben duerfen: {r.RequestUri}");
     }
 }

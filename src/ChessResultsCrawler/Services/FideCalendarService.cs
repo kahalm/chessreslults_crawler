@@ -20,6 +20,50 @@ public class ParsedFideEvent
 }
 
 /// <summary>
+/// Die DETAILangaben eines FIDE-Ereignisses — alles, was die Jahresansicht nicht hergibt.
+///
+/// <para>Jedes Feld ist optional, und das ist keine Vorsicht, sondern gemessen: die
+/// 46. Schacholympiade (id=5072) hat weder Bedenkzeit-Beschreibung noch Runden- noch
+/// Teilnehmerzahl, waehrend ein Norm-Turnier (id=17954) alle zwoelf Zeilen traegt.</para>
+/// </summary>
+public class ParsedFideEventDetail
+{
+    public string EventId { get; set; } = "";
+
+    /// <summary>„Over-the-Board Tournament", „Online", „Hybrid", „Meeting".</summary>
+    public string? EventType { get; set; }
+
+    /// <summary>„Standard", „Rapid" oder „Blitz" — FIDEs eigene Klasse, kein Rohtext.</summary>
+    public string? TimeControl { get; set; }
+
+    /// <summary>Die ausgeschriebene Bedenkzeit („90 minutes with 30 second increment…").</summary>
+    public string? TimeControlText { get; set; }
+
+    /// <summary>
+    /// „Round-Robin", „Swiss-System", „Other" — das TURNIERSYSTEM.
+    ///
+    /// <para>Es sagt NICHTS ueber Einzel gegen Mannschaft: die 46. Schacholympiade steht auf
+    /// „Other", die Team-Blitz-WM auf „Round-Robin". Wer hier Mannschaften herauslesen will,
+    /// liest etwas, das nicht drinsteht.</para>
+    /// </summary>
+    public string? System { get; set; }
+
+    public int? Rounds { get; set; }
+    public int? Players { get; set; }
+    public string? Country { get; set; }
+    public string? City { get; set; }
+
+    /// <summary>
+    /// Die Anschrift des Spielorts — der wertvollste Teil, weil sie eine POSTLEITZAHL traegt
+    /// („Via Iberica, 69, 77, 50012 Zaragoza, Spain"). Die Verortung hat mit einer PLZ ihren
+    /// genauesten Weg, und der greift bei FIDE-Eintraegen sonst nie.
+    /// </summary>
+    public string? VenueAddress { get; set; }
+
+    public string? Website { get; set; }
+}
+
+/// <summary>
 /// Der FIDE-Kalender als ZWEITE Turnierquelle.
 ///
 /// <para><b>Warum ueberhaupt.</b> Das Verzeichnis lebt aus der chess-results-Turniersuche, und die
@@ -105,6 +149,111 @@ public class FideCalendarService
         _log.LogInformation("FIDE-Kalender {Year}: {Count} Ereignisse", year, events.Count);
         return events;
     }
+
+    /// <summary>
+    /// Die Detailangaben EINES Ereignisses holen — ein Abruf je Ereignis.
+    ///
+    /// <para><b>Warum nicht die Ereignisseite.</b> <c>calendar.php?id=N</c> ist zu 100 % Geruest:
+    /// zwei verschiedene Ereignis-Ids liefern byte-identische 84 956 Bytes, ohne Namen, ohne
+    /// Tabellenzeile, ohne Datenquelle im Markup. Den Inhalt laedt <c>js/tabs.js</c> ueber genau
+    /// diesen Aufruf nach.</para>
+    ///
+    /// <para><b>Warum nicht gesammelt.</b> Die Jahresansicht traegt die Felder nicht, und ihre
+    /// Filter helfen nicht: <c>show=showYear</c> IGNORIERT <c>event_type</c> und
+    /// <c>time_control</c> — nachgemessen liefern alle sechs Varianten dieselben 143 Ereignisse.
+    /// Der billige Sammel-Trick, den chess-results ueber <c>art=</c> erlaubt, gibt es hier
+    /// nicht.</para>
+    /// </summary>
+    public async Task<ParsedFideEventDetail?> FetchEventAsync(string eventId, CancellationToken ct = default)
+    {
+        if (!EventIdPattern.IsMatch(eventId)) return null;
+
+        var target = new Uri($"{ServerUrl}?id={eventId}&preview=0");
+        EnsureAllowedTarget(target);
+
+        using var request = new HttpRequestMessage(HttpMethod.Get, target);
+        // Ohne diesen Kopf antwortet der Server die Rahmenseite statt des Ausschnitts — dieselbe
+        // Bedingung wie bei der Jahresansicht.
+        request.Headers.Add("X-Requested-With", "XMLHttpRequest");
+        request.Headers.Referrer = new Uri($"https://{AllowedHost}/calendar.php?id={eventId}");
+
+        using var response = await _http.SendAsync(request, ct);
+        var html = await response.Content.ReadAsStringAsync(ct);
+        response.EnsureSuccessStatusCode();
+
+        var detail = await ParseEventAsync(html, eventId);
+        _log.LogInformation(
+            "FIDE-Ereignis {EventId}: Bedenkzeit={TimeControl} System={System} Runden={Rounds} Anschrift={HasAddress}",
+            eventId, detail.TimeControl ?? "-", detail.System ?? "-", detail.Rounds,
+            detail.VenueAddress is not null);
+        return detail;
+    }
+
+    /// <summary>Ereignis-Nummern sind Zahlen; alles andere kommt nicht in eine URL.</summary>
+    private static readonly Regex EventIdPattern = new(@"^\d{1,10}$", RegexOptions.Compiled);
+
+    /// <summary>
+    /// Das Detail-Fragment auseinandernehmen. Aufbau je Angabe:
+    /// <c>div.event-info-row</c> mit <c>div.event-info-row-left &gt; h5</c> als BESCHRIFTUNG und
+    /// <c>div.event-info-row-right</c> als Wert.
+    ///
+    /// <para><b>Warum ueber die Paare und nicht ueber die Textreihenfolge.</b> „Beschriftung, dann
+    /// naechste Textzeile" sieht einfacher aus und ist falsch, sobald ein Feld LEER ist — dann
+    /// sammelt es die naechste Beschriftung als Wert ein. An der Team-Blitz-WM (id=14094)
+    /// nachgestellt: dort kam auf diesem Weg <c>City = "Venue"</c> heraus. Und leere Felder sind
+    /// hier der Normalfall.</para>
+    /// </summary>
+    internal static async Task<ParsedFideEventDetail> ParseEventAsync(string html, string eventId)
+    {
+        var context = BrowsingContext.New(Configuration.Default);
+        var document = await context.OpenAsync(req => req.Content(html));
+
+        var fields = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+        foreach (var row in document.QuerySelectorAll("div.event-info-row"))
+        {
+            var label = row.QuerySelector(".event-info-row-left h5")?.TextContent.Trim();
+            if (string.IsNullOrEmpty(label)) continue;
+
+            var right = row.QuerySelector(".event-info-row-right");
+            if (right is null) continue;
+
+            // Der ERSTE nicht leere Absatz: „Address" traegt zwei <p>, das erste ist leer.
+            var value = right.QuerySelectorAll("p")
+                .Select(p => p.TextContent.Trim())
+                .FirstOrDefault(t => t.Length > 0);
+
+            // Website und E-Mail stehen als Verweis da, nicht als Absatz.
+            value ??= right.QuerySelector("a")?.GetAttribute("href")?.Trim();
+
+            if (!string.IsNullOrEmpty(value)) fields.TryAdd(label, Collapse(value));
+        }
+
+        return new ParsedFideEventDetail
+        {
+            EventId = eventId,
+            EventType = Field(fields, "Type of event"),
+            TimeControl = Field(fields, "Time control"),
+            TimeControlText = Field(fields, "Time control description"),
+            System = Field(fields, "Tournament system"),
+            Rounds = Number(Field(fields, "Number of rounds")),
+            Players = Number(Field(fields, "Number of players")),
+            Country = Field(fields, "Country"),
+            City = Field(fields, "City"),
+            VenueAddress = Field(fields, "Address"),
+            Website = Field(fields, "Website"),
+        };
+    }
+
+    private static string? Field(Dictionary<string, string> fields, string label) =>
+        fields.TryGetValue(label, out var value) ? value : null;
+
+    private static int? Number(string? text) =>
+        int.TryParse(text, NumberStyles.Integer, CultureInfo.InvariantCulture, out var n) && n > 0
+            ? n : null;
+
+    /// <summary>Mehrfache Leerzeichen und Zeilenumbrueche aus dem Markup zusammenziehen.</summary>
+    private static string Collapse(string text) =>
+        Regex.Replace(text, @"\s+", " ").Trim();
 
     /// <summary>
     /// Die Jahresansicht auseinandernehmen. Je Ereignis ein Link auf <c>calendar.php?id=</c> mit
