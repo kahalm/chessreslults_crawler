@@ -989,17 +989,44 @@ public class CrawlerService
         string chessResultsId, CancellationToken ct = default)
     {
         await RateLimitAsync(ct);
-        var html = await FetchPageAsync(
-            $"https://chess-results.com/tnr{chessResultsId}.aspx", "lan=1&art=0&turdet=YES", ct);
+        var (resolvedUrl, firstHtml) = await FetchWithRedirectAsync(
+            $"https://chess-results.com/tnr{chessResultsId}.aspx?lan=1&art=0&turdet=YES", ct);
+        EnsureChessResultsHost(resolvedUrl);
+
+        // Die Turnierdetails stehen NICHT im GET. chess-results blendet sie bei Turnieren, die
+        // laenger als fuenf Tage vorbei sind, hinter einem Knopf aus („To reduce the server load
+        // by daily scanning of all links … all links for tournaments older than 5 days are shown
+        // after clicking the following button") — dahinter steckt ein ASP.NET-Postback auf
+        // `cb_alleDetails`. Ohne diesen zweiten Schritt liefert die Seite die Startrangliste und
+        // sonst nichts; genau daran lieferte der Endpunkt anfangs ueberall `null`.
+        var formData = new Dictionary<string, string>
+        {
+            ["__EVENTTARGET"] = "",
+            ["__EVENTARGUMENT"] = "",
+            ["__VIEWSTATE"] = ExtractHiddenField(firstHtml, "__VIEWSTATE") ?? "",
+            ["__VIEWSTATEGENERATOR"] = ExtractHiddenField(firstHtml, "__VIEWSTATEGENERATOR") ?? "",
+            ["__EVENTVALIDATION"] = ExtractHiddenField(firstHtml, "__EVENTVALIDATION") ?? "",
+            ["cb_alleDetails"] = "Show tournament details",
+        };
+
+        await RateLimitAsync(ct);
+        using var response = await SendFollowingRedirectsAsync(
+            HttpMethod.Post, new Uri(resolvedUrl), () => new FormUrlEncodedContent(formData), ct);
+
+        var html = await ReadBodyBoundedAsync(response, ct);
+        response.EnsureSuccessStatusCode();
 
         var details = await _parser.ParseTournamentDetailsAsync(html);
         return new ParsedTournamentInfo
         {
             ChessResultsId = chessResultsId,
-            Name = await _parser.ParseTournamentNameAsync(html),
+            // Der Name steht schon im ersten Abruf — und dort verlaesslicher (die Detailseite
+            // wiederholt ihn nicht immer).
+            Name = await _parser.ParseTournamentNameAsync(firstHtml),
             DateText = details.DateText,
             Location = details.Location,
             TimeControl = details.TimeControl,
+            TimeControlKind = details.TimeControlKind,
             TotalRounds = await _parser.ParseTotalRoundsAsync(html),
         };
     }

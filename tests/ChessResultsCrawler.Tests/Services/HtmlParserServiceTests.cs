@@ -327,6 +327,10 @@ public class HtmlParserServiceTests
     [InlineData("Zeitkontrolle", "5 min + 3 sec")]
     [InlineData("Time control", "15 min + 10 sec")]
     [InlineData("Rate of play", "G/90")]
+    // Die echte Seite haengt die KLASSE in Klammern an die Beschriftung — mit einem exakten
+    // Vergleich fand der Parser das Feld nie.
+    [InlineData("Time control (Standard)", "90 Min. / 40 Zuege + 30 Min. + 30 Sekunden ab Zug 1")]
+    [InlineData("Bedenkzeit (Blitz)", "5 Min + 3 Sek")]
     public async Task ParseTournamentDetailsAsync_ReadsTheTimeControl(string label, string value)
     {
         var html = $@"<html><body><table>
@@ -337,6 +341,39 @@ public class HtmlParserServiceTests
         var details = await _parser.ParseTournamentDetailsAsync(html);
 
         Assert.Equal(value, details.TimeControl);
+    }
+
+    /// <summary>
+    /// chess-results nennt die Klasse SELBST, in Klammern hinter der Beschriftung. Das ist die
+    /// verlaesslichere Quelle als jede Ableitung aus dem Freitext.
+    /// </summary>
+    [Theory]
+    [InlineData("Time control (Standard)", "Standard")]
+    [InlineData("Time control (Rapid)", "Rapid")]
+    [InlineData("Bedenkzeit (Blitz)", "Blitz")]
+    public async Task ParseTournamentDetailsAsync_ReadsTheClassFromTheLabel(string label, string expected)
+    {
+        var html = $@"<html><body><table>
+            <tr><td>{label}</td><td>90 Min. + 30 Sek.</td></tr>
+            </table></body></html>";
+
+        var details = await _parser.ParseTournamentDetailsAsync(html);
+
+        Assert.Equal(expected, details.TimeControlKind);
+    }
+
+    /// <summary>Ohne Klammer gibt es keine Klasse — dann traegt nur der Text die Auskunft.</summary>
+    [Fact]
+    public async Task ParseTournamentDetailsAsync_WithoutAClassInTheLabel_LeavesItNull()
+    {
+        var html = @"<html><body><table>
+            <tr><td>Bedenkzeit</td><td>5 min + 3 sec</td></tr>
+            </table></body></html>";
+
+        var details = await _parser.ParseTournamentDetailsAsync(html);
+
+        Assert.Equal("5 min + 3 sec", details.TimeControl);
+        Assert.Null(details.TimeControlKind);
     }
 
     /// <summary>Steht keine Bedenkzeit auf der Seite, bleibt das Feld leer — kein Raten hier.</summary>

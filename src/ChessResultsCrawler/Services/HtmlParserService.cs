@@ -316,14 +316,19 @@ public class HtmlParserService
             {
                 details.Location = value;
             }
-            // Die Bedenkzeit steht je nach Sprache und Turnierart unter verschiedenen Namen; das
-            // Feld ist Freitext („90 min + 30 sec / Zug"), nicht auswertbar geordnet.
-            else if (label.Equals("Bedenkzeit", StringComparison.OrdinalIgnoreCase) ||
-                     label.Equals("Zeitkontrolle", StringComparison.OrdinalIgnoreCase) ||
-                     label.Equals("Time control", StringComparison.OrdinalIgnoreCase) ||
-                     label.Equals("Rate of play", StringComparison.OrdinalIgnoreCase))
+            // Die Bedenkzeit steht als „Time control (Standard)" bzw. „Bedenkzeit (Blitz)" da —
+            // die KLASSE nennt chess-results also selbst, in Klammern hinter der Beschriftung.
+            // Der Wert daneben ist Freitext („90 Min. / 40 Zuege + 30 Min. + 30 Sekunden ab Zug 1").
+            // Deshalb `StartsWith` statt `Equals`: mit dem exakten Vergleich fand der Parser das
+            // Feld nie.
+            else if (label.StartsWith("Bedenkzeit", StringComparison.OrdinalIgnoreCase) ||
+                     label.StartsWith("Zeitkontrolle", StringComparison.OrdinalIgnoreCase) ||
+                     label.StartsWith("Time control", StringComparison.OrdinalIgnoreCase) ||
+                     label.StartsWith("Rate of play", StringComparison.OrdinalIgnoreCase))
             {
                 details.TimeControl = value;
+                var kind = Regex.Match(label, @"\(([^)]+)\)");
+                if (kind.Success) details.TimeControlKind = kind.Groups[1].Value.Trim();
             }
         }
 
@@ -1056,12 +1061,18 @@ public class ParsedTournamentDetails
     public string? Location { get; set; }
 
     /// <summary>
-    /// Die Bedenkzeit als ROHTEXT, wie chess-results sie fuehrt („90 min + 30 sec / Zug",
-    /// „5 Min + 3 sec"). Bewusst nicht hier schon in eine Kategorie uebersetzt: der Crawler ist
-    /// zustandslos und gibt weiter, was auf der Seite steht — welche Klasse daraus wird, ist eine
-    /// fachliche Entscheidung und liegt in RookHub.
+    /// Die Bedenkzeit als ROHTEXT, wie chess-results sie fuehrt („90 Min. / 40 Zuege + 30 Min. +
+    /// 30 Sekunden ab Zug 1"). Bewusst nicht hier schon in eine Kategorie uebersetzt: der Crawler
+    /// gibt weiter, was auf der Seite steht.
     /// </summary>
     public string? TimeControl { get; set; }
+
+    /// <summary>
+    /// Die Klasse, die chess-results SELBST nennt — sie steht in Klammern hinter der Beschriftung
+    /// („Time control (Standard)", „(Rapid)", „(Blitz)"). Das ist die verlaesslichere Quelle als
+    /// jede Ableitung aus dem Freitext; fehlt sie, bleibt nur der Text.
+    /// </summary>
+    public string? TimeControlKind { get; set; }
 }
 
 /// <summary>
@@ -1105,6 +1116,8 @@ public class ParsedTournamentInfo
     public string? DateText { get; set; }
     public string? Location { get; set; }
     public string? TimeControl { get; set; }
+    /// <summary>Die von chess-results genannte Klasse („Standard", „Rapid", „Blitz").</summary>
+    public string? TimeControlKind { get; set; }
     public int? TotalRounds { get; set; }
 }
 

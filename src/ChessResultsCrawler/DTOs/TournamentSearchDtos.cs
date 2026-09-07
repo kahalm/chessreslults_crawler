@@ -124,6 +124,8 @@ public class TournamentInfoResponse
     public string? DateText { get; set; }
     public string? Location { get; set; }
     public string? TimeControl { get; set; }
+    /// <summary>Die von chess-results selbst genannte Klasse („Standard"/„Rapid"/„Blitz").</summary>
+    public string? TimeControlKind { get; set; }
     public int? TotalRounds { get; set; }
 
     public static TournamentInfoResponse FromParsed(ParsedTournamentInfo i) => new()
@@ -133,6 +135,7 @@ public class TournamentInfoResponse
         DateText = i.DateText,
         Location = i.Location,
         TimeControl = i.TimeControl,
+        TimeControlKind = i.TimeControlKind,
         TotalRounds = i.TotalRounds,
     };
 }
