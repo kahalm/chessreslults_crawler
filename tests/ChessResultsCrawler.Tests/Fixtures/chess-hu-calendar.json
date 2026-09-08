@@ -1,0 +1,178 @@
+[
+ {
+  "id": "74262",
+  "from_date": "09.07",
+  "place": "Siklós",
+  "to_year": "2026",
+  "name": "49. Tenkes Kupa Nemzetközi Sakkverseny",
+  "fide": "nem",
+  "ifjusagi": "nem",
+  "from_year": "2026",
+  "to_date": "09.13"
+ },
+ {
+  "to_date": "09.11",
+  "ifjusagi": "igen",
+  "from_year": "2026",
+  "fide": "igen",
+  "name": "Péntek5/017 Rapid Verseny",
+  "to_year": "2026",
+  "id": "75982",
+  "place": "Győr",
+  "from_date": "09.11"
+ },
+ {
+  "to_year": "2026",
+  "from_date": "09.12",
+  "place": "PÉCS",
+  "id": "75708",
+  "to_date": "09.12",
+  "from_year": "2026",
+  "ifjusagi": "igen",
+  "fide": "nem",
+  "name": "55. Diana Ifjúsági és Felnőtt Rapid Sakkverseny Pécs"
+ },
+ {
+  "name": "Terézváros Open, 2026",
+  "to_date": "09.13",
+  "fide": "igen",
+  "ifjusagi": "igen",
+  "from_year": "2026",
+  "id": "74751",
+  "from_date": "09.12",
+  "place": "Budapest",
+  "to_year": "2026"
+ },
+ {
+  "name": "Berekfürdői Ősz sakkverseny",
+  "from_year": "2026",
+  "ifjusagi": "igen",
+  "fide": "igen",
+  "to_date": "09.20",
+  "place": "Berekfürdő",
+  "from_date": "09.17",
+  "id": "75738",
+  "to_year": "2026"
+ },
+ {
+  "to_year": "2026",
+  "place": "Lakitelek Népfőiskola",
+  "from_date": "09.17",
+  "id": "2100",
+  "fide": "igen",
+  "ifjusagi": "igen",
+  "from_year": "2026",
+  "to_date": "09.20",
+  "name": "Sakkozó Magyarok Világtalálkozója"
+ },
+ {
+  "from_date": "09.19",
+  "place": "Esztergom",
+  "id": "76004",
+  "to_year": "2026",
+  "name": "Esztergom Kupa U1800",
+  "ifjusagi": "nem",
+  "fide": "igen",
+  "from_year": "2026",
+  "to_date": "09.20"
+ },
+ {
+  "id": "76202",
+  "place": "Nagykanizsa",
+  "from_date": "09.19",
+  "to_year": "2026",
+  "name": "XXXV. BATTHYÁNY – KANIZSA KUPA, XIV. BAGONYAI ATTILA EMLÉKVERSENY",
+  "ifjusagi": "igen",
+  "from_year": "2026",
+  "fide": "igen",
+  "to_date": "09.20"
+ },
+ {
+  "place": "Hódmezővásárhely",
+  "from_date": "09.19",
+  "id": "76238",
+  "to_year": "2026",
+  "name": "„10 Város a Magyar Sakkozásért\" – Hurrá Sakk Felnőtt és ifjúsági rapid sakk versenysorozat",
+  "to_date": "09.19",
+  "ifjusagi": "igen",
+  "from_year": "2026",
+  "fide": "igen"
+ },
+ {
+  "place": "Sárszentágota",
+  "from_date": "09.20",
+  "id": "74845",
+  "to_year": "2026",
+  "name": "Sárszentágota-kupa 2026",
+  "ifjusagi": "nem",
+  "fide": "igen",
+  "from_year": "2026",
+  "to_date": "09.20"
+ },
+ {
+  "name": "Wellness Chess Tour GP13. Székesfehérvár Szárcsa Hotel Fide Értékszámszerző Nemzetközi Sakkverseny",
+  "ifjusagi": "igen",
+  "fide": "igen",
+  "from_year": "2026",
+  "to_date": "09.27",
+  "id": "73541",
+  "place": "SZÉKESFEHÉRVÁR",
+  "from_date": "09.24",
+  "to_year": "2026"
+ },
+ {
+  "name": "XLIII. Rákosmenti Open, 2026. szeptember 25-27.",
+  "fide": "igen",
+  "ifjusagi": "nem",
+  "from_year": "2026",
+  "to_date": "09.27",
+  "from_date": "09.25",
+  "place": "Budapest",
+  "id": "75687",
+  "to_year": "2026"
+ },
+ {
+  "place": "Hédervár",
+  "from_date": "09.26",
+  "id": "76246",
+  "to_year": "2027",
+  "name": "Ifjúsági Rapid Grand Prix Hédervár",
+  "ifjusagi": "igen",
+  "fide": "nem",
+  "from_year": "2026",
+  "to_date": "04.10"
+ },
+ {
+  "name": "Pest vármegyei villám egyéni bajnokság",
+  "to_date": "09.26",
+  "fide": "igen",
+  "ifjusagi": "nem",
+  "from_year": "2026",
+  "place": "Szentendre",
+  "from_date": "09.26",
+  "id": "76253",
+  "to_year": "2026"
+ },
+ {
+  "from_date": "09.27",
+  "place": "Online",
+  "id": "76102",
+  "to_year": "2026",
+  "name": "◉ ♞ Sakkmatyi ifi Online Grand Prix 2. SELEJTEZŐ - pénzdíjas FIDE rapid döntővel",
+  "to_date": "09.27",
+  "from_year": "2026",
+  "ifjusagi": "igen",
+  "fide": "nem"
+ },
+ {
+  "from_date": "10.03",
+  "place": "Budapest",
+  "id": "76063",
+  "to_year": "2026",
+  "name": "U1800 Maratoni FIDE Standard - Grund64 sakkterem",
+  "fide": "igen",
+  "ifjusagi": "nem",
+  "from_year": "2026",
+  "to_date": "10.04"
+ }
+]

@@ -110,6 +110,16 @@ try
     })
     .ConfigurePrimaryHttpMessageHandler(CrawlHttpHandler.Create);
 
+    // Der ungarische Verbandskalender. GROSSZUEGIGER Zeitrahmen: der Endpunkt braucht fuer seine
+    // 31 kB rund 75 Sekunden (am 2026-09-08 gemessen) — mit dem ueblichen halben Minuten-Limit
+    // saehe die Quelle wie ein Dauerausfall aus.
+    builder.Services.AddHttpClient<ChessHuCalendarService>(client =>
+    {
+        client.DefaultRequestHeaders.Add("User-Agent", "ChessResultsCrawler/1.0 (+RookHub)");
+        client.Timeout = TimeSpan.FromSeconds(180);
+    })
+    .ConfigurePrimaryHttpMessageHandler(CrawlHttpHandler.Create);
+
     builder.Services.AddHttpClient("Gluetun",
         client => GluetunClientSetup.Configure(client, builder.Configuration));
     builder.Services.AddScoped<HtmlParserService>();
