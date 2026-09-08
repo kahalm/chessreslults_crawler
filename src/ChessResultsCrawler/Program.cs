@@ -120,6 +120,15 @@ try
     })
     .ConfigurePrimaryHttpMessageHandler(CrawlHttpHandler.Create);
 
+    // Der tschechische Verbandskalender. Ein Abruf, aber ein grosser (rund 300 kB HTML fuer
+    // 89 Eintraege in drei Laschen).
+    builder.Services.AddHttpClient<ChessCzCalendarService>(client =>
+    {
+        client.DefaultRequestHeaders.Add("User-Agent", "ChessResultsCrawler/1.0 (+RookHub)");
+        client.Timeout = TimeSpan.FromSeconds(60);
+    })
+    .ConfigurePrimaryHttpMessageHandler(CrawlHttpHandler.Create);
+
     builder.Services.AddHttpClient("Gluetun",
         client => GluetunClientSetup.Configure(client, builder.Configuration));
     builder.Services.AddScoped<HtmlParserService>();
