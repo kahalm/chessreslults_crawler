@@ -138,6 +138,15 @@ try
     })
     .ConfigurePrimaryHttpMessageHandler(CrawlHttpHandler.Create);
 
+    // Die Turnierdatenbank des Deutschen Schachbunds. Grosszuegiger Zeitrahmen: ein Durchgang holt
+    // zwei Seiten je Region und haelt dazwischen die Wartezeit ein, die die robots.txt nennt.
+    builder.Services.AddHttpClient<SchachbundCalendarService>(client =>
+    {
+        client.DefaultRequestHeaders.Add("User-Agent", "ChessResultsCrawler/1.0 (+RookHub)");
+        client.Timeout = TimeSpan.FromSeconds(45);
+    })
+    .ConfigurePrimaryHttpMessageHandler(CrawlHttpHandler.Create);
+
     builder.Services.AddHttpClient("Gluetun",
         client => GluetunClientSetup.Configure(client, builder.Configuration));
     builder.Services.AddScoped<HtmlParserService>();
