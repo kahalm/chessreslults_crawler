@@ -147,6 +147,15 @@ try
     })
     .ConfigurePrimaryHttpMessageHandler(CrawlHttpHandler.Create);
 
+    // Der englische Verbandskalender. Zwei geblaetterte Endpunkte je Durchgang, dazwischen die
+    // Wartezeit aus der robots.txt der Quelle.
+    builder.Services.AddHttpClient<EcfCalendarService>(client =>
+    {
+        client.DefaultRequestHeaders.Add("User-Agent", "ChessResultsCrawler/1.0 (+RookHub)");
+        client.Timeout = TimeSpan.FromSeconds(60);
+    })
+    .ConfigurePrimaryHttpMessageHandler(CrawlHttpHandler.Create);
+
     builder.Services.AddHttpClient("Gluetun",
         client => GluetunClientSetup.Configure(client, builder.Configuration));
     builder.Services.AddScoped<HtmlParserService>();

@@ -1,0 +1,329 @@
+{
+ "venues": [
+  {
+   "id": 81087,
+   "author": "3",
+   "status": "publish",
+   "date": "2024-09-09 08:48:19",
+   "date_utc": "2024-09-09 07:48:19",
+   "modified": "2024-09-09 08:48:19",
+   "modified_utc": "2024-09-09 07:48:19",
+   "url": "https://www.englishchess.org.uk/venue/sheffield-chess-centre-329a-coleford-road/",
+   "venue": "Sheffield Chess Centre @ 329A Coleford Road",
+   "slug": "sheffield-chess-centre-329a-coleford-road",
+   "city": "Darnall",
+   "country": "United Kingdom",
+   "state": "Sheffield",
+   "geo_lat": 53.3911903686,
+   "geo_lng": -1.4039142813,
+   "show_map": true,
+   "show_map_link": true,
+   "global_id": "www.englishchess.org.uk?id=81087",
+   "global_id_lineage": [
+    "www.englishchess.org.uk?id=81087"
+   ]
+  },
+  {
+   "id": 85507,
+   "author": "3",
+   "status": "publish",
+   "date": "2025-03-03 16:29:43",
+   "date_utc": "2025-03-03 16:29:43",
+   "modified": "2025-03-03 16:29:43",
+   "modified_utc": "2025-03-03 16:29:43",
+   "url": "https://www.englishchess.org.uk/venue/marsham-court-hotel/",
+   "venue": "Marsham Court Hotel",
+   "slug": "marsham-court-hotel",
+   "address": "3 Russell Cotes Road",
+   "city": "Bournemouth",
+   "zip": "BH1 3AB",
+   "geo_lat": 50.7180866,
+   "geo_lng": -1.8702361,
+   "show_map": true,
+   "show_map_link": true,
+   "global_id": "www.englishchess.org.uk?id=85507",
+   "global_id_lineage": [
+    "www.englishchess.org.uk?id=85507"
+   ]
+  },
+  {
+   "id": 89496,
+   "author": "3",
+   "status": "publish",
+   "date": "2025-10-02 10:01:33",
+   "date_utc": "2025-10-02 09:01:33",
+   "modified": "2025-10-02 10:01:33",
+   "modified_utc": "2025-10-02 09:01:33",
+   "url": "https://www.englishchess.org.uk/venue/london-women-chess-club-pancras-square-library/",
+   "venue": "London Women Chess Club &#8211; Pancras Square Library",
+   "slug": "london-women-chess-club-pancras-square-library",
+   "address": "5 Pancras Road",
+   "city": "London",
+   "zip": "N1C 4AG",
+   "geo_lat": 51.5332407,
+   "geo_lng": -0.1265972,
+   "show_map": true,
+   "show_map_link": true,
+   "global_id": "www.englishchess.org.uk?id=89496",
+   "global_id_lineage": [
+    "www.englishchess.org.uk?id=89496"
+   ]
+  },
+  {
+   "id": 87173,
+   "author": "3",
+   "status": "publish",
+   "date": "2025-06-19 12:52:55",
+   "date_utc": "2025-06-19 11:52:55",
+   "modified": "2025-06-19 12:52:55",
+   "modified_utc": "2025-06-19 11:52:55",
+   "url": "https://www.englishchess.org.uk/venue/white-house/",
+   "venue": "White House",
+   "slug": "white-house",
+   "address": "45 The Avenue",
+   "city": "Hampton",
+   "zip": "TW12 3R",
+   "geo_lat": 51.4255196,
+   "geo_lng": -0.3769935,
+   "show_map": true,
+   "show_map_link": true,
+   "global_id": "www.englishchess.org.uk?id=87173",
+   "global_id_lineage": [
+    "www.englishchess.org.uk?id=87173"
+   ]
+  },
+  {
+   "id": 70568,
+   "status": "publish",
+   "date": "2022-02-24 16:50:46",
+   "date_utc": "2022-02-24 16:50:46",
+   "modified": "2022-02-24 16:50:46",
+   "modified_utc": "2022-02-24 16:50:46",
+   "url": "https://www.englishchess.org.uk/venue/the-clissold-arms-the-clissold-arms-105-fortis-green-london-n2-9hr/",
+   "venue": "The Clissold Arms @ The Clissold Arms, 105 Fortis Green, London, N2 9HR",
+   "slug": "the-clissold-arms-the-clissold-arms-105-fortis-green-london-n2-9hr",
+   "show_map": false,
+   "show_map_link": false,
+   "global_id": "www.englishchess.org.uk?id=70568",
+   "global_id_lineage": [
+    "www.englishchess.org.uk?id=70568"
+   ]
+  },
+  {
+   "id": 94505,
+   "author": "3",
+   "status": "publish",
+   "date": "2026-08-27 13:08:35",
+   "date_utc": "2026-08-27 12:08:35",
+   "modified": "2026-08-27 13:08:35",
+   "modified_utc": "2026-08-27 12:08:35",
+   "url": "https://www.englishchess.org.uk/venue/loanends-presbyterian-church-hall/",
+   "venue": "Loanends Presbyterian Church Hall",
+   "slug": "loanends-presbyterian-church-hall",
+   "address": "Loanends Rd",
+   "city": "Loanends",
+   "zip": "BT29 4YR",
+   "geo_lat": 54.6653557,
+   "geo_lng": -6.1073452,
+   "show_map": true,
+   "show_map_link": true,
+   "global_id": "www.englishchess.org.uk?id=94505",
+   "global_id_lineage": [
+    "www.englishchess.org.uk?id=94505"
+   ]
+  },
+  {
+   "id": 87178,
+   "author": "3",
+   "status": "publish",
+   "date": "2025-06-19 13:00:18",
+   "date_utc": "2025-06-19 12:00:18",
+   "modified": "2025-06-19 13:00:18",
+   "modified_utc": "2025-06-19 12:00:18",
+   "url": "https://www.englishchess.org.uk/venue/sandman-signature-newcastle-hotel/",
+   "venue": "Sandman Signature Newcastle Hotel",
+   "slug": "sandman-signature-newcastle-hotel",
+   "address": "Gallowgate",
+   "city": "Newcastle upon Tyne",
+   "zip": "NE1 4SD",
+   "geo_lat": 54.9738258,
+   "geo_lng": -1.6218522,
+   "show_map": true,
+   "show_map_link": true,
+   "global_id": "www.englishchess.org.uk?id=87178",
+   "global_id_lineage": [
+    "www.englishchess.org.uk?id=87178"
+   ]
+  },
+  {
+   "id": 86155,
+   "author": "3",
+   "status": "publish",
+   "date": "2025-04-23 15:48:32",
+   "date_utc": "2025-04-23 14:48:32",
+   "modified": "2025-04-23 15:48:32",
+   "modified_utc": "2025-04-23 14:48:32",
+   "url": "https://www.englishchess.org.uk/venue/rhyl-town-hall/",
+   "venue": "Rhyl Town Hall",
+   "slug": "rhyl-town-hall",
+   "address": "Wellington Road",
+   "city": "Rhyl",
+   "zip": "LL18 1BA",
+   "geo_lat": 53.319393,
+   "geo_lng": -3.4913712,
+   "show_map": true,
+   "show_map_link": true,
+   "global_id": "www.englishchess.org.uk?id=86155",
+   "global_id_lineage": [
+    "www.englishchess.org.uk?id=86155"
+   ]
+  },
+  {
+   "id": 94508,
+   "author": "3",
+   "status": "publish",
+   "date": "2026-08-27 13:12:53",
+   "date_utc": "2026-08-27 12:12:53",
+   "modified": "2026-08-27 13:12:53",
+   "modified_utc": "2026-08-27 12:12:53",
+   "url": "https://www.englishchess.org.uk/venue/wythenshawe-forum-library/",
+   "venue": "Wythenshawe Forum Library",
+   "slug": "wythenshawe-forum-library",
+   "address": "Forum Grove",
+   "city": "Manchester",
+   "zip": "M22 5RX",
+   "geo_lat": 53.5006817,
+   "geo_lng": -2.2549204,
+   "show_map": true,
+   "show_map_link": true,
+   "global_id": "www.englishchess.org.uk?id=94508",
+   "global_id_lineage": [
+    "www.englishchess.org.uk?id=94508"
+   ]
+  },
+  {
+   "id": 94673,
+   "author": "3",
+   "status": "publish",
+   "date": "2026-09-02 10:05:26",
+   "date_utc": "2026-09-02 09:05:26",
+   "modified": "2026-09-02 10:05:26",
+   "modified_utc": "2026-09-02 09:05:26",
+   "url": "https://www.englishchess.org.uk/venue/cambrai-echecs/",
+   "venue": "CAMBRAI ECHECS",
+   "slug": "cambrai-echecs",
+   "address": "1 RUE DU TEMPLE",
+   "city": "CAMBRAI",
+   "country": "France",
+   "zip": "59400",
+   "geo_lat": 50.1754166,
+   "geo_lng": 3.2284447,
+   "show_map": true,
+   "show_map_link": true,
+   "global_id": "www.englishchess.org.uk?id=94673",
+   "global_id_lineage": [
+    "www.englishchess.org.uk?id=94673"
+   ]
+  },
+  {
+   "id": 90166,
+   "author": "3",
+   "status": "publish",
+   "date": "2025-10-29 07:32:16",
+   "date_utc": "2025-10-29 07:32:16",
+   "modified": "2025-10-29 07:32:16",
+   "modified_utc": "2025-10-29 07:32:16",
+   "url": "https://www.englishchess.org.uk/venue/the-eversfield-centre/",
+   "venue": "The Eversfield Centre",
+   "slug": "the-eversfield-centre",
+   "address": "11 Eversfield Gardens",
+   "city": "Mill Hill",
+   "zip": "NW7 2AE",
+   "geo_lat": 51.6092655,
+   "geo_lng": -0.2513509,
+   "show_map": true,
+   "show_map_link": true,
+   "global_id": "www.englishchess.org.uk?id=90166",
+   "global_id_lineage": [
+    "www.englishchess.org.uk?id=90166"
+   ]
+  },
+  {
+   "id": 70584,
+   "status": "publish",
+   "date": "2022-02-24 16:50:46",
+   "date_utc": "2022-02-24 16:50:46",
+   "modified": "2022-02-24 16:50:46",
+   "modified_utc": "2022-02-24 16:50:46",
+   "url": "https://www.englishchess.org.uk/venue/online/",
+   "venue": "Online",
+   "slug": "online",
+   "show_map": true,
+   "show_map_link": true,
+   "global_id": "www.englishchess.org.uk?id=70584",
+   "global_id_lineage": [
+    "www.englishchess.org.uk?id=70584"
+   ]
+  },
+  {
+   "id": 93051,
+   "author": "3",
+   "status": "publish",
+   "date": "2026-04-15 08:38:41",
+   "date_utc": "2026-04-15 07:38:41",
+   "modified": "2026-04-15 08:38:41",
+   "modified_utc": "2026-04-15 07:38:41",
+   "url": "https://www.englishchess.org.uk/venue/taylor-lewis-community-centre/",
+   "venue": "Taylor Lewis Community Centre",
+   "slug": "taylor-lewis-community-centre",
+   "address": "6 Arizona Way",
+   "city": "High Wycombe",
+   "zip": "HP11 1AB",
+   "geo_lat": 51.6164427,
+   "geo_lng": -0.7481205,
+   "show_map": true,
+   "show_map_link": true,
+   "global_id": "www.englishchess.org.uk?id=93051",
+   "global_id_lineage": [
+    "www.englishchess.org.uk?id=93051"
+   ]
+  },
+  {
+   "id": 70558,
+   "status": "publish",
+   "date": "2022-02-24 16:50:45",
+   "date_utc": "2022-02-24 16:50:45",
+   "modified": "2022-02-24 16:50:45",
+   "modified_utc": "2022-02-24 16:50:45",
+   "url": "https://www.englishchess.org.uk/venue/st-lukes-church-st-lukes-church-kidderpore-avenue-london-nw3-7su/",
+   "venue": "St Luke’s Church @ St Luke’s Church, Kidderpore Avenue, London, NW3 7SU",
+   "slug": "st-lukes-church-st-lukes-church-kidderpore-avenue-london-nw3-7su",
+   "show_map": false,
+   "show_map_link": false,
+   "global_id": "www.englishchess.org.uk?id=70558",
+   "global_id_lineage": [
+    "www.englishchess.org.uk?id=70558"
+   ]
+  },
+  {
+   "id": 70591,
+   "status": "publish",
+   "date": "2022-02-24 16:50:46",
+   "date_utc": "2022-02-24 16:50:46",
+   "modified": "2022-02-24 16:50:46",
+   "modified_utc": "2022-02-24 16:50:46",
+   "url": "https://www.englishchess.org.uk/venue/london-mindsports-centre-21-dalling-road-london-w6-0jd/",
+   "venue": "London Mindsports Centre @ 21 Dalling Road, London , W6 0JD",
+   "slug": "london-mindsports-centre-21-dalling-road-london-w6-0jd",
+   "show_map": false,
+   "show_map_link": false,
+   "global_id": "www.englishchess.org.uk?id=70591",
+   "global_id_lineage": [
+    "www.englishchess.org.uk?id=70591"
+   ]
+  }
+ ],
+ "total": 15,
+ "total_pages": 1,
+ "rest_url": "x"
+}

@@ -1,0 +1,3095 @@
+{
+ "events": [
+  {
+   "id": 94504,
+   "global_id": "www.englishchess.org.uk?id=94504",
+   "global_id_lineage": [
+    "www.englishchess.org.uk?id=94504"
+   ],
+   "author": "3",
+   "status": "publish",
+   "date": "2026-08-27 13:08:35",
+   "date_utc": "2026-08-27 12:08:35",
+   "modified": "2026-08-27 13:11:12",
+   "modified_utc": "2026-08-27 12:11:12",
+   "url": "https://www.englishchess.org.uk/event/uk-open-blitz-belfast-qualifier/",
+   "rest_url": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/events/94504",
+   "title": "UK Open Blitz Belfast Qualifier",
+   "description": "<p>The 2026 UK Open Blitz Championship features 16 qualifiers in 14 cities around the United Kingdom, with the winner of each qualifying for the Final. The total prize fund for the event is in excess of £10,000</p>",
+   "excerpt": "",
+   "slug": "uk-open-blitz-belfast-qualifier",
+   "image": {
+    "url": "https://www.englishchess.org.uk/wp-content/uploads/2024/09/wood-three.png",
+    "id": 81974,
+    "extension": "png",
+    "width": 1000,
+    "height": 300,
+    "filesize": 376895
+   },
+   "all_day": true,
+   "start_date": "2026-09-12 00:00:00",
+   "start_date_details": {
+    "year": "2026",
+    "month": "09",
+    "day": "12",
+    "hour": "00",
+    "minutes": "00",
+    "seconds": "00"
+   },
+   "end_date": "2026-09-12 23:59:59",
+   "end_date_details": {
+    "year": "2026",
+    "month": "09",
+    "day": "12",
+    "hour": "23",
+    "minutes": "59",
+    "seconds": "59"
+   },
+   "utc_start_date": "2026-09-11 23:00:00",
+   "utc_start_date_details": {
+    "year": "2026",
+    "month": "09",
+    "day": "11",
+    "hour": "23",
+    "minutes": "00",
+    "seconds": "00"
+   },
+   "utc_end_date": "2026-09-12 22:59:59",
+   "utc_end_date_details": {
+    "year": "2026",
+    "month": "09",
+    "day": "12",
+    "hour": "22",
+    "minutes": "59",
+    "seconds": "59"
+   },
+   "timezone": "Europe/London",
+   "timezone_abbr": "BST",
+   "cost": "",
+   "cost_details": {
+    "currency_symbol": "£",
+    "currency_code": "USD",
+    "currency_position": "prefix",
+    "values": []
+   },
+   "website": "https://www.englishchess.org.uk/uk-open-blitz-championships-2026/",
+   "show_map": true,
+   "show_map_link": true,
+   "hide_from_listings": false,
+   "sticky": false,
+   "featured": false,
+   "categories": [
+    {
+     "name": "ECF Event",
+     "slug": "ecf-event",
+     "term_group": 0,
+     "term_taxonomy_id": 902,
+     "taxonomy": "tribe_events_cat",
+     "description": "",
+     "parent": 0,
+     "count": 94,
+     "filter": "raw",
+     "term_order": "0",
+     "id": 880,
+     "urls": {
+      "self": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories/880",
+      "collection": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories"
+     }
+    },
+    {
+     "name": "FIDE Rated",
+     "slug": "fide-rated",
+     "term_group": 0,
+     "term_taxonomy_id": 874,
+     "taxonomy": "tribe_events_cat",
+     "description": "",
+     "parent": 0,
+     "count": 1155,
+     "filter": "raw",
+     "term_order": "0",
+     "id": 852,
+     "urls": {
+      "self": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories/852",
+      "collection": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories"
+     }
+    }
+   ],
+   "tags": [
+    {
+     "name": "Blitz",
+     "slug": "blitz",
+     "term_group": 0,
+     "term_taxonomy_id": 608,
+     "taxonomy": "post_tag",
+     "description": "",
+     "parent": 0,
+     "count": 308,
+     "filter": "raw",
+     "term_order": "0",
+     "id": 586,
+     "urls": {
+      "self": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/tags/586",
+      "collection": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/tags"
+     }
+    },
+    {
+     "name": "Ireland",
+     "slug": "ireland",
+     "term_group": 0,
+     "term_taxonomy_id": 895,
+     "taxonomy": "post_tag",
+     "description": "",
+     "parent": 0,
+     "count": 5,
+     "filter": "raw",
+     "term_order": "0",
+     "id": 873,
+     "urls": {
+      "self": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/tags/873",
+      "collection": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/tags"
+     }
+    }
+   ],
+   "venue": {
+    "id": 94505,
+    "author": "3",
+    "status": "publish",
+    "date": "2026-08-27 13:08:35",
+    "date_utc": "2026-08-27 12:08:35",
+    "modified": "2026-08-27 13:08:35",
+    "modified_utc": "2026-08-27 12:08:35",
+    "url": "https://www.englishchess.org.uk/venue/loanends-presbyterian-church-hall/",
+    "venue": "Loanends Presbyterian Church Hall",
+    "slug": "loanends-presbyterian-church-hall",
+    "address": "Loanends Rd",
+    "city": "Loanends",
+    "zip": "BT29 4YR",
+    "geo_lat": 54.6653557,
+    "geo_lng": -6.1073452,
+    "show_map": true,
+    "show_map_link": true,
+    "global_id": "www.englishchess.org.uk?id=94505",
+    "global_id_lineage": [
+     "www.englishchess.org.uk?id=94505"
+    ]
+   },
+   "organizer": [
+    {
+     "id": 80253,
+     "author": "3",
+     "status": "publish",
+     "date": "2024-08-21 15:17:44",
+     "date_utc": "2024-08-21 14:17:44",
+     "modified": "2024-08-21 15:17:44",
+     "modified_utc": "2024-08-21 14:17:44",
+     "url": "https://www.englishchess.org.uk/organiser/alex-holowczak/",
+     "organizer": "Alex Holowczak",
+     "slug": "alex-holowczak",
+     "email": "alexholowczak@gmail.com",
+     "global_id": "www.englishchess.org.uk?id=80253",
+     "global_id_lineage": [
+      "www.englishchess.org.uk?id=80253"
+     ]
+    }
+   ],
+   "custom_fields": [],
+   "is_virtual": false,
+   "virtual_url": null,
+   "virtual_video_source": ""
+  },
+  {
+   "id": 94507,
+   "global_id": "www.englishchess.org.uk?id=94507",
+   "global_id_lineage": [
+    "www.englishchess.org.uk?id=94507"
+   ],
+   "author": "3",
+   "status": "publish",
+   "date": "2026-08-27 13:12:53",
+   "date_utc": "2026-08-27 12:12:53",
+   "modified": "2026-08-27 13:12:53",
+   "modified_utc": "2026-08-27 12:12:53",
+   "url": "https://www.englishchess.org.uk/event/uk-open-blitz-manchester-qualifier/",
+   "rest_url": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/events/94507",
+   "title": "UK Open Blitz Manchester Qualifier",
+   "description": "<p>The 2026 UK Open Blitz Championship features 16 qualifiers in 14 cities around the United Kingdom, with the winner of each qualifying for the Final. The total prize fund for the event is in excess of £10,000</p>",
+   "excerpt": "",
+   "slug": "uk-open-blitz-manchester-qualifier",
+   "image": {
+    "url": "https://www.englishchess.org.uk/wp-content/uploads/2024/09/wood-three.png",
+    "id": 81974,
+    "extension": "png",
+    "width": 1000,
+    "height": 300,
+    "filesize": 376895
+   },
+   "all_day": true,
+   "start_date": "2026-09-12 00:00:00",
+   "start_date_details": {
+    "year": "2026",
+    "month": "09",
+    "day": "12",
+    "hour": "00",
+    "minutes": "00",
+    "seconds": "00"
+   },
+   "end_date": "2026-09-12 23:59:59",
+   "end_date_details": {
+    "year": "2026",
+    "month": "09",
+    "day": "12",
+    "hour": "23",
+    "minutes": "59",
+    "seconds": "59"
+   },
+   "utc_start_date": "2026-09-11 23:00:00",
+   "utc_start_date_details": {
+    "year": "2026",
+    "month": "09",
+    "day": "11",
+    "hour": "23",
+    "minutes": "00",
+    "seconds": "00"
+   },
+   "utc_end_date": "2026-09-12 22:59:59",
+   "utc_end_date_details": {
+    "year": "2026",
+    "month": "09",
+    "day": "12",
+    "hour": "22",
+    "minutes": "59",
+    "seconds": "59"
+   },
+   "timezone": "Europe/London",
+   "timezone_abbr": "BST",
+   "cost": "",
+   "cost_details": {
+    "currency_symbol": "£",
+    "currency_code": "USD",
+    "currency_position": "prefix",
+    "values": []
+   },
+   "website": "https://www.englishchess.org.uk/uk-open-blitz-championships-2026/",
+   "show_map": true,
+   "show_map_link": true,
+   "hide_from_listings": false,
+   "sticky": false,
+   "featured": false,
+   "categories": [
+    {
+     "name": "ECF Event",
+     "slug": "ecf-event",
+     "term_group": 0,
+     "term_taxonomy_id": 902,
+     "taxonomy": "tribe_events_cat",
+     "description": "",
+     "parent": 0,
+     "count": 94,
+     "filter": "raw",
+     "term_order": "0",
+     "id": 880,
+     "urls": {
+      "self": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories/880",
+      "collection": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories"
+     }
+    },
+    {
+     "name": "FIDE Rated",
+     "slug": "fide-rated",
+     "term_group": 0,
+     "term_taxonomy_id": 874,
+     "taxonomy": "tribe_events_cat",
+     "description": "",
+     "parent": 0,
+     "count": 1155,
+     "filter": "raw",
+     "term_order": "0",
+     "id": 852,
+     "urls": {
+      "self": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories/852",
+      "collection": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories"
+     }
+    }
+   ],
+   "tags": [
+    {
+     "name": "Blitz",
+     "slug": "blitz",
+     "term_group": 0,
+     "term_taxonomy_id": 608,
+     "taxonomy": "post_tag",
+     "description": "",
+     "parent": 0,
+     "count": 308,
+     "filter": "raw",
+     "term_order": "0",
+     "id": 586,
+     "urls": {
+      "self": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/tags/586",
+      "collection": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/tags"
+     }
+    },
+    {
+     "name": "East Midlands",
+     "slug": "east-midlands",
+     "term_group": 0,
+     "term_taxonomy_id": 629,
+     "taxonomy": "post_tag",
+     "description": "",
+     "parent": 0,
+     "count": 71,
+     "filter": "raw",
+     "term_order": "0",
+     "id": 607,
+     "urls": {
+      "self": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/tags/607",
+      "collection": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/tags"
+     }
+    },
+    {
+     "name": "West Midlands",
+     "slug": "west-midlands",
+     "term_group": 0,
+     "term_taxonomy_id": 646,
+     "taxonomy": "post_tag",
+     "description": "",
+     "parent": 0,
+     "count": 136,
+     "filter": "raw",
+     "term_order": "0",
+     "id": 624,
+     "urls": {
+      "self": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/tags/624",
+      "collection": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/tags"
+     }
+    }
+   ],
+   "venue": {
+    "id": 94508,
+    "author": "3",
+    "status": "publish",
+    "date": "2026-08-27 13:12:53",
+    "date_utc": "2026-08-27 12:12:53",
+    "modified": "2026-08-27 13:12:53",
+    "modified_utc": "2026-08-27 12:12:53",
+    "url": "https://www.englishchess.org.uk/venue/wythenshawe-forum-library/",
+    "venue": "Wythenshawe Forum Library",
+    "slug": "wythenshawe-forum-library",
+    "address": "Forum Grove",
+    "city": "Manchester",
+    "zip": "M22 5RX",
+    "geo_lat": 53.5006817,
+    "geo_lng": -2.2549204,
+    "show_map": true,
+    "show_map_link": true,
+    "global_id": "www.englishchess.org.uk?id=94508",
+    "global_id_lineage": [
+     "www.englishchess.org.uk?id=94508"
+    ]
+   },
+   "organizer": [
+    {
+     "id": 80253,
+     "author": "3",
+     "status": "publish",
+     "date": "2024-08-21 15:17:44",
+     "date_utc": "2024-08-21 14:17:44",
+     "modified": "2024-08-21 15:17:44",
+     "modified_utc": "2024-08-21 14:17:44",
+     "url": "https://www.englishchess.org.uk/organiser/alex-holowczak/",
+     "organizer": "Alex Holowczak",
+     "slug": "alex-holowczak",
+     "email": "alexholowczak@gmail.com",
+     "global_id": "www.englishchess.org.uk?id=80253",
+     "global_id_lineage": [
+      "www.englishchess.org.uk?id=80253"
+     ]
+    }
+   ],
+   "custom_fields": [],
+   "is_virtual": false,
+   "virtual_url": null,
+   "virtual_video_source": ""
+  },
+  {
+   "id": 88941,
+   "global_id": "www.englishchess.org.uk?id=88941",
+   "global_id_lineage": [
+    "www.englishchess.org.uk?id=88941"
+   ],
+   "author": "3",
+   "status": "publish",
+   "date": "2025-09-10 08:21:47",
+   "date_utc": "2025-09-10 07:21:47",
+   "modified": "2025-09-10 08:21:47",
+   "modified_utc": "2025-09-10 07:21:47",
+   "url": "https://www.englishchess.org.uk/event/muswell-hill-fide-chess-38/",
+   "rest_url": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/events/88941",
+   "title": "Muswell Hill FIDE Chess",
+   "description": "<p>We start at 10.30am, finish before 5.30pm and there is a lunch break. Rapid = Six rounds, 20 minutes per player per game PLUS 5 seconds a move throughout. Standard = 2 games, 60 minutes plus 30 seconds a move.<br />\nOnline entry: <a title=\"Go to https://form.jotform.com/62384663046964\" href=\"https://form.jotform.com/62384663046964\">https://form.jotform.com/62384663046964</a></p>",
+   "excerpt": "",
+   "slug": "muswell-hill-fide-chess-38",
+   "image": {
+    "url": "https://www.englishchess.org.uk/wp-content/uploads/2025/09/mh.jpg",
+    "id": 88911,
+    "extension": "jpg",
+    "width": 1000,
+    "height": 300,
+    "filesize": 87066
+   },
+   "all_day": false,
+   "start_date": "2026-09-08 10:30:00",
+   "start_date_details": {
+    "year": "2026",
+    "month": "09",
+    "day": "08",
+    "hour": "10",
+    "minutes": "30",
+    "seconds": "00"
+   },
+   "end_date": "2026-09-08 17:00:00",
+   "end_date_details": {
+    "year": "2026",
+    "month": "09",
+    "day": "08",
+    "hour": "17",
+    "minutes": "00",
+    "seconds": "00"
+   },
+   "utc_start_date": "2026-09-08 09:30:00",
+   "utc_start_date_details": {
+    "year": "2026",
+    "month": "09",
+    "day": "08",
+    "hour": "09",
+    "minutes": "30",
+    "seconds": "00"
+   },
+   "utc_end_date": "2026-09-08 16:00:00",
+   "utc_end_date_details": {
+    "year": "2026",
+    "month": "09",
+    "day": "08",
+    "hour": "16",
+    "minutes": "00",
+    "seconds": "00"
+   },
+   "timezone": "Europe/London",
+   "timezone_abbr": "BST",
+   "cost": "",
+   "cost_details": {
+    "currency_symbol": "£",
+    "currency_code": "USD",
+    "currency_position": "prefix",
+    "values": []
+   },
+   "website": "https://sites.google.com/view/chessengland",
+   "show_map": true,
+   "show_map_link": true,
+   "hide_from_listings": false,
+   "sticky": false,
+   "featured": false,
+   "categories": [
+    {
+     "name": "Disability Friendly",
+     "slug": "disability-friendly",
+     "term_group": 0,
+     "term_taxonomy_id": 878,
+     "taxonomy": "tribe_events_cat",
+     "description": "",
+     "parent": 0,
+     "count": 1147,
+     "filter": "raw",
+     "term_order": "0",
+     "id": 856,
+     "urls": {
+      "self": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories/856",
+      "collection": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories"
+     }
+    },
+    {
+     "name": "ECF Rated",
+     "slug": "ecf-rated",
+     "term_group": 0,
+     "term_taxonomy_id": 873,
+     "taxonomy": "tribe_events_cat",
+     "description": "",
+     "parent": 0,
+     "count": 1726,
+     "filter": "raw",
+     "term_order": "0",
+     "id": 851,
+     "urls": {
+      "self": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories/851",
+      "collection": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories"
+     }
+    },
+    {
+     "name": "FIDE Rated",
+     "slug": "fide-rated",
+     "term_group": 0,
+     "term_taxonomy_id": 874,
+     "taxonomy": "tribe_events_cat",
+     "description": "",
+     "parent": 0,
+     "count": 1155,
+     "filter": "raw",
+     "term_order": "0",
+     "id": 852,
+     "urls": {
+      "self": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories/852",
+      "collection": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories"
+     }
+    }
+   ],
+   "tags": [
+    {
+     "name": "Congress",
+     "slug": "congress",
+     "term_group": 0,
+     "term_taxonomy_id": 627,
+     "taxonomy": "post_tag",
+     "description": "",
+     "parent": 0,
+     "count": 403,
+     "filter": "raw",
+     "term_order": "0",
+     "id": 605,
+     "urls": {
+      "self": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/tags/605",
+      "collection": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/tags"
+     }
+    },
+    {
+     "name": "Festival",
+     "slug": "festival",
+     "term_group": 0,
+     "term_taxonomy_id": 632,
+     "taxonomy": "post_tag",
+     "description": "",
+     "parent": 0,
+     "count": 91,
+     "filter": "raw",
+     "term_order": "0",
+     "id": 610,
+     "urls": {
+      "self": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/tags/610",
+      "collection": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/tags"
+     }
+    },
+    {
+     "name": "London",
+     "slug": "london",
+     "term_group": 0,
+     "term_taxonomy_id": 617,
+     "taxonomy": "post_tag",
+     "description": "",
+     "parent": 0,
+     "count": 1103,
+     "filter": "raw",
+     "term_order": "0",
+     "id": 595,
+     "urls": {
+      "self": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/tags/595",
+      "collection": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/tags"
+     }
+    },
+    {
+     "name": "Rapidplay",
+     "slug": "rapidplay",
+     "term_group": 0,
+     "term_taxonomy_id": 613,
+     "taxonomy": "post_tag",
+     "description": "",
+     "parent": 0,
+     "count": 778,
+     "filter": "raw",
+     "term_order": "0",
+     "id": 591,
+     "urls": {
+      "self": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/tags/591",
+      "collection": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/tags"
+     }
+    },
+    {
+     "name": "Standardplay",
+     "slug": "standardplay",
+     "term_group": 0,
+     "term_taxonomy_id": 643,
+     "taxonomy": "post_tag",
+     "description": "",
+     "parent": 0,
+     "count": 585,
+     "filter": "raw",
+     "term_order": "0",
+     "id": 621,
+     "urls": {
+      "self": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/tags/621",
+      "collection": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/tags"
+     }
+    }
+   ],
+   "venue": {
+    "id": 70568,
+    "status": "publish",
+    "date": "2022-02-24 16:50:46",
+    "date_utc": "2022-02-24 16:50:46",
+    "modified": "2022-02-24 16:50:46",
+    "modified_utc": "2022-02-24 16:50:46",
+    "url": "https://www.englishchess.org.uk/venue/the-clissold-arms-the-clissold-arms-105-fortis-green-london-n2-9hr/",
+    "venue": "The Clissold Arms @ The Clissold Arms, 105 Fortis Green, London, N2 9HR",
+    "slug": "the-clissold-arms-the-clissold-arms-105-fortis-green-london-n2-9hr",
+    "show_map": false,
+    "show_map_link": false,
+    "global_id": "www.englishchess.org.uk?id=70568",
+    "global_id_lineage": [
+     "www.englishchess.org.uk?id=70568"
+    ]
+   },
+   "organizer": [
+    {
+     "id": 80653,
+     "author": "3",
+     "status": "publish",
+     "date": "2024-08-28 15:35:13",
+     "date_utc": "2024-08-28 14:35:13",
+     "modified": "2024-08-28 15:35:13",
+     "modified_utc": "2024-08-28 14:35:13",
+     "url": "https://www.englishchess.org.uk/organiser/adam-raoof-2/",
+     "organizer": "Adam Raoof",
+     "slug": "adam-raoof-2",
+     "phone": "07855036537",
+     "email": "adamraoof@gmail.com",
+     "global_id": "www.englishchess.org.uk?id=80653",
+     "global_id_lineage": [
+      "www.englishchess.org.uk?id=80653"
+     ]
+    }
+   ],
+   "custom_fields": [],
+   "is_virtual": false,
+   "virtual_url": null,
+   "virtual_video_source": ""
+  },
+  {
+   "id": 94263,
+   "global_id": "www.englishchess.org.uk?id=94263",
+   "global_id_lineage": [
+    "www.englishchess.org.uk?id=94263"
+   ],
+   "author": "3",
+   "status": "publish",
+   "date": "2026-08-07 16:19:31",
+   "date_utc": "2026-08-07 15:19:31",
+   "modified": "2026-08-07 16:19:31",
+   "modified_utc": "2026-08-07 15:19:31",
+   "url": "https://www.englishchess.org.uk/event/london-chess-league-summer-congress-5/",
+   "rest_url": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/events/94263",
+   "title": "London Chess League Summer Congress",
+   "description": "<p>5-round Summer Congress on Tuesday nights for five Tuesdays. 60m+30s standard, ECF rated (not FIDE rated) game in a relaxed environment, great for preparing for the new chess season!<br />\nStart time: All rounds have a scheduled start at 18.30 (6:30pm)<br />\nTime control: 60 minutes + 30 seconds per move (60+30)<br />\nSections: If 25 or more players sign up, Open, U2000 and U1600. If &lt;25 players register, then Open + U1900 section</p>",
+   "excerpt": "",
+   "slug": "london-chess-league-summer-congress-5",
+   "image": {
+    "url": "https://www.englishchess.org.uk/wp-content/uploads/2024/09/mindsports.png",
+    "id": 81320,
+    "extension": "png",
+    "width": 1000,
+    "height": 300,
+    "filesize": 396291
+   },
+   "all_day": false,
+   "start_date": "2026-09-08 18:30:00",
+   "start_date_details": {
+    "year": "2026",
+    "month": "09",
+    "day": "08",
+    "hour": "18",
+    "minutes": "30",
+    "seconds": "00"
+   },
+   "end_date": "2026-09-08 22:00:00",
+   "end_date_details": {
+    "year": "2026",
+    "month": "09",
+    "day": "08",
+    "hour": "22",
+    "minutes": "00",
+    "seconds": "00"
+   },
+   "utc_start_date": "2026-09-08 17:30:00",
+   "utc_start_date_details": {
+    "year": "2026",
+    "month": "09",
+    "day": "08",
+    "hour": "17",
+    "minutes": "30",
+    "seconds": "00"
+   },
+   "utc_end_date": "2026-09-08 21:00:00",
+   "utc_end_date_details": {
+    "year": "2026",
+    "month": "09",
+    "day": "08",
+    "hour": "21",
+    "minutes": "00",
+    "seconds": "00"
+   },
+   "timezone": "Europe/London",
+   "timezone_abbr": "BST",
+   "cost": "",
+   "cost_details": {
+    "currency_symbol": "£",
+    "currency_code": "USD",
+    "currency_position": "prefix",
+    "values": []
+   },
+   "website": "https://www.londonchess.com/",
+   "show_map": true,
+   "show_map_link": true,
+   "hide_from_listings": false,
+   "sticky": false,
+   "featured": false,
+   "categories": [
+    {
+     "name": "Disability Friendly",
+     "slug": "disability-friendly",
+     "term_group": 0,
+     "term_taxonomy_id": 878,
+     "taxonomy": "tribe_events_cat",
+     "description": "",
+     "parent": 0,
+     "count": 1147,
+     "filter": "raw",
+     "term_order": "0",
+     "id": 856,
+     "urls": {
+      "self": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories/856",
+      "collection": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories"
+     }
+    },
+    {
+     "name": "ECF Rated",
+     "slug": "ecf-rated",
+     "term_group": 0,
+     "term_taxonomy_id": 873,
+     "taxonomy": "tribe_events_cat",
+     "description": "",
+     "parent": 0,
+     "count": 1726,
+     "filter": "raw",
+     "term_order": "0",
+     "id": 851,
+     "urls": {
+      "self": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories/851",
+      "collection": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories"
+     }
+    }
+   ],
+   "tags": [
+    {
+     "name": "Congress",
+     "slug": "congress",
+     "term_group": 0,
+     "term_taxonomy_id": 627,
+     "taxonomy": "post_tag",
+     "description": "",
+     "parent": 0,
+     "count": 403,
+     "filter": "raw",
+     "term_order": "0",
+     "id": 605,
+     "urls": {
+      "self": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/tags/605",
+      "collection": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/tags"
+     }
+    },
+    {
+     "name": "London",
+     "slug": "london",
+     "term_group": 0,
+     "term_taxonomy_id": 617,
+     "taxonomy": "post_tag",
+     "description": "",
+     "parent": 0,
+     "count": 1103,
+     "filter": "raw",
+     "term_order": "0",
+     "id": 595,
+     "urls": {
+      "self": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/tags/595",
+      "collection": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/tags"
+     }
+    },
+    {
+     "name": "South East",
+     "slug": "south-east",
+     "term_group": 0,
+     "term_taxonomy_id": 642,
+     "taxonomy": "post_tag",
+     "description": "",
+     "parent": 0,
+     "count": 846,
+     "filter": "raw",
+     "term_order": "0",
+     "id": 620,
+     "urls": {
+      "self": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/tags/620",
+      "collection": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/tags"
+     }
+    },
+    {
+     "name": "Standardplay",
+     "slug": "standardplay",
+     "term_group": 0,
+     "term_taxonomy_id": 643,
+     "taxonomy": "post_tag",
+     "description": "",
+     "parent": 0,
+     "count": 585,
+     "filter": "raw",
+     "term_order": "0",
+     "id": 621,
+     "urls": {
+      "self": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/tags/621",
+      "collection": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/tags"
+     }
+    }
+   ],
+   "venue": {
+    "id": 70591,
+    "status": "publish",
+    "date": "2022-02-24 16:50:46",
+    "date_utc": "2022-02-24 16:50:46",
+    "modified": "2022-02-24 16:50:46",
+    "modified_utc": "2022-02-24 16:50:46",
+    "url": "https://www.englishchess.org.uk/venue/london-mindsports-centre-21-dalling-road-london-w6-0jd/",
+    "venue": "London Mindsports Centre @ 21 Dalling Road, London , W6 0JD",
+    "slug": "london-mindsports-centre-21-dalling-road-london-w6-0jd",
+    "show_map": false,
+    "show_map_link": false,
+    "global_id": "www.englishchess.org.uk?id=70591",
+    "global_id_lineage": [
+     "www.englishchess.org.uk?id=70591"
+    ]
+   },
+   "organizer": [
+    {
+     "id": 81731,
+     "author": "3",
+     "status": "publish",
+     "date": "2024-09-13 16:30:33",
+     "date_utc": "2024-09-13 15:30:33",
+     "modified": "2024-09-13 16:30:33",
+     "modified_utc": "2024-09-13 15:30:33",
+     "url": "https://www.englishchess.org.uk/organiser/john-sargent/",
+     "organizer": "John Sargent",
+     "slug": "john-sargent",
+     "email": "johnsargent@gmail.com",
+     "global_id": "www.englishchess.org.uk?id=81731",
+     "global_id_lineage": [
+      "www.englishchess.org.uk?id=81731"
+     ]
+    }
+   ],
+   "custom_fields": [],
+   "is_virtual": false,
+   "virtual_url": null,
+   "virtual_video_source": ""
+  },
+  {
+   "id": 93461,
+   "global_id": "www.englishchess.org.uk?id=93461",
+   "global_id_lineage": [
+    "www.englishchess.org.uk?id=93461"
+   ],
+   "author": "3",
+   "status": "publish",
+   "date": "2026-05-26 10:30:50",
+   "date_utc": "2026-05-26 09:30:50",
+   "modified": "2026-05-26 10:39:48",
+   "modified_utc": "2026-05-26 09:39:48",
+   "url": "https://www.englishchess.org.uk/event/4ncl-online-season-14/",
+   "rest_url": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/events/93461",
+   "title": "4NCL Online Season 14",
+   "description": "<p>Seven rounds. Semi-finals. Final. Entry fee £17.50<br />\nEntry form:&nbsp;<a href=\"https://pci.jotform.com/form/261192026227350\">https://pci.jotform.com/form/261192026227350</a>&nbsp; <br />\nRules:&nbsp;<a href=\"https://4ncl.co.uk/data/onlines14/download/4NCL_online_rules_s14.pdf\">https://4ncl.co.uk/data/onlines14/download/4NCL_online_rules_s14.pdf</a> <br />\nDates:&nbsp;<a href=\"https://4ncl.co.uk/data/onlines14/dates_online.htm\">https://4ncl.co.uk/data/onlines14/dates_online.htm</a></p>",
+   "excerpt": "",
+   "slug": "4ncl-online-season-14",
+   "image": {
+    "url": "https://www.englishchess.org.uk/wp-content/uploads/2024/09/4NCL-01.jpg",
+    "id": 81305,
+    "extension": "jpg",
+    "width": 1000,
+    "height": 300,
+    "filesize": 40059
+   },
+   "all_day": false,
+   "start_date": "2026-09-08 19:30:00",
+   "start_date_details": {
+    "year": "2026",
+    "month": "09",
+    "day": "08",
+    "hour": "19",
+    "minutes": "30",
+    "seconds": "00"
+   },
+   "end_date": "2026-09-08 23:59:00",
+   "end_date_details": {
+    "year": "2026",
+    "month": "09",
+    "day": "08",
+    "hour": "23",
+    "minutes": "59",
+    "seconds": "00"
+   },
+   "utc_start_date": "2026-09-08 18:30:00",
+   "utc_start_date_details": {
+    "year": "2026",
+    "month": "09",
+    "day": "08",
+    "hour": "18",
+    "minutes": "30",
+    "seconds": "00"
+   },
+   "utc_end_date": "2026-09-08 22:59:00",
+   "utc_end_date_details": {
+    "year": "2026",
+    "month": "09",
+    "day": "08",
+    "hour": "22",
+    "minutes": "59",
+    "seconds": "00"
+   },
+   "timezone": "Europe/London",
+   "timezone_abbr": "BST",
+   "cost": "",
+   "cost_details": {
+    "currency_symbol": "£",
+    "currency_code": "USD",
+    "currency_position": "prefix",
+    "values": []
+   },
+   "website": "https://www.4ncl.co.uk/",
+   "show_map": true,
+   "show_map_link": true,
+   "hide_from_listings": false,
+   "sticky": false,
+   "featured": false,
+   "categories": [
+    {
+     "name": "Online",
+     "slug": "online",
+     "term_group": 0,
+     "term_taxonomy_id": 892,
+     "taxonomy": "tribe_events_cat",
+     "description": "",
+     "parent": 0,
+     "count": 78,
+     "filter": "raw",
+     "term_order": "0",
+     "id": 870,
+     "urls": {
+      "self": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories/870",
+      "collection": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories"
+     }
+    }
+   ],
+   "tags": [
+    {
+     "name": "Online",
+     "slug": "online",
+     "term_group": 0,
+     "term_taxonomy_id": 612,
+     "taxonomy": "post_tag",
+     "description": "",
+     "parent": 0,
+     "count": 122,
+     "filter": "raw",
+     "term_order": "0",
+     "id": 590,
+     "urls": {
+      "self": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/tags/590",
+      "collection": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/tags"
+     }
+    }
+   ],
+   "venue": {
+    "id": 70584,
+    "status": "publish",
+    "date": "2022-02-24 16:50:46",
+    "date_utc": "2022-02-24 16:50:46",
+    "modified": "2022-02-24 16:50:46",
+    "modified_utc": "2022-02-24 16:50:46",
+    "url": "https://www.englishchess.org.uk/venue/online/",
+    "venue": "Online",
+    "slug": "online",
+    "show_map": true,
+    "show_map_link": true,
+    "global_id": "www.englishchess.org.uk?id=70584",
+    "global_id_lineage": [
+     "www.englishchess.org.uk?id=70584"
+    ]
+   },
+   "organizer": [
+    {
+     "id": 80644,
+     "author": "3",
+     "status": "publish",
+     "date": "2024-08-28 15:32:24",
+     "date_utc": "2024-08-28 14:32:24",
+     "modified": "2024-08-28 15:32:24",
+     "modified_utc": "2024-08-28 14:32:24",
+     "url": "https://www.englishchess.org.uk/organiser/mike-truran/",
+     "organizer": "Mike Truran",
+     "slug": "mike-truran",
+     "email": "mike@truranfamily.co.uk",
+     "global_id": "www.englishchess.org.uk?id=80644",
+     "global_id_lineage": [
+      "www.englishchess.org.uk?id=80644"
+     ]
+    }
+   ],
+   "custom_fields": [],
+   "is_virtual": false,
+   "virtual_url": null,
+   "virtual_video_source": ""
+  },
+  {
+   "id": 94057,
+   "global_id": "www.englishchess.org.uk?id=94057",
+   "global_id_lineage": [
+    "www.englishchess.org.uk?id=94057"
+   ],
+   "author": "3",
+   "status": "publish",
+   "date": "2026-07-15 13:52:02",
+   "date_utc": "2026-07-15 12:52:02",
+   "modified": "2026-07-15 13:52:02",
+   "modified_utc": "2026-07-15 12:52:02",
+   "url": "https://www.englishchess.org.uk/event/childrens-chess-tournament/",
+   "rest_url": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/events/94057",
+   "title": "Children&#8217;s Chess Tournament",
+   "description": "<p>ECF rated children&#8217;s chess tournament &#8211; rapid play with clocks<br />\nCoaching in between rounds &#8211; all abilities welcome</p>",
+   "excerpt": "",
+   "slug": "childrens-chess-tournament",
+   "image": {
+    "url": "https://www.englishchess.org.uk/wp-content/uploads/2024/09/wood-five.png",
+    "id": 81982,
+    "extension": "png",
+    "width": 1000,
+    "height": 300,
+    "filesize": 422705
+   },
+   "all_day": false,
+   "start_date": "2026-09-20 13:00:00",
+   "start_date_details": {
+    "year": "2026",
+    "month": "09",
+    "day": "20",
+    "hour": "13",
+    "minutes": "00",
+    "seconds": "00"
+   },
+   "end_date": "2026-09-20 16:45:00",
+   "end_date_details": {
+    "year": "2026",
+    "month": "09",
+    "day": "20",
+    "hour": "16",
+    "minutes": "45",
+    "seconds": "00"
+   },
+   "utc_start_date": "2026-09-20 12:00:00",
+   "utc_start_date_details": {
+    "year": "2026",
+    "month": "09",
+    "day": "20",
+    "hour": "12",
+    "minutes": "00",
+    "seconds": "00"
+   },
+   "utc_end_date": "2026-09-20 15:45:00",
+   "utc_end_date_details": {
+    "year": "2026",
+    "month": "09",
+    "day": "20",
+    "hour": "15",
+    "minutes": "45",
+    "seconds": "00"
+   },
+   "timezone": "Europe/London",
+   "timezone_abbr": "BST",
+   "cost": "",
+   "cost_details": {
+    "currency_symbol": "£",
+    "currency_code": "USD",
+    "currency_position": "prefix",
+    "values": []
+   },
+   "website": "",
+   "show_map": true,
+   "show_map_link": true,
+   "hide_from_listings": false,
+   "sticky": false,
+   "featured": false,
+   "categories": [
+    {
+     "name": "ECF Rated",
+     "slug": "ecf-rated",
+     "term_group": 0,
+     "term_taxonomy_id": 873,
+     "taxonomy": "tribe_events_cat",
+     "description": "",
+     "parent": 0,
+     "count": 1726,
+     "filter": "raw",
+     "term_order": "0",
+     "id": 851,
+     "urls": {
+      "self": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories/851",
+      "collection": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories"
+     }
+    },
+    {
+     "name": "Juniors Only",
+     "slug": "juniors-only",
+     "term_group": 0,
+     "term_taxonomy_id": 881,
+     "taxonomy": "tribe_events_cat",
+     "description": "",
+     "parent": 0,
+     "count": 496,
+     "filter": "raw",
+     "term_order": "0",
+     "id": 859,
+     "urls": {
+      "self": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories/859",
+      "collection": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories"
+     }
+    },
+    {
+     "name": "Meeting",
+     "slug": "meeting",
+     "term_group": 0,
+     "term_taxonomy_id": 884,
+     "taxonomy": "tribe_events_cat",
+     "description": "",
+     "parent": 0,
+     "count": 55,
+     "filter": "raw",
+     "term_order": "0",
+     "id": 862,
+     "urls": {
+      "self": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories/862",
+      "collection": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories"
+     }
+    }
+   ],
+   "tags": [
+    {
+     "name": "London",
+     "slug": "london",
+     "term_group": 0,
+     "term_taxonomy_id": 617,
+     "taxonomy": "post_tag",
+     "description": "",
+     "parent": 0,
+     "count": 1103,
+     "filter": "raw",
+     "term_order": "0",
+     "id": 595,
+     "urls": {
+      "self": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/tags/595",
+      "collection": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/tags"
+     }
+    }
+   ],
+   "venue": {
+    "id": 90166,
+    "author": "3",
+    "status": "publish",
+    "date": "2025-10-29 07:32:16",
+    "date_utc": "2025-10-29 07:32:16",
+    "modified": "2025-10-29 07:32:16",
+    "modified_utc": "2025-10-29 07:32:16",
+    "url": "https://www.englishchess.org.uk/venue/the-eversfield-centre/",
+    "venue": "The Eversfield Centre",
+    "slug": "the-eversfield-centre",
+    "address": "11 Eversfield Gardens",
+    "city": "Mill Hill",
+    "zip": "NW7 2AE",
+    "geo_lat": 51.6092655,
+    "geo_lng": -0.2513509,
+    "show_map": true,
+    "show_map_link": true,
+    "global_id": "www.englishchess.org.uk?id=90166",
+    "global_id_lineage": [
+     "www.englishchess.org.uk?id=90166"
+    ]
+   },
+   "organizer": [
+    {
+     "id": 85334,
+     "author": "3",
+     "status": "publish",
+     "date": "2025-02-22 11:09:19",
+     "date_utc": "2025-02-22 11:09:19",
+     "modified": "2025-02-22 11:09:19",
+     "modified_utc": "2025-02-22 11:09:19",
+     "url": "https://www.englishchess.org.uk/organiser/coach/",
+     "organizer": "Coach",
+     "slug": "coach",
+     "email": "chesscheck@gmail.com",
+     "global_id": "www.englishchess.org.uk?id=85334",
+     "global_id_lineage": [
+      "www.englishchess.org.uk?id=85334"
+     ]
+    }
+   ],
+   "custom_fields": [],
+   "is_virtual": false,
+   "virtual_url": null,
+   "virtual_video_source": ""
+  },
+  {
+   "id": 94290,
+   "global_id": "www.englishchess.org.uk?id=94290",
+   "global_id_lineage": [
+    "www.englishchess.org.uk?id=94290"
+   ],
+   "author": "3",
+   "status": "publish",
+   "date": "2026-08-13 08:52:15",
+   "date_utc": "2026-08-13 07:52:15",
+   "modified": "2026-08-13 08:52:15",
+   "modified_utc": "2026-08-13 07:52:15",
+   "url": "https://www.englishchess.org.uk/event/chiltern-bucks-junior-chess-ljcc-qualifier/",
+   "rest_url": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/events/94290",
+   "title": "Chiltern &#038; Bucks Junior Chess &#8211; LJCC Qualifier",
+   "description": "<p>The London Junior Chess Championships (LJCC) is one of the country&#8217;s most prestigious junior chess events.<br />\nChiltern &amp; Bucks Junior Chess is a LJCC qualifier tournament for U8, U10 &amp; U12 age groups only.<br />\nNote: There is no prior qualification necessary for the U14 events and above.<br />\nOnline entry: <a href=\"https://forms.gle/Dko1nbZYD8MNs48M9\">https://forms.gle/Dko1nbZYD8MNs48M9</a></p>",
+   "excerpt": "",
+   "slug": "chiltern-bucks-junior-chess-ljcc-qualifier",
+   "image": {
+    "url": "https://www.englishchess.org.uk/wp-content/uploads/2026/08/tlc.png",
+    "id": 94291,
+    "extension": "png",
+    "width": 1000,
+    "height": 300,
+    "filesize": 532950
+   },
+   "all_day": false,
+   "start_date": "2026-09-12 10:00:00",
+   "start_date_details": {
+    "year": "2026",
+    "month": "09",
+    "day": "12",
+    "hour": "10",
+    "minutes": "00",
+    "seconds": "00"
+   },
+   "end_date": "2026-09-12 16:00:00",
+   "end_date_details": {
+    "year": "2026",
+    "month": "09",
+    "day": "12",
+    "hour": "16",
+    "minutes": "00",
+    "seconds": "00"
+   },
+   "utc_start_date": "2026-09-12 09:00:00",
+   "utc_start_date_details": {
+    "year": "2026",
+    "month": "09",
+    "day": "12",
+    "hour": "09",
+    "minutes": "00",
+    "seconds": "00"
+   },
+   "utc_end_date": "2026-09-12 15:00:00",
+   "utc_end_date_details": {
+    "year": "2026",
+    "month": "09",
+    "day": "12",
+    "hour": "15",
+    "minutes": "00",
+    "seconds": "00"
+   },
+   "timezone": "Europe/London",
+   "timezone_abbr": "BST",
+   "cost": "",
+   "cost_details": {
+    "currency_symbol": "£",
+    "currency_code": "USD",
+    "currency_position": "prefix",
+    "values": []
+   },
+   "website": "https://forms.gle/Dko1nbZYD8MNs48M9",
+   "show_map": true,
+   "show_map_link": true,
+   "hide_from_listings": false,
+   "sticky": false,
+   "featured": false,
+   "categories": [
+    {
+     "name": "Disability Friendly",
+     "slug": "disability-friendly",
+     "term_group": 0,
+     "term_taxonomy_id": 878,
+     "taxonomy": "tribe_events_cat",
+     "description": "",
+     "parent": 0,
+     "count": 1147,
+     "filter": "raw",
+     "term_order": "0",
+     "id": 856,
+     "urls": {
+      "self": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories/856",
+      "collection": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories"
+     }
+    },
+    {
+     "name": "ECF Rated",
+     "slug": "ecf-rated",
+     "term_group": 0,
+     "term_taxonomy_id": 873,
+     "taxonomy": "tribe_events_cat",
+     "description": "",
+     "parent": 0,
+     "count": 1726,
+     "filter": "raw",
+     "term_order": "0",
+     "id": 851,
+     "urls": {
+      "self": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories/851",
+      "collection": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories"
+     }
+    },
+    {
+     "name": "Juniors Only",
+     "slug": "juniors-only",
+     "term_group": 0,
+     "term_taxonomy_id": 881,
+     "taxonomy": "tribe_events_cat",
+     "description": "",
+     "parent": 0,
+     "count": 496,
+     "filter": "raw",
+     "term_order": "0",
+     "id": 859,
+     "urls": {
+      "self": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories/859",
+      "collection": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories"
+     }
+    },
+    {
+     "name": "LJCC Qualifier",
+     "slug": "ljcc-qualifier",
+     "term_group": 0,
+     "term_taxonomy_id": 883,
+     "taxonomy": "tribe_events_cat",
+     "description": "",
+     "parent": 0,
+     "count": 69,
+     "filter": "raw",
+     "term_order": "0",
+     "id": 861,
+     "urls": {
+      "self": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories/861",
+      "collection": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories"
+     }
+    }
+   ],
+   "tags": [
+    {
+     "name": "Rapidplay",
+     "slug": "rapidplay",
+     "term_group": 0,
+     "term_taxonomy_id": 613,
+     "taxonomy": "post_tag",
+     "description": "",
+     "parent": 0,
+     "count": 778,
+     "filter": "raw",
+     "term_order": "0",
+     "id": 591,
+     "urls": {
+      "self": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/tags/591",
+      "collection": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/tags"
+     }
+    },
+    {
+     "name": "South East",
+     "slug": "south-east",
+     "term_group": 0,
+     "term_taxonomy_id": 642,
+     "taxonomy": "post_tag",
+     "description": "",
+     "parent": 0,
+     "count": 846,
+     "filter": "raw",
+     "term_order": "0",
+     "id": 620,
+     "urls": {
+      "self": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/tags/620",
+      "collection": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/tags"
+     }
+    }
+   ],
+   "venue": {
+    "id": 93051,
+    "author": "3",
+    "status": "publish",
+    "date": "2026-04-15 08:38:41",
+    "date_utc": "2026-04-15 07:38:41",
+    "modified": "2026-04-15 08:38:41",
+    "modified_utc": "2026-04-15 07:38:41",
+    "url": "https://www.englishchess.org.uk/venue/taylor-lewis-community-centre/",
+    "venue": "Taylor Lewis Community Centre",
+    "slug": "taylor-lewis-community-centre",
+    "address": "6 Arizona Way",
+    "city": "High Wycombe",
+    "zip": "HP11 1AB",
+    "geo_lat": 51.6164427,
+    "geo_lng": -0.7481205,
+    "show_map": true,
+    "show_map_link": true,
+    "global_id": "www.englishchess.org.uk?id=93051",
+    "global_id_lineage": [
+     "www.englishchess.org.uk?id=93051"
+    ]
+   },
+   "organizer": [
+    {
+     "id": 93052,
+     "author": "3",
+     "status": "publish",
+     "date": "2026-04-15 08:38:41",
+     "date_utc": "2026-04-15 07:38:41",
+     "modified": "2026-04-15 08:38:41",
+     "modified_utc": "2026-04-15 07:38:41",
+     "url": "https://www.englishchess.org.uk/organiser/soumya-gorrepati/",
+     "organizer": "Soumya Gorrepati",
+     "slug": "soumya-gorrepati",
+     "email": "sgchess.pca@gmail.com",
+     "global_id": "www.englishchess.org.uk?id=93052",
+     "global_id_lineage": [
+      "www.englishchess.org.uk?id=93052"
+     ]
+    }
+   ],
+   "custom_fields": [],
+   "is_virtual": false,
+   "virtual_url": null,
+   "virtual_video_source": ""
+  },
+  {
+   "id": 94451,
+   "global_id": "www.englishchess.org.uk?id=94451",
+   "global_id_lineage": [
+    "www.englishchess.org.uk?id=94451"
+   ],
+   "author": "3",
+   "status": "publish",
+   "date": "2026-08-26 11:12:41",
+   "date_utc": "2026-08-26 10:12:41",
+   "modified": "2026-08-26 11:12:41",
+   "modified_utc": "2026-08-26 10:12:41",
+   "url": "https://www.englishchess.org.uk/event/womens-girls-fide-ecf-classical-congress-5/",
+   "rest_url": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/events/94451",
+   "title": "Women’s &#038; Girls’ FIDE / ECF Classical Congress",
+   "description": "<p>London Women Chess Club is delighted to present another round of the Women’s &amp; Girls’ FIDE &amp; ECF Classical Congress. A friendly and welcoming 5-round classical tournament (60+15) for players of all abilities, held in three rating sections. The event is both FIDE and ECF rated, with live boards and commentary on Chess.com. Whether you’re an experienced competitor or playing your first classical event, we look forward to welcoming you for a fantastic weekend of chess.<br />\nEntry form: <a href=\"https://britchess.wufoo.com/cabinet/faaef638-3df0-4f79-b539-55bec1e798e1\">https://britchess.wufoo.com/cabinet/faaef638-3df0-4f79-b539-55bec1e798e1</a></p>",
+   "excerpt": "",
+   "slug": "womens-girls-fide-ecf-classical-congress-5",
+   "image": {
+    "url": "https://www.englishchess.org.uk/wp-content/uploads/2025/10/lwcc_logo_.jpg",
+    "id": 89495,
+    "extension": "jpg",
+    "width": 1000,
+    "height": 300,
+    "filesize": 20746
+   },
+   "all_day": false,
+   "start_date": "2026-09-12 09:30:00",
+   "start_date_details": {
+    "year": "2026",
+    "month": "09",
+    "day": "12",
+    "hour": "09",
+    "minutes": "30",
+    "seconds": "00"
+   },
+   "end_date": "2026-09-13 16:45:00",
+   "end_date_details": {
+    "year": "2026",
+    "month": "09",
+    "day": "13",
+    "hour": "16",
+    "minutes": "45",
+    "seconds": "00"
+   },
+   "utc_start_date": "2026-09-12 08:30:00",
+   "utc_start_date_details": {
+    "year": "2026",
+    "month": "09",
+    "day": "12",
+    "hour": "08",
+    "minutes": "30",
+    "seconds": "00"
+   },
+   "utc_end_date": "2026-09-13 15:45:00",
+   "utc_end_date_details": {
+    "year": "2026",
+    "month": "09",
+    "day": "13",
+    "hour": "15",
+    "minutes": "45",
+    "seconds": "00"
+   },
+   "timezone": "Europe/London",
+   "timezone_abbr": "BST",
+   "cost": "",
+   "cost_details": {
+    "currency_symbol": "£",
+    "currency_code": "USD",
+    "currency_position": "prefix",
+    "values": []
+   },
+   "website": "https://londonwomenchess.org.uk/ ",
+   "show_map": true,
+   "show_map_link": true,
+   "hide_from_listings": false,
+   "sticky": false,
+   "featured": false,
+   "categories": [
+    {
+     "name": "Disability Friendly",
+     "slug": "disability-friendly",
+     "term_group": 0,
+     "term_taxonomy_id": 878,
+     "taxonomy": "tribe_events_cat",
+     "description": "",
+     "parent": 0,
+     "count": 1147,
+     "filter": "raw",
+     "term_order": "0",
+     "id": 856,
+     "urls": {
+      "self": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories/856",
+      "collection": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories"
+     }
+    },
+    {
+     "name": "ECF Rated",
+     "slug": "ecf-rated",
+     "term_group": 0,
+     "term_taxonomy_id": 873,
+     "taxonomy": "tribe_events_cat",
+     "description": "",
+     "parent": 0,
+     "count": 1726,
+     "filter": "raw",
+     "term_order": "0",
+     "id": 851,
+     "urls": {
+      "self": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories/851",
+      "collection": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories"
+     }
+    },
+    {
+     "name": "FIDE Rated",
+     "slug": "fide-rated",
+     "term_group": 0,
+     "term_taxonomy_id": 874,
+     "taxonomy": "tribe_events_cat",
+     "description": "",
+     "parent": 0,
+     "count": 1155,
+     "filter": "raw",
+     "term_order": "0",
+     "id": 852,
+     "urls": {
+      "self": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories/852",
+      "collection": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories"
+     }
+    }
+   ],
+   "tags": [
+    {
+     "name": "London",
+     "slug": "london",
+     "term_group": 0,
+     "term_taxonomy_id": 617,
+     "taxonomy": "post_tag",
+     "description": "",
+     "parent": 0,
+     "count": 1103,
+     "filter": "raw",
+     "term_order": "0",
+     "id": 595,
+     "urls": {
+      "self": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/tags/595",
+      "collection": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/tags"
+     }
+    },
+    {
+     "name": "South East",
+     "slug": "south-east",
+     "term_group": 0,
+     "term_taxonomy_id": 642,
+     "taxonomy": "post_tag",
+     "description": "",
+     "parent": 0,
+     "count": 846,
+     "filter": "raw",
+     "term_order": "0",
+     "id": 620,
+     "urls": {
+      "self": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/tags/620",
+      "collection": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/tags"
+     }
+    },
+    {
+     "name": "Standardplay",
+     "slug": "standardplay",
+     "term_group": 0,
+     "term_taxonomy_id": 643,
+     "taxonomy": "post_tag",
+     "description": "",
+     "parent": 0,
+     "count": 585,
+     "filter": "raw",
+     "term_order": "0",
+     "id": 621,
+     "urls": {
+      "self": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/tags/621",
+      "collection": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/tags"
+     }
+    }
+   ],
+   "venue": {
+    "id": 89496,
+    "author": "3",
+    "status": "publish",
+    "date": "2025-10-02 10:01:33",
+    "date_utc": "2025-10-02 09:01:33",
+    "modified": "2025-10-02 10:01:33",
+    "modified_utc": "2025-10-02 09:01:33",
+    "url": "https://www.englishchess.org.uk/venue/london-women-chess-club-pancras-square-library/",
+    "venue": "London Women Chess Club &#8211; Pancras Square Library",
+    "slug": "london-women-chess-club-pancras-square-library",
+    "address": "5 Pancras Road",
+    "city": "London",
+    "zip": "N1C 4AG",
+    "geo_lat": 51.5332407,
+    "geo_lng": -0.1265972,
+    "show_map": true,
+    "show_map_link": true,
+    "global_id": "www.englishchess.org.uk?id=89496",
+    "global_id_lineage": [
+     "www.englishchess.org.uk?id=89496"
+    ]
+   },
+   "organizer": [
+    {
+     "id": 80655,
+     "author": "3",
+     "status": "publish",
+     "date": "2024-08-28 15:35:33",
+     "date_utc": "2024-08-28 14:35:33",
+     "modified": "2025-12-09 09:40:06",
+     "modified_utc": "2025-12-09 09:40:06",
+     "url": "https://www.englishchess.org.uk/organiser/zoya-boozorginia/",
+     "organizer": "Zoya Boozorginia",
+     "slug": "zoya-boozorginia",
+     "website": "http://www.londonwomenchess.org.uk/",
+     "email": "info@londonwomenchess.org.uk",
+     "global_id": "www.englishchess.org.uk?id=80655",
+     "global_id_lineage": [
+      "www.englishchess.org.uk?id=80655"
+     ]
+    }
+   ],
+   "custom_fields": [],
+   "is_virtual": false,
+   "virtual_url": null,
+   "virtual_video_source": ""
+  },
+  {
+   "id": 93653,
+   "global_id": "www.englishchess.org.uk?id=93653",
+   "global_id_lineage": [
+    "www.englishchess.org.uk?id=93653"
+   ],
+   "author": "3",
+   "status": "publish",
+   "date": "2026-06-17 09:06:35",
+   "date_utc": "2026-06-17 08:06:35",
+   "modified": "2026-06-17 09:06:35",
+   "modified_utc": "2026-06-17 08:06:35",
+   "url": "https://www.englishchess.org.uk/event/2026-rhyl-chess-congress/",
+   "rest_url": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/events/93653",
+   "title": "2026 Rhyl Chess Congress",
+   "description": "<p>5 Round Swiss Tournament with 3 Sections; Open, Major U1850 &amp; Minor U1600.<br />\nThe Congress will be a FIDE, WCU and ECF registered event.<br />\nWe welcome all players from all the U.K. federations.<br />\nAll sections will be rated by the WCU, ECF and FIDE. <br />\nOnline entry: <a href=\"https://www.rhylchesscongress.co.uk/\" target=\"_blank\" rel=\"noopener\">https://www.rhylchesscongress.co.uk/</a></p>",
+   "excerpt": "",
+   "slug": "2026-rhyl-chess-congress",
+   "image": {
+    "url": "https://www.englishchess.org.uk/wp-content/uploads/2024/09/wood-two-1.png",
+    "id": 81981,
+    "extension": "png",
+    "width": 1000,
+    "height": 300,
+    "filesize": 435213
+   },
+   "all_day": false,
+   "start_date": "2026-09-18 18:45:00",
+   "start_date_details": {
+    "year": "2026",
+    "month": "09",
+    "day": "18",
+    "hour": "18",
+    "minutes": "45",
+    "seconds": "00"
+   },
+   "end_date": "2026-09-20 18:30:00",
+   "end_date_details": {
+    "year": "2026",
+    "month": "09",
+    "day": "20",
+    "hour": "18",
+    "minutes": "30",
+    "seconds": "00"
+   },
+   "utc_start_date": "2026-09-18 17:45:00",
+   "utc_start_date_details": {
+    "year": "2026",
+    "month": "09",
+    "day": "18",
+    "hour": "17",
+    "minutes": "45",
+    "seconds": "00"
+   },
+   "utc_end_date": "2026-09-20 17:30:00",
+   "utc_end_date_details": {
+    "year": "2026",
+    "month": "09",
+    "day": "20",
+    "hour": "17",
+    "minutes": "30",
+    "seconds": "00"
+   },
+   "timezone": "Europe/London",
+   "timezone_abbr": "BST",
+   "cost": "",
+   "cost_details": {
+    "currency_symbol": "£",
+    "currency_code": "USD",
+    "currency_position": "prefix",
+    "values": []
+   },
+   "website": "https://www.rhylchesscongress.co.uk/",
+   "show_map": true,
+   "show_map_link": true,
+   "hide_from_listings": false,
+   "sticky": false,
+   "featured": false,
+   "categories": [
+    {
+     "name": "Disability Friendly",
+     "slug": "disability-friendly",
+     "term_group": 0,
+     "term_taxonomy_id": 878,
+     "taxonomy": "tribe_events_cat",
+     "description": "",
+     "parent": 0,
+     "count": 1147,
+     "filter": "raw",
+     "term_order": "0",
+     "id": 856,
+     "urls": {
+      "self": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories/856",
+      "collection": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories"
+     }
+    },
+    {
+     "name": "FIDE Rated",
+     "slug": "fide-rated",
+     "term_group": 0,
+     "term_taxonomy_id": 874,
+     "taxonomy": "tribe_events_cat",
+     "description": "",
+     "parent": 0,
+     "count": 1155,
+     "filter": "raw",
+     "term_order": "0",
+     "id": 852,
+     "urls": {
+      "self": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories/852",
+      "collection": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories"
+     }
+    }
+   ],
+   "tags": [
+    {
+     "name": "Wales",
+     "slug": "wales",
+     "term_group": 0,
+     "term_taxonomy_id": 893,
+     "taxonomy": "post_tag",
+     "description": "",
+     "parent": 0,
+     "count": 13,
+     "filter": "raw",
+     "term_order": "0",
+     "id": 871,
+     "urls": {
+      "self": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/tags/871",
+      "collection": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/tags"
+     }
+    }
+   ],
+   "venue": {
+    "id": 86155,
+    "author": "3",
+    "status": "publish",
+    "date": "2025-04-23 15:48:32",
+    "date_utc": "2025-04-23 14:48:32",
+    "modified": "2025-04-23 15:48:32",
+    "modified_utc": "2025-04-23 14:48:32",
+    "url": "https://www.englishchess.org.uk/venue/rhyl-town-hall/",
+    "venue": "Rhyl Town Hall",
+    "slug": "rhyl-town-hall",
+    "address": "Wellington Road",
+    "city": "Rhyl",
+    "zip": "LL18 1BA",
+    "geo_lat": 53.319393,
+    "geo_lng": -3.4913712,
+    "show_map": true,
+    "show_map_link": true,
+    "global_id": "www.englishchess.org.uk?id=86155",
+    "global_id_lineage": [
+     "www.englishchess.org.uk?id=86155"
+    ]
+   },
+   "organizer": [
+    {
+     "id": 93654,
+     "author": "3",
+     "status": "publish",
+     "date": "2026-06-17 09:06:35",
+     "date_utc": "2026-06-17 08:06:35",
+     "modified": "2026-06-17 09:06:35",
+     "modified_utc": "2026-06-17 08:06:35",
+     "url": "https://www.englishchess.org.uk/organiser/geoffrey-graham/",
+     "organizer": "Geoffrey Graham",
+     "slug": "geoffrey-graham",
+     "email": "geoffgraham9352@gmail.com",
+     "global_id": "www.englishchess.org.uk?id=93654",
+     "global_id_lineage": [
+      "www.englishchess.org.uk?id=93654"
+     ]
+    }
+   ],
+   "custom_fields": [],
+   "is_virtual": false,
+   "virtual_url": null,
+   "virtual_video_source": ""
+  },
+  {
+   "id": 94408,
+   "global_id": "www.englishchess.org.uk?id=94408",
+   "global_id_lineage": [
+    "www.englishchess.org.uk?id=94408"
+   ],
+   "author": "3",
+   "status": "publish",
+   "date": "2026-08-21 09:02:15",
+   "date_utc": "2026-08-21 08:02:15",
+   "modified": "2026-08-21 09:02:15",
+   "modified_utc": "2026-08-21 08:02:15",
+   "url": "https://www.englishchess.org.uk/event/2026-braille-chess-association-autumn-tournament-open-section/",
+   "rest_url": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/events/94408",
+   "title": "2026 Braille Chess Association Autumn Tournament &#8211; Open Section",
+   "description": "<p>A five round Swiss weekend tournament for players who are blind or partially sighted, and associate (sighted) members of the Braille Chess Association.<br />\nOnline entry: <a href=\"https://braillechess.org.uk/events/event-forms/booking-form-for-the-2026-bca-international-autumn-tournament-18th-to-20th-september\">https://braillechess.org.uk/events/event-forms/booking-form-for-the-2026-bca-international-autumn-tournament-18th-to-20th-september</a></p>",
+   "excerpt": "",
+   "slug": "2026-braille-chess-association-autumn-tournament-open-section",
+   "image": {
+    "url": "https://www.englishchess.org.uk/wp-content/uploads/2024/09/wood-four.png",
+    "id": 81983,
+    "extension": "png",
+    "width": 1000,
+    "height": 300,
+    "filesize": 470525
+   },
+   "all_day": false,
+   "start_date": "2026-09-18 19:30:00",
+   "start_date_details": {
+    "year": "2026",
+    "month": "09",
+    "day": "18",
+    "hour": "19",
+    "minutes": "30",
+    "seconds": "00"
+   },
+   "end_date": "2026-09-20 17:30:00",
+   "end_date_details": {
+    "year": "2026",
+    "month": "09",
+    "day": "20",
+    "hour": "17",
+    "minutes": "30",
+    "seconds": "00"
+   },
+   "utc_start_date": "2026-09-18 18:30:00",
+   "utc_start_date_details": {
+    "year": "2026",
+    "month": "09",
+    "day": "18",
+    "hour": "18",
+    "minutes": "30",
+    "seconds": "00"
+   },
+   "utc_end_date": "2026-09-20 16:30:00",
+   "utc_end_date_details": {
+    "year": "2026",
+    "month": "09",
+    "day": "20",
+    "hour": "16",
+    "minutes": "30",
+    "seconds": "00"
+   },
+   "timezone": "Europe/London",
+   "timezone_abbr": "BST",
+   "cost": "",
+   "cost_details": {
+    "currency_symbol": "£",
+    "currency_code": "USD",
+    "currency_position": "prefix",
+    "values": []
+   },
+   "website": "https://braillechess.org.uk/friday-18th-to-sunday-20th-september-2026-bca-international-autumn-tournament",
+   "show_map": true,
+   "show_map_link": true,
+   "hide_from_listings": false,
+   "sticky": false,
+   "featured": false,
+   "categories": [
+    {
+     "name": "Disability Friendly",
+     "slug": "disability-friendly",
+     "term_group": 0,
+     "term_taxonomy_id": 878,
+     "taxonomy": "tribe_events_cat",
+     "description": "",
+     "parent": 0,
+     "count": 1147,
+     "filter": "raw",
+     "term_order": "0",
+     "id": 856,
+     "urls": {
+      "self": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories/856",
+      "collection": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories"
+     }
+    },
+    {
+     "name": "ECF Rated",
+     "slug": "ecf-rated",
+     "term_group": 0,
+     "term_taxonomy_id": 873,
+     "taxonomy": "tribe_events_cat",
+     "description": "",
+     "parent": 0,
+     "count": 1726,
+     "filter": "raw",
+     "term_order": "0",
+     "id": 851,
+     "urls": {
+      "self": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories/851",
+      "collection": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories"
+     }
+    },
+    {
+     "name": "FIDE Rated",
+     "slug": "fide-rated",
+     "term_group": 0,
+     "term_taxonomy_id": 874,
+     "taxonomy": "tribe_events_cat",
+     "description": "",
+     "parent": 0,
+     "count": 1155,
+     "filter": "raw",
+     "term_order": "0",
+     "id": 852,
+     "urls": {
+      "self": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories/852",
+      "collection": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories"
+     }
+    }
+   ],
+   "tags": [
+    {
+     "name": "South West",
+     "slug": "south-west",
+     "term_group": 0,
+     "term_taxonomy_id": 607,
+     "taxonomy": "post_tag",
+     "description": "",
+     "parent": 0,
+     "count": 150,
+     "filter": "raw",
+     "term_order": "0",
+     "id": 585,
+     "urls": {
+      "self": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/tags/585",
+      "collection": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/tags"
+     }
+    },
+    {
+     "name": "Standardplay",
+     "slug": "standardplay",
+     "term_group": 0,
+     "term_taxonomy_id": 643,
+     "taxonomy": "post_tag",
+     "description": "",
+     "parent": 0,
+     "count": 585,
+     "filter": "raw",
+     "term_order": "0",
+     "id": 621,
+     "urls": {
+      "self": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/tags/621",
+      "collection": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/tags"
+     }
+    }
+   ],
+   "venue": {
+    "id": 85507,
+    "author": "3",
+    "status": "publish",
+    "date": "2025-03-03 16:29:43",
+    "date_utc": "2025-03-03 16:29:43",
+    "modified": "2025-03-03 16:29:43",
+    "modified_utc": "2025-03-03 16:29:43",
+    "url": "https://www.englishchess.org.uk/venue/marsham-court-hotel/",
+    "venue": "Marsham Court Hotel",
+    "slug": "marsham-court-hotel",
+    "address": "3 Russell Cotes Road",
+    "city": "Bournemouth",
+    "zip": "BH1 3AB",
+    "geo_lat": 50.7180866,
+    "geo_lng": -1.8702361,
+    "show_map": true,
+    "show_map_link": true,
+    "global_id": "www.englishchess.org.uk?id=85507",
+    "global_id_lineage": [
+     "www.englishchess.org.uk?id=85507"
+    ]
+   },
+   "organizer": [
+    {
+     "id": 80775,
+     "author": "3",
+     "status": "publish",
+     "date": "2024-08-30 15:06:28",
+     "date_utc": "2024-08-30 14:06:28",
+     "modified": "2024-08-30 15:06:28",
+     "modified_utc": "2024-08-30 14:06:28",
+     "url": "https://www.englishchess.org.uk/organiser/julie-leonard/",
+     "organizer": "Julie Leonard",
+     "slug": "julie-leonard",
+     "email": "organiser.ctb@braillechess.org.uk",
+     "global_id": "www.englishchess.org.uk?id=80775",
+     "global_id_lineage": [
+      "www.englishchess.org.uk?id=80775"
+     ]
+    }
+   ],
+   "custom_fields": [],
+   "is_virtual": false,
+   "virtual_url": null,
+   "virtual_video_source": ""
+  },
+  {
+   "id": 94672,
+   "global_id": "www.englishchess.org.uk?id=94672",
+   "global_id_lineage": [
+    "www.englishchess.org.uk?id=94672"
+   ],
+   "author": "3",
+   "status": "publish",
+   "date": "2026-09-02 10:05:26",
+   "date_utc": "2026-09-02 09:05:26",
+   "modified": "2026-09-02 10:05:26",
+   "modified_utc": "2026-09-02 09:05:26",
+   "url": "https://www.englishchess.org.uk/event/les-betises-de-cambrai-gm-2027-492380-gm-norme-tournament/",
+   "rest_url": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/events/94672",
+   "title": "Les betises de Cambrai GM 2027 492380 GM NORME TOURNAMENT",
+   "description": "<p>Les bêtises de Cambrai &#8211; GM 2027 59 &#8211; CAMBRAI<br />\nDates : lundi 22 février 2027 &#8211; vendredi 26 février 2027<br />\nPrise en compte Elo FIDE : FIDE Mars 2027<br />\nHomologué par : FFE Nombre de rondes : 9<br />\nCadence : 1h30 + [30&#8221;]<br />\nAppariements : Toutes Rondes<br />\nOrganisateur : SAUVE Philippe &#8211; &#x70;&#x68;&#105;&#108;o&#x63;&#x6f;&#x63;&#111;&#64;y&#x61;&#x68;&#x6f;&#111;&#46;f&#x72;<br />\nArbitre : SAUVE Philippe 06834422<br />\nAdresse : 1 rue du Temple Cambrai<br />\nContact : SAUVE Philippe &#8211; p&#104;&#105;&#x6c;&#x6f;co&#99;&#111;&#x40;&#x79;ah&#111;&#111;&#x2e;&#x66;r &#8211;<br />\nAnnonce : 9 r. &#8211; 90 mn + 30 s/c &#8211; Lieu: 1 rue du Temple</p>",
+   "excerpt": "",
+   "slug": "les-betises-de-cambrai-gm-2027-492380-gm-norme-tournament",
+   "image": {
+    "url": "https://www.englishchess.org.uk/wp-content/uploads/2024/09/wood-two-1.png",
+    "id": 81981,
+    "extension": "png",
+    "width": 1000,
+    "height": 300,
+    "filesize": 435213
+   },
+   "all_day": false,
+   "start_date": "2027-02-22 14:00:00",
+   "start_date_details": {
+    "year": "2027",
+    "month": "02",
+    "day": "22",
+    "hour": "14",
+    "minutes": "00",
+    "seconds": "00"
+   },
+   "end_date": "2027-02-26 19:00:00",
+   "end_date_details": {
+    "year": "2027",
+    "month": "02",
+    "day": "26",
+    "hour": "19",
+    "minutes": "00",
+    "seconds": "00"
+   },
+   "utc_start_date": "2027-02-22 14:00:00",
+   "utc_start_date_details": {
+    "year": "2027",
+    "month": "02",
+    "day": "22",
+    "hour": "14",
+    "minutes": "00",
+    "seconds": "00"
+   },
+   "utc_end_date": "2027-02-26 19:00:00",
+   "utc_end_date_details": {
+    "year": "2027",
+    "month": "02",
+    "day": "26",
+    "hour": "19",
+    "minutes": "00",
+    "seconds": "00"
+   },
+   "timezone": "Europe/London",
+   "timezone_abbr": "GMT",
+   "cost": "",
+   "cost_details": {
+    "currency_symbol": "£",
+    "currency_code": "USD",
+    "currency_position": "prefix",
+    "values": []
+   },
+   "website": "",
+   "show_map": true,
+   "show_map_link": true,
+   "hide_from_listings": false,
+   "sticky": false,
+   "featured": false,
+   "categories": [
+    {
+     "name": "FIDE Rated",
+     "slug": "fide-rated",
+     "term_group": 0,
+     "term_taxonomy_id": 874,
+     "taxonomy": "tribe_events_cat",
+     "description": "",
+     "parent": 0,
+     "count": 1155,
+     "filter": "raw",
+     "term_order": "0",
+     "id": 852,
+     "urls": {
+      "self": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories/852",
+      "collection": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories"
+     }
+    }
+   ],
+   "tags": [
+    {
+     "name": "Overseas",
+     "slug": "overseas",
+     "term_group": 0,
+     "term_taxonomy_id": 622,
+     "taxonomy": "post_tag",
+     "description": "",
+     "parent": 0,
+     "count": 9,
+     "filter": "raw",
+     "term_order": "0",
+     "id": 600,
+     "urls": {
+      "self": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/tags/600",
+      "collection": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/tags"
+     }
+    }
+   ],
+   "venue": {
+    "id": 94673,
+    "author": "3",
+    "status": "publish",
+    "date": "2026-09-02 10:05:26",
+    "date_utc": "2026-09-02 09:05:26",
+    "modified": "2026-09-02 10:05:26",
+    "modified_utc": "2026-09-02 09:05:26",
+    "url": "https://www.englishchess.org.uk/venue/cambrai-echecs/",
+    "venue": "CAMBRAI ECHECS",
+    "slug": "cambrai-echecs",
+    "address": "1 RUE DU TEMPLE",
+    "city": "CAMBRAI",
+    "country": "France",
+    "zip": "59400",
+    "geo_lat": 50.1754166,
+    "geo_lng": 3.2284447,
+    "show_map": true,
+    "show_map_link": true,
+    "global_id": "www.englishchess.org.uk?id=94673",
+    "global_id_lineage": [
+     "www.englishchess.org.uk?id=94673"
+    ]
+   },
+   "organizer": [
+    {
+     "id": 94674,
+     "author": "3",
+     "status": "publish",
+     "date": "2026-09-02 10:05:26",
+     "date_utc": "2026-09-02 09:05:26",
+     "modified": "2026-09-02 10:05:26",
+     "modified_utc": "2026-09-02 09:05:26",
+     "url": "https://www.englishchess.org.uk/organiser/sauve-philippe/",
+     "organizer": "SAUVE PHILIPPE",
+     "slug": "sauve-philippe",
+     "email": "philococo@yahoo.fr",
+     "global_id": "www.englishchess.org.uk?id=94674",
+     "global_id_lineage": [
+      "www.englishchess.org.uk?id=94674"
+     ]
+    }
+   ],
+   "custom_fields": [],
+   "is_virtual": false,
+   "virtual_url": null,
+   "virtual_video_source": ""
+  },
+  {
+   "id": 94794,
+   "global_id": "www.englishchess.org.uk?id=94794",
+   "global_id_lineage": [
+    "www.englishchess.org.uk?id=94794"
+   ],
+   "author": "3",
+   "status": "publish",
+   "date": "2026-09-04 10:44:26",
+   "date_utc": "2026-09-04 09:44:26",
+   "modified": "2026-09-04 10:45:35",
+   "modified_utc": "2026-09-04 09:45:35",
+   "url": "https://www.englishchess.org.uk/event/7th-sheffield-fide-blitz/",
+   "rest_url": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/events/94794",
+   "title": "7th Sheffield FIDE Blitz",
+   "description": "<p>7-round FIDE-rated blitz event, Swiss system, 3 2 time control.<br />\n£5 entry fee. Prizes depending on entries, ~50% of entry fees.<br />\nOnline entry: <a href=\"https://sheffieldchesscentre.co.uk/enter?event=34\" target=\"_blank\" rel=\"noopener\">https://sheffieldchesscentre.co.uk/enter?event=34</a></p>",
+   "excerpt": "",
+   "slug": "7th-sheffield-fide-blitz",
+   "image": {
+    "url": "https://www.englishchess.org.uk/wp-content/uploads/2026/08/sheffield-chess-centre.jpg",
+    "id": 94346,
+    "extension": "jpg",
+    "width": 1000,
+    "height": 300,
+    "filesize": 120809
+   },
+   "all_day": false,
+   "start_date": "2026-09-10 19:30:00",
+   "start_date_details": {
+    "year": "2026",
+    "month": "09",
+    "day": "10",
+    "hour": "19",
+    "minutes": "30",
+    "seconds": "00"
+   },
+   "end_date": "2026-09-10 21:20:00",
+   "end_date_details": {
+    "year": "2026",
+    "month": "09",
+    "day": "10",
+    "hour": "21",
+    "minutes": "20",
+    "seconds": "00"
+   },
+   "utc_start_date": "2026-09-10 18:30:00",
+   "utc_start_date_details": {
+    "year": "2026",
+    "month": "09",
+    "day": "10",
+    "hour": "18",
+    "minutes": "30",
+    "seconds": "00"
+   },
+   "utc_end_date": "2026-09-10 20:20:00",
+   "utc_end_date_details": {
+    "year": "2026",
+    "month": "09",
+    "day": "10",
+    "hour": "20",
+    "minutes": "20",
+    "seconds": "00"
+   },
+   "timezone": "Europe/London",
+   "timezone_abbr": "BST",
+   "cost": "",
+   "cost_details": {
+    "currency_symbol": "£",
+    "currency_code": "USD",
+    "currency_position": "prefix",
+    "values": []
+   },
+   "website": "",
+   "show_map": true,
+   "show_map_link": true,
+   "hide_from_listings": false,
+   "sticky": false,
+   "featured": false,
+   "categories": [
+    {
+     "name": "ECF Rated",
+     "slug": "ecf-rated",
+     "term_group": 0,
+     "term_taxonomy_id": 873,
+     "taxonomy": "tribe_events_cat",
+     "description": "",
+     "parent": 0,
+     "count": 1726,
+     "filter": "raw",
+     "term_order": "0",
+     "id": 851,
+     "urls": {
+      "self": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories/851",
+      "collection": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories"
+     }
+    },
+    {
+     "name": "FIDE Rated",
+     "slug": "fide-rated",
+     "term_group": 0,
+     "term_taxonomy_id": 874,
+     "taxonomy": "tribe_events_cat",
+     "description": "",
+     "parent": 0,
+     "count": 1155,
+     "filter": "raw",
+     "term_order": "0",
+     "id": 852,
+     "urls": {
+      "self": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories/852",
+      "collection": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories"
+     }
+    },
+    {
+     "name": "Partly Disability Friendly",
+     "slug": "partly-disability-friendly",
+     "term_group": 0,
+     "term_taxonomy_id": 886,
+     "taxonomy": "tribe_events_cat",
+     "description": "",
+     "parent": 0,
+     "count": 282,
+     "filter": "raw",
+     "term_order": "0",
+     "id": 864,
+     "urls": {
+      "self": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories/864",
+      "collection": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories"
+     }
+    }
+   ],
+   "tags": [
+    {
+     "name": "Blitz",
+     "slug": "blitz",
+     "term_group": 0,
+     "term_taxonomy_id": 608,
+     "taxonomy": "post_tag",
+     "description": "",
+     "parent": 0,
+     "count": 308,
+     "filter": "raw",
+     "term_order": "0",
+     "id": 586,
+     "urls": {
+      "self": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/tags/586",
+      "collection": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/tags"
+     }
+    },
+    {
+     "name": "Yorkshire and Humberside",
+     "slug": "yorkshire-and-humberside",
+     "term_group": 0,
+     "term_taxonomy_id": 647,
+     "taxonomy": "post_tag",
+     "description": "",
+     "parent": 0,
+     "count": 81,
+     "filter": "raw",
+     "term_order": "0",
+     "id": 625,
+     "urls": {
+      "self": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/tags/625",
+      "collection": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/tags"
+     }
+    }
+   ],
+   "venue": {
+    "id": 81087,
+    "author": "3",
+    "status": "publish",
+    "date": "2024-09-09 08:48:19",
+    "date_utc": "2024-09-09 07:48:19",
+    "modified": "2024-09-09 08:48:19",
+    "modified_utc": "2024-09-09 07:48:19",
+    "url": "https://www.englishchess.org.uk/venue/sheffield-chess-centre-329a-coleford-road/",
+    "venue": "Sheffield Chess Centre @ 329A Coleford Road",
+    "slug": "sheffield-chess-centre-329a-coleford-road",
+    "city": "Darnall",
+    "country": "United Kingdom",
+    "state": "Sheffield",
+    "geo_lat": 53.3911903686,
+    "geo_lng": -1.4039142813,
+    "show_map": true,
+    "show_map_link": true,
+    "global_id": "www.englishchess.org.uk?id=81087",
+    "global_id_lineage": [
+     "www.englishchess.org.uk?id=81087"
+    ]
+   },
+   "organizer": [
+    {
+     "id": 87900,
+     "author": "3",
+     "status": "publish",
+     "date": "2025-07-24 09:41:05",
+     "date_utc": "2025-07-24 08:41:05",
+     "modified": "2025-07-24 09:41:05",
+     "modified_utc": "2025-07-24 08:41:05",
+     "url": "https://www.englishchess.org.uk/organiser/jonathan-arnott-2/",
+     "organizer": "Jonathan Arnott",
+     "slug": "jonathan-arnott-2",
+     "email": "sheffieldchesscentre@gmail.com",
+     "global_id": "www.englishchess.org.uk?id=87900",
+     "global_id_lineage": [
+      "www.englishchess.org.uk?id=87900"
+     ]
+    }
+   ],
+   "custom_fields": [],
+   "is_virtual": false,
+   "virtual_url": null,
+   "virtual_video_source": ""
+  },
+  {
+   "id": 88879,
+   "global_id": "www.englishchess.org.uk?id=88879",
+   "global_id_lineage": [
+    "www.englishchess.org.uk?id=88879"
+   ],
+   "author": "3",
+   "status": "publish",
+   "date": "2025-09-10 08:08:56",
+   "date_utc": "2025-09-10 07:08:56",
+   "modified": "2025-09-10 08:08:56",
+   "modified_utc": "2025-09-10 07:08:56",
+   "url": "https://www.englishchess.org.uk/event/golders-green-fide-rapid-2026-9/",
+   "rest_url": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/events/88879",
+   "title": "Golders Green FIDE Rapid 2026",
+   "description": "<p>Come to our North West London FIDE and ECF Rapid Chess tournament, FORMAT – Open, Under 1900, Under 1600 and an ECF Under 1100 swiss format tournaments, 6 rounds, 20 mins each plus 5 seconds a move. 11am start, 5pm finish. Enter online now by clicking here: <a title=\"Go to https://form.jotform.com/211384934514961\" href=\"https://form.jotform.com/211384934514961\">https://form.jotform.com/211384934514961</a><br />\n<a title=\"Go to http://goldersgreenchess.blogspot.com\" href=\"http://goldersgreenchess.blogspot.com\">http://goldersgreenchess.blogspot.com</a> is the old web page, but it has lots of useful stuff. Here is how to get to the venue – <a title=\"Go to http://bit.ly/stlukeschess\" href=\"http://bit.ly/stlukeschess\">http://bit.ly/stlukeschess</a></p>",
+   "excerpt": "",
+   "slug": "golders-green-fide-rapid-2026-9",
+   "image": {
+    "url": "https://www.englishchess.org.uk/wp-content/uploads/2025/09/gg.jpeg.jpg",
+    "id": 88863,
+    "extension": "jpg",
+    "width": 1000,
+    "height": 300,
+    "filesize": 73699
+   },
+   "all_day": false,
+   "start_date": "2026-09-12 11:00:00",
+   "start_date_details": {
+    "year": "2026",
+    "month": "09",
+    "day": "12",
+    "hour": "11",
+    "minutes": "00",
+    "seconds": "00"
+   },
+   "end_date": "2026-09-12 17:00:00",
+   "end_date_details": {
+    "year": "2026",
+    "month": "09",
+    "day": "12",
+    "hour": "17",
+    "minutes": "00",
+    "seconds": "00"
+   },
+   "utc_start_date": "2026-09-12 10:00:00",
+   "utc_start_date_details": {
+    "year": "2026",
+    "month": "09",
+    "day": "12",
+    "hour": "10",
+    "minutes": "00",
+    "seconds": "00"
+   },
+   "utc_end_date": "2026-09-12 16:00:00",
+   "utc_end_date_details": {
+    "year": "2026",
+    "month": "09",
+    "day": "12",
+    "hour": "16",
+    "minutes": "00",
+    "seconds": "00"
+   },
+   "timezone": "Europe/London",
+   "timezone_abbr": "BST",
+   "cost": "",
+   "cost_details": {
+    "currency_symbol": "£",
+    "currency_code": "USD",
+    "currency_position": "prefix",
+    "values": []
+   },
+   "website": "http://www.chessengland.com/",
+   "show_map": true,
+   "show_map_link": true,
+   "hide_from_listings": false,
+   "sticky": false,
+   "featured": false,
+   "categories": [
+    {
+     "name": "Disability Friendly",
+     "slug": "disability-friendly",
+     "term_group": 0,
+     "term_taxonomy_id": 878,
+     "taxonomy": "tribe_events_cat",
+     "description": "",
+     "parent": 0,
+     "count": 1147,
+     "filter": "raw",
+     "term_order": "0",
+     "id": 856,
+     "urls": {
+      "self": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories/856",
+      "collection": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories"
+     }
+    },
+    {
+     "name": "ECF Rated",
+     "slug": "ecf-rated",
+     "term_group": 0,
+     "term_taxonomy_id": 873,
+     "taxonomy": "tribe_events_cat",
+     "description": "",
+     "parent": 0,
+     "count": 1726,
+     "filter": "raw",
+     "term_order": "0",
+     "id": 851,
+     "urls": {
+      "self": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories/851",
+      "collection": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories"
+     }
+    },
+    {
+     "name": "FIDE Rated",
+     "slug": "fide-rated",
+     "term_group": 0,
+     "term_taxonomy_id": 874,
+     "taxonomy": "tribe_events_cat",
+     "description": "",
+     "parent": 0,
+     "count": 1155,
+     "filter": "raw",
+     "term_order": "0",
+     "id": 852,
+     "urls": {
+      "self": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories/852",
+      "collection": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories"
+     }
+    }
+   ],
+   "tags": [
+    {
+     "name": "London",
+     "slug": "london",
+     "term_group": 0,
+     "term_taxonomy_id": 617,
+     "taxonomy": "post_tag",
+     "description": "",
+     "parent": 0,
+     "count": 1103,
+     "filter": "raw",
+     "term_order": "0",
+     "id": 595,
+     "urls": {
+      "self": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/tags/595",
+      "collection": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/tags"
+     }
+    },
+    {
+     "name": "Rapidplay",
+     "slug": "rapidplay",
+     "term_group": 0,
+     "term_taxonomy_id": 613,
+     "taxonomy": "post_tag",
+     "description": "",
+     "parent": 0,
+     "count": 778,
+     "filter": "raw",
+     "term_order": "0",
+     "id": 591,
+     "urls": {
+      "self": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/tags/591",
+      "collection": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/tags"
+     }
+    }
+   ],
+   "venue": {
+    "id": 70558,
+    "status": "publish",
+    "date": "2022-02-24 16:50:45",
+    "date_utc": "2022-02-24 16:50:45",
+    "modified": "2022-02-24 16:50:45",
+    "modified_utc": "2022-02-24 16:50:45",
+    "url": "https://www.englishchess.org.uk/venue/st-lukes-church-st-lukes-church-kidderpore-avenue-london-nw3-7su/",
+    "venue": "St Luke’s Church @ St Luke’s Church, Kidderpore Avenue, London, NW3 7SU",
+    "slug": "st-lukes-church-st-lukes-church-kidderpore-avenue-london-nw3-7su",
+    "show_map": false,
+    "show_map_link": false,
+    "global_id": "www.englishchess.org.uk?id=70558",
+    "global_id_lineage": [
+     "www.englishchess.org.uk?id=70558"
+    ]
+   },
+   "organizer": [
+    {
+     "id": 80653,
+     "author": "3",
+     "status": "publish",
+     "date": "2024-08-28 15:35:13",
+     "date_utc": "2024-08-28 14:35:13",
+     "modified": "2024-08-28 15:35:13",
+     "modified_utc": "2024-08-28 14:35:13",
+     "url": "https://www.englishchess.org.uk/organiser/adam-raoof-2/",
+     "organizer": "Adam Raoof",
+     "slug": "adam-raoof-2",
+     "phone": "07855036537",
+     "email": "adamraoof@gmail.com",
+     "global_id": "www.englishchess.org.uk?id=80653",
+     "global_id_lineage": [
+      "www.englishchess.org.uk?id=80653"
+     ]
+    }
+   ],
+   "custom_fields": [],
+   "is_virtual": false,
+   "virtual_url": null,
+   "virtual_video_source": ""
+  },
+  {
+   "id": 94510,
+   "global_id": "www.englishchess.org.uk?id=94510",
+   "global_id_lineage": [
+    "www.englishchess.org.uk?id=94510"
+   ],
+   "author": "3",
+   "status": "publish",
+   "date": "2026-08-27 13:14:31",
+   "date_utc": "2026-08-27 12:14:31",
+   "modified": "2026-08-27 13:14:31",
+   "modified_utc": "2026-08-27 12:14:31",
+   "url": "https://www.englishchess.org.uk/event/uk-open-blitz-london-2-qualifier/",
+   "rest_url": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/events/94510",
+   "title": "UK Open Blitz London 2 Qualifier",
+   "description": "<p>The 2026 UK Open Blitz Championship features 16 qualifiers in 14 cities around the United Kingdom, with the winner of each qualifying for the Final. The total prize fund for the event is in excess of £10,000</p>",
+   "excerpt": "",
+   "slug": "uk-open-blitz-london-2-qualifier",
+   "image": {
+    "url": "https://www.englishchess.org.uk/wp-content/uploads/2024/09/wood-three.png",
+    "id": 81974,
+    "extension": "png",
+    "width": 1000,
+    "height": 300,
+    "filesize": 376895
+   },
+   "all_day": true,
+   "start_date": "2026-09-13 00:00:00",
+   "start_date_details": {
+    "year": "2026",
+    "month": "09",
+    "day": "13",
+    "hour": "00",
+    "minutes": "00",
+    "seconds": "00"
+   },
+   "end_date": "2026-09-13 23:59:59",
+   "end_date_details": {
+    "year": "2026",
+    "month": "09",
+    "day": "13",
+    "hour": "23",
+    "minutes": "59",
+    "seconds": "59"
+   },
+   "utc_start_date": "2026-09-12 23:00:00",
+   "utc_start_date_details": {
+    "year": "2026",
+    "month": "09",
+    "day": "12",
+    "hour": "23",
+    "minutes": "00",
+    "seconds": "00"
+   },
+   "utc_end_date": "2026-09-13 22:59:59",
+   "utc_end_date_details": {
+    "year": "2026",
+    "month": "09",
+    "day": "13",
+    "hour": "22",
+    "minutes": "59",
+    "seconds": "59"
+   },
+   "timezone": "Europe/London",
+   "timezone_abbr": "BST",
+   "cost": "",
+   "cost_details": {
+    "currency_symbol": "£",
+    "currency_code": "USD",
+    "currency_position": "prefix",
+    "values": []
+   },
+   "website": "https://www.englishchess.org.uk/uk-open-blitz-championships-2026/",
+   "show_map": true,
+   "show_map_link": true,
+   "hide_from_listings": false,
+   "sticky": false,
+   "featured": false,
+   "categories": [
+    {
+     "name": "ECF Event",
+     "slug": "ecf-event",
+     "term_group": 0,
+     "term_taxonomy_id": 902,
+     "taxonomy": "tribe_events_cat",
+     "description": "",
+     "parent": 0,
+     "count": 94,
+     "filter": "raw",
+     "term_order": "0",
+     "id": 880,
+     "urls": {
+      "self": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories/880",
+      "collection": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories"
+     }
+    },
+    {
+     "name": "FIDE Rated",
+     "slug": "fide-rated",
+     "term_group": 0,
+     "term_taxonomy_id": 874,
+     "taxonomy": "tribe_events_cat",
+     "description": "",
+     "parent": 0,
+     "count": 1155,
+     "filter": "raw",
+     "term_order": "0",
+     "id": 852,
+     "urls": {
+      "self": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories/852",
+      "collection": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories"
+     }
+    }
+   ],
+   "tags": [
+    {
+     "name": "Blitz",
+     "slug": "blitz",
+     "term_group": 0,
+     "term_taxonomy_id": 608,
+     "taxonomy": "post_tag",
+     "description": "",
+     "parent": 0,
+     "count": 308,
+     "filter": "raw",
+     "term_order": "0",
+     "id": 586,
+     "urls": {
+      "self": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/tags/586",
+      "collection": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/tags"
+     }
+    },
+    {
+     "name": "London",
+     "slug": "london",
+     "term_group": 0,
+     "term_taxonomy_id": 617,
+     "taxonomy": "post_tag",
+     "description": "",
+     "parent": 0,
+     "count": 1103,
+     "filter": "raw",
+     "term_order": "0",
+     "id": 595,
+     "urls": {
+      "self": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/tags/595",
+      "collection": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/tags"
+     }
+    }
+   ],
+   "venue": {
+    "id": 87173,
+    "author": "3",
+    "status": "publish",
+    "date": "2025-06-19 12:52:55",
+    "date_utc": "2025-06-19 11:52:55",
+    "modified": "2025-06-19 12:52:55",
+    "modified_utc": "2025-06-19 11:52:55",
+    "url": "https://www.englishchess.org.uk/venue/white-house/",
+    "venue": "White House",
+    "slug": "white-house",
+    "address": "45 The Avenue",
+    "city": "Hampton",
+    "zip": "TW12 3R",
+    "geo_lat": 51.4255196,
+    "geo_lng": -0.3769935,
+    "show_map": true,
+    "show_map_link": true,
+    "global_id": "www.englishchess.org.uk?id=87173",
+    "global_id_lineage": [
+     "www.englishchess.org.uk?id=87173"
+    ]
+   },
+   "organizer": [
+    {
+     "id": 80253,
+     "author": "3",
+     "status": "publish",
+     "date": "2024-08-21 15:17:44",
+     "date_utc": "2024-08-21 14:17:44",
+     "modified": "2024-08-21 15:17:44",
+     "modified_utc": "2024-08-21 14:17:44",
+     "url": "https://www.englishchess.org.uk/organiser/alex-holowczak/",
+     "organizer": "Alex Holowczak",
+     "slug": "alex-holowczak",
+     "email": "alexholowczak@gmail.com",
+     "global_id": "www.englishchess.org.uk?id=80253",
+     "global_id_lineage": [
+      "www.englishchess.org.uk?id=80253"
+     ]
+    }
+   ],
+   "custom_fields": [],
+   "is_virtual": false,
+   "virtual_url": null,
+   "virtual_video_source": ""
+  },
+  {
+   "id": 94512,
+   "global_id": "www.englishchess.org.uk?id=94512",
+   "global_id_lineage": [
+    "www.englishchess.org.uk?id=94512"
+   ],
+   "author": "3",
+   "status": "publish",
+   "date": "2026-08-27 13:15:19",
+   "date_utc": "2026-08-27 12:15:19",
+   "modified": "2026-08-27 13:15:19",
+   "modified_utc": "2026-08-27 12:15:19",
+   "url": "https://www.englishchess.org.uk/event/uk-open-blitz-newcastle-qualifier/",
+   "rest_url": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/events/94512",
+   "title": "UK Open Blitz Newcastle Qualifier",
+   "description": "<p>The 2026 UK Open Blitz Championship features 16 qualifiers in 14 cities around the United Kingdom, with the winner of each qualifying for the Final. The total prize fund for the event is in excess of £10,000</p>",
+   "excerpt": "",
+   "slug": "uk-open-blitz-newcastle-qualifier",
+   "image": {
+    "url": "https://www.englishchess.org.uk/wp-content/uploads/2024/09/wood-three.png",
+    "id": 81974,
+    "extension": "png",
+    "width": 1000,
+    "height": 300,
+    "filesize": 376895
+   },
+   "all_day": true,
+   "start_date": "2026-09-13 00:00:00",
+   "start_date_details": {
+    "year": "2026",
+    "month": "09",
+    "day": "13",
+    "hour": "00",
+    "minutes": "00",
+    "seconds": "00"
+   },
+   "end_date": "2026-09-13 23:59:59",
+   "end_date_details": {
+    "year": "2026",
+    "month": "09",
+    "day": "13",
+    "hour": "23",
+    "minutes": "59",
+    "seconds": "59"
+   },
+   "utc_start_date": "2026-09-12 23:00:00",
+   "utc_start_date_details": {
+    "year": "2026",
+    "month": "09",
+    "day": "12",
+    "hour": "23",
+    "minutes": "00",
+    "seconds": "00"
+   },
+   "utc_end_date": "2026-09-13 22:59:59",
+   "utc_end_date_details": {
+    "year": "2026",
+    "month": "09",
+    "day": "13",
+    "hour": "22",
+    "minutes": "59",
+    "seconds": "59"
+   },
+   "timezone": "Europe/London",
+   "timezone_abbr": "BST",
+   "cost": "",
+   "cost_details": {
+    "currency_symbol": "£",
+    "currency_code": "USD",
+    "currency_position": "prefix",
+    "values": []
+   },
+   "website": "https://www.englishchess.org.uk/uk-open-blitz-championships-2026/",
+   "show_map": true,
+   "show_map_link": true,
+   "hide_from_listings": false,
+   "sticky": false,
+   "featured": false,
+   "categories": [
+    {
+     "name": "ECF Event",
+     "slug": "ecf-event",
+     "term_group": 0,
+     "term_taxonomy_id": 902,
+     "taxonomy": "tribe_events_cat",
+     "description": "",
+     "parent": 0,
+     "count": 94,
+     "filter": "raw",
+     "term_order": "0",
+     "id": 880,
+     "urls": {
+      "self": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories/880",
+      "collection": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories"
+     }
+    },
+    {
+     "name": "FIDE Rated",
+     "slug": "fide-rated",
+     "term_group": 0,
+     "term_taxonomy_id": 874,
+     "taxonomy": "tribe_events_cat",
+     "description": "",
+     "parent": 0,
+     "count": 1155,
+     "filter": "raw",
+     "term_order": "0",
+     "id": 852,
+     "urls": {
+      "self": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories/852",
+      "collection": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/categories"
+     }
+    }
+   ],
+   "tags": [
+    {
+     "name": "Blitz",
+     "slug": "blitz",
+     "term_group": 0,
+     "term_taxonomy_id": 608,
+     "taxonomy": "post_tag",
+     "description": "",
+     "parent": 0,
+     "count": 308,
+     "filter": "raw",
+     "term_order": "0",
+     "id": 586,
+     "urls": {
+      "self": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/tags/586",
+      "collection": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/tags"
+     }
+    },
+    {
+     "name": "Yorkshire and Humberside",
+     "slug": "yorkshire-and-humberside",
+     "term_group": 0,
+     "term_taxonomy_id": 647,
+     "taxonomy": "post_tag",
+     "description": "",
+     "parent": 0,
+     "count": 81,
+     "filter": "raw",
+     "term_order": "0",
+     "id": 625,
+     "urls": {
+      "self": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/tags/625",
+      "collection": "https://www.englishchess.org.uk/wp-json/tribe/events/v1/tags"
+     }
+    }
+   ],
+   "venue": {
+    "id": 87178,
+    "author": "3",
+    "status": "publish",
+    "date": "2025-06-19 13:00:18",
+    "date_utc": "2025-06-19 12:00:18",
+    "modified": "2025-06-19 13:00:18",
+    "modified_utc": "2025-06-19 12:00:18",
+    "url": "https://www.englishchess.org.uk/venue/sandman-signature-newcastle-hotel/",
+    "venue": "Sandman Signature Newcastle Hotel",
+    "slug": "sandman-signature-newcastle-hotel",
+    "address": "Gallowgate",
+    "city": "Newcastle upon Tyne",
+    "zip": "NE1 4SD",
+    "geo_lat": 54.9738258,
+    "geo_lng": -1.6218522,
+    "show_map": true,
+    "show_map_link": true,
+    "global_id": "www.englishchess.org.uk?id=87178",
+    "global_id_lineage": [
+     "www.englishchess.org.uk?id=87178"
+    ]
+   },
+   "organizer": [
+    {
+     "id": 80253,
+     "author": "3",
+     "status": "publish",
+     "date": "2024-08-21 15:17:44",
+     "date_utc": "2024-08-21 14:17:44",
+     "modified": "2024-08-21 15:17:44",
+     "modified_utc": "2024-08-21 14:17:44",
+     "url": "https://www.englishchess.org.uk/organiser/alex-holowczak/",
+     "organizer": "Alex Holowczak",
+     "slug": "alex-holowczak",
+     "email": "alexholowczak@gmail.com",
+     "global_id": "www.englishchess.org.uk?id=80253",
+     "global_id_lineage": [
+      "www.englishchess.org.uk?id=80253"
+     ]
+    }
+   ],
+   "custom_fields": [],
+   "is_virtual": false,
+   "virtual_url": null,
+   "virtual_video_source": ""
+  }
+ ],
+ "total": 15,
+ "total_pages": 1,
+ "rest_url": "x"
+}
