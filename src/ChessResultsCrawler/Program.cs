@@ -129,6 +129,15 @@ try
     })
     .ConfigurePrimaryHttpMessageHandler(CrawlHttpHandler.Create);
 
+    // Der polnische Verbandskalender. Alte Infrastruktur (PHP 5.2), deshalb defensiv: ein Abruf
+    // fuer die Liste, und die Detailseiten holt der Aufrufer einzeln und gedeckelt.
+    builder.Services.AddHttpClient<ChessArbiterCalendarService>(client =>
+    {
+        client.DefaultRequestHeaders.Add("User-Agent", "ChessResultsCrawler/1.0 (+RookHub)");
+        client.Timeout = TimeSpan.FromSeconds(60);
+    })
+    .ConfigurePrimaryHttpMessageHandler(CrawlHttpHandler.Create);
+
     builder.Services.AddHttpClient("Gluetun",
         client => GluetunClientSetup.Configure(client, builder.Configuration));
     builder.Services.AddScoped<HtmlParserService>();
