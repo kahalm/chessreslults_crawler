@@ -79,6 +79,16 @@ try
     // und trifft nach einer Rotation dieselben toten Verbindungen.
     .ConfigurePrimaryHttpMessageHandler(CrawlHttpHandler.Create);
 
+    // Der italienische Verbandskalender: wieder ein eigener Host, also ein eigener Client mit
+    // demselben Handler. Groesserer Zeitrahmen als bei FIDE — die Trefferliste traegt ALLE Felder
+    // inline und ist damit rund 1,25 MB fuer 283 Turniere.
+    builder.Services.AddHttpClient<FsiCalendarService>(client =>
+    {
+        client.DefaultRequestHeaders.Add("User-Agent", "ChessResultsCrawler/1.0 (+RookHub)");
+        client.Timeout = TimeSpan.FromSeconds(90);
+    })
+    .ConfigurePrimaryHttpMessageHandler(CrawlHttpHandler.Create);
+
     builder.Services.AddHttpClient("Gluetun",
         client => GluetunClientSetup.Configure(client, builder.Configuration));
     builder.Services.AddScoped<HtmlParserService>();
