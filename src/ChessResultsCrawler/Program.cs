@@ -89,6 +89,18 @@ try
     })
     .ConfigurePrimaryHttpMessageHandler(CrawlHttpHandler.Create);
 
+    // Der slowenische Verbandskalender. Eigener Client wie die uebrigen fremden Hosts.
+    //
+    // ACHTUNG User-Agent: der Server weist jede Zeichenfolge „bot" ab — auch Googlebot und
+    // bingbot, es ist also ein kopierter nginx-Schnipsel und keine ueberlegte Absage. Unser Name
+    // enthaelt „Crawler" und kommt durch; wer ihn aendert, sollte das vorher pruefen.
+    builder.Services.AddHttpClient<SzsCalendarService>(client =>
+    {
+        client.DefaultRequestHeaders.Add("User-Agent", "ChessResultsCrawler/1.0 (+RookHub)");
+        client.Timeout = TimeSpan.FromSeconds(30);
+    })
+    .ConfigurePrimaryHttpMessageHandler(CrawlHttpHandler.Create);
+
     builder.Services.AddHttpClient("Gluetun",
         client => GluetunClientSetup.Configure(client, builder.Configuration));
     builder.Services.AddScoped<HtmlParserService>();

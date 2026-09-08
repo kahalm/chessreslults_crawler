@@ -1,0 +1,1019 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-146052269-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-146052269-1');
+    </script>
+    <!-- # # # -->
+    
+    <meta charset="utf-8">
+    <title>ŠZS - Najdi prireditev</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="/static/favicon/favicon.png"/>
+    
+    
+    
+
+
+    <!-- Bootstrap and custom -->
+    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/mazzini_0_1_5.css" />
+    <!-- link href="/static/css/mdb.min.css" rel="stylesheet"-->
+    <!-- Add icon library -->
+    <!-- <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css"/> -->
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lora&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+<style type="text/css">
+  #prireditve {
+      color: #318cbcff;
+  }
+</style>
+
+<style type="text/css">
+  #iskalnik {
+      color: black;
+  }
+</style>
+
+</head>
+<body class="bg-szs-mosaiq font-raleway">
+    
+        <div id="CookielawBanner" class="alert alert-info rounded-0 px-3 py-1 m-0 fixed-top">
+    <h6 class="font-weight-bold">Soglasje k uporabi piškotkov.</h6>
+    <a class="btn btn-sm btn-success pull-right" href="javascript:Cookielaw.accept();">Soglašam</a>
+    Portal Šahovske zveze Slovenije za svoje delovanje uporablja piškotke. Z nadaljno uporabo spletišča se strinjate z njihovo uporabo.
+</div>
+
+    
+    <!-- HEADER - JUMBOTRON BS4 -->
+    
+    <header class="p-0 m-0 sticky-top">
+        <div class="d-flex flex-row d-sm-none align-items-center justify-content-between bg-white">
+            <button class="m-1 navbar-toggler szs-toggler" type="button" data-toggle="collapse" data-target="#navDiv" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span> <span id="togglerM"></span>
+            </button>
+            <div>
+                <p class="m-1 p-1 a-szs-blue">
+                    <a href="/osebno/" id="osebno">
+                    
+                        <span class="text-szs-action-sm-login">Prijava/Registracija</span>
+                        <img class="bd-szs-action-black" src="/static/images/account_circle-24px.svg">
+                    
+                    </a>
+                    <a class="js-modal-najdi" href="/najdi">
+                        <img class="bd-szs-action-black" src="/static/images/search-24px.svg">
+                    </a>
+                </p>
+            </div>
+        </div>
+        <div class="jumbotron mb-0 w-szs-1200 py-2 pl-0 d-flex flex-row align-items-end justify-content-between bg-white rounded-0">
+            <div class="m-0 p-0">
+                <figure class="p-0 m-0 szs-web-logo">
+                    <a href="/"><img src="/static/images/zveza_web_logo.jpg" class="szs-web-logo"></a>
+                </figure>
+            </div>
+            <div class="d-none d-sm-block">
+                <p class="m-0 p-0 a-szs-blue">
+                    <a href="/osebno/" id="osebno">
+                    
+                        <span class="text-szs-action-login">Prijava/Registracija</span>
+                        <img class="bd-szs-action-black" src="/static/images/account_circle-24px.svg">
+                    
+                    </a>
+                </p>
+            </div>
+        </div>
+    	<!-- NAVIGACIJA BS4 -->
+        <!-- Glavni meni -->
+        <div class="w-szs-1200">
+            
+            <nav class="navbar navbar-custom navbar-expand-sm p-0">
+                <div class="collapse navbar-collapse m-0" id="navDiv">
+                    <a class="nav-item nav-link text-sm-center font-weight-600 js-veclink" href="#" id="veclink">Več</a>
+                    <div class="nav-item dropdown text-sm-center m-0">
+                        <a id="novice" class="nav-link js-szs-dropdown-link font-weight-600 text-sm-center mx-0" href="/objave/" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Novice</a>
+                        <div class="dropdown-menu dropdown-szs-fade align-szs-left m-0 p-0" aria-labelledby="navbarDropdown">
+                            <a href="/objave/novice/iskalnik/" class="dropdown-item font-weight-600">
+                                Iskalnik novic</a>
+                            <a href="/objave/novice/uradne/" class="dropdown-item font-weight-600">
+                                Novice ŠZS</a>
+                            <a href="/objave/novice/klubske/" class="dropdown-item font-weight-600">
+                                Klubske</a>
+                            <a href="/objave/novice/aktualno/" class="dropdown-item font-weight-600">
+                                Ne spreglejte!</a>
+                        </div>
+                    </div>
+                    <div class="nav-item dropdown text-sm-center m-0">
+                        <a id="prireditve" class="nav-link js-szs-dropdown-link font-weight-600 text-sm-center mx-0" href="/prireditve/" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Tekmovanja</a>
+                        <div class="dropdown-menu dropdown-szs-fade align-szs-left m-0 p-0" aria-labelledby="navbarDropdown">
+                            <a target="_blank" href="/wtdocs/tekmovalni_koledar" class="dropdown-item">
+                                Preglednica tekmovanj ŠZS</a>
+                            <!-- <a href="/prireditve/info/3/mednarodna-mladinska-prvenstva-2021" class="dropdown-item">
+                                Mednarodna prvenstva 2021</a> -->
+                            <a class="dropdown-item nohover py-0 font-weight-600">
+                                <hr class="my-1"></a>
+                            <!-- <a href="/prireditve/szs/" class="dropdown-item font-weight-600">
+                                Državna prvenstva in lige</a> -->
+                            <a href="/prireditve/iskalnik/" class="dropdown-item font-weight-600">
+                                Iskalnik prireditev</a>
+                            <a href="/prireditve/koledar/" class="dropdown-item font-weight-600">
+                                Koledar prireditev</a>
+                            <a href="/prireditve/oks/" class="dropdown-item font-weight-600">
+                                Kategorizacija</a>
+                            <a class="dropdown-item nohover py-0 font-weight-600">
+                                <hr class="my-1"></a>
+                            <a href="/mojestrani/igralec/prijave" class="dropdown-item font-weight-600">
+                                Prijave na tekmovanja</a>
+                            <a href="/mojestrani/sodnik/dodaj/turnir/fide" class="dropdown-item font-weight-600">
+                                Prijava turnirja za FIDE rating</a>
+                            <a href="/mojestrani/sodnik/fideid/" class="dropdown-item font-weight-600">
+                                Prošnja za dodelitev FIDE ID</a>
+                            <a href="/objava-rezultatov" class="dropdown-item font-weight-600 text-primary">
+                                Objava rezultatov</a>
+                        </div>
+                    </div>
+                    <div class="nav-item dropdown text-sm-center m-0">
+                        <a id="pravne" class="nav-link js-szs-dropdown-link font-weight-600 text-sm-center mx-0" href="/klubi/" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Klubi</a>
+                        <div class="dropdown-menu dropdown-szs-fade align-szs-left m-0 p-0" aria-labelledby="navbarDropdown">
+                            <a href="/podstrani/podatki-o-klubih/" class="dropdown-item font-weight-600">
+                                Podatki o klubih</a>
+                            <!-- <a href="" class="dropdown-item font-weight-600">
+                                Prepoznavni šahovski klubi</a> -->
+                            <a class="dropdown-item nohover py-0 font-weight-600">
+                                <hr class="my-1"></a>
+                            <a href="/mojestrani/klub/" class="dropdown-item font-weight-600">
+                                Upravljanje kluba</a>
+                        </div>
+                    </div>
+                    <div class="nav-item dropdown text-sm-center m-0">
+                        <a id="fizicne" class="nav-link js-szs-dropdown-link font-weight-600 text-sm-center mx-0" href="/igralci/" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Igralci</a>
+                        <div class="dropdown-menu dropdown-menu-right m-0 dropdown-szs-fade align-szs-left p-0" aria-labelledby="navbarDropdown">
+                            <!-- <a href="" class="dropdown-item font-weight-600">
+                                TOP 100 lestvice</a>
+                            <a href="" class="dropdown-item font-weight-600">
+                                Seznam igralcev s tekmovalno licenco</a>
+                            <a href="" class="dropdown-item font-weight-600">
+                                Dopisni šahisti - ICCF</a> -->
+                            <a class="dropdown-item nohover py-0 my-0"><hr class="my-1"></a>
+                            <a href="/mojestrani/igralec/prijave" class="dropdown-item font-weight-600">
+                                Prijave na tekmovanja</a>
+                        </div>
+                    </div>
+                    <div class="nav-item dropdown text-sm-center m-0 px-0">
+                        <a id="sodniki" class="nav-link js-szs-dropdown-link font-weight-600 text-sm-center mx-0" href="/sodniki/" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Sodniki</a>
+                        <div class="dropdown-menu dropdown-szs-fade align-szs-left m-0 p-0" aria-labelledby="navbarDropdown">
+                            <a href="/sodniki/gradiva#seminarji" class="dropdown-item font-weight-600">
+                                Sodniške licence in seminarji</a>
+                            <a href="/sodniki/gradiva#programi" class="dropdown-item font-weight-600">
+                                Programi za vodenje turnirjev</a>
+                            <a href="/sodniki/gradiva#gradiva" class="dropdown-item font-weight-600">
+                                Gradiva in datoteke</a>
+                            <a class="dropdown-item nohover py-0 my-0">
+                                <hr class="my-1"></a>
+                            <a href="/mojestrani/sodnik/" class="dropdown-item font-weight-600">
+                                Sodniške strani</a>
+                        </div>
+                    </div>
+                    </a>
+                    <!-- <div class="nav-item dropdown flex-sm-fill text-sm-center m-0"> -->
+                        <!-- <img class="w-szs-svg-kraljica d-none d-lg-block" src="/static/images/uporabnik/Kraljica.svg"> -->
+                    <a id="objave" class="nav-item nav-link font-weight-600 text-sm-center" href="/objave/">
+                            ŠZS</a>
+                        <!-- <div class="dropdown-menu dropdown-menu-right m-0 dropdown-szs-fade align-szs-left p-0" aria-labelledby="navbarDropdown">
+                            <a href="/objave/zveza/organi/" class="dropdown-item font-weight-600">
+                                Organi ŠZS</a>
+                            <a href="" class="dropdown-item font-weight-bold">
+                                Kontaktni podatki</a>
+                            <a href="" class="dropdown-item font-weight-bold">
+                                Sponzorji</a>
+                            <a href="" class="dropdown-item font-weight-bold">
+                                Uradni dokumenti</a>
+                        </div> -->
+                    <!-- </div> -->
+                    <a id="integriteta" class="nav-item nav-link font-weight-600 text-sm-center" href="/podstrani/integriteta-in-varnost/">
+                            Integriteta in varnost</a>
+                    <a id="gdpr" class="nav-item nav-link font-weight-600 text-sm-center" href="/gdpr/">
+                            GDPR</a>
+                    <a class="nav-item flex-grow-1"></a>
+                    <a class="nav-item nav-link d-none d-sm-flex text-sm-center flex-szs-end js-modal-najdi" href="/najdi">
+                        <img class="bd-szs-action-white" src="/static/images/search-white-24px.svg">
+                    </a>
+                </div>
+            </nav>
+            <!-- Podmeni -->
+            
+            <!-- Iskalnik szs-absolute-pos szs-relative-pos -->
+            <div id="vecdiv">
+                <div class="vec-menu bd-szs-bottom container-fluid">
+                    <div class="row m-0 mt-5 p-0">
+                        <div class="col-12 col-md-6 m-0 p-0">
+                            <h6 class="h-szs-section xxl">
+                                Trenerstvo in programi usposabljanja</h6>
+                            <ul class="ll-szs-muted ll-a-blue ll-szs-wide pb-1 vecmenu">
+                                <li><img src="/static/images/public-24px.svg"> <a href="/podstrani/programi-usposabljanja/">Programi usposabljanja</a></li>
+                                <li><img src="/static/images/supervisor_account-24px.svg"> <a href="/trenerji/">Trenerji</a></li>
+                                <li><img src="/static/images/book-24px.svg"> <a href="http://stara.sah-zveza.si/trener/">Gradiva za trenerje</a></li>
+                            </ul>
+                            <h6 class="h-szs-section xxl">
+                                Šolski in mladinski šah</h6>
+                            <ul class="ll-szs-muted ll-a-blue ll-szs-wide pb-1 vecmenu">
+                                <!--li><img src="/static/images/school-24px.svg"> <a href="/solski-sah/">Višja šahovska šola</a></li-->
+                                <li><img src="/static/images/account_balance-24px.svg"> <a href="/podstrani/solski-in-mladinski-sah/">Šole, krožki in tekmovanja</a></li>
+                            </ul>
+                            <h6 class="h-szs-section xxl">
+                                Publikacije</h6>
+                            <ul class="ll-szs-muted ll-a-blue ll-szs-wide pb-1 vecmenu">
+                                <li><img src="/static/images/local_library-24px.svg"> <a href="/sahovska-misel/">Šahovska misel</a></li>
+                                <li><img src="/static/images/description-24px.svg"> <a href="/objave/zveza/dokumenti/">Dokumenti</a></li>
+                                <li><img src="/static/images/question_answer-24px.svg"> Forum</li>
+                            </ul>
+                        </div>
+                        <div class="col-12 col-md-6 m-0 p-0">
+                            <h6 class="h-szs-section xxl">
+                                Uradna prvenstva</h6>
+                            <ul class="ll-szs-muted ll-a-blue ll-szs-wide pb-1 vecmenu">
+                                <li><img src="/static/images/local_airport-24px.svg"> <a href="/prireditve/info/2/mednarodna-mladinska-prvenstva-2020">Mednarodna prvenstva</a></li>
+                                <li><img src="/static/images/emoji_events-24px.svg"> <a href="/prireditve/szs/">Tekmovanja ŠZS</a></li>
+                                <li><img src="/static/images/bar_chart-24px.svg"> <a href="/igralci/top50">Top lestvice</a></li>
+                            </ul>
+                            <h6 class="h-szs-section xxl">
+                                Ostale prireditve</h6>
+                            <ul class="ll-szs-muted ll-a-blue ll-szs-wide pb-1 vecmenu">
+                                <li><img src="/static/images/search-24px.svg"> <a href="/prireditve/iskalnik/">Iskalnik prireditev</a></li>
+                                <li><img src="/static/images/calendar_today-24px.svg"> <a href="/prireditve/koledar/">Koledar prireditev</a></li>
+                                <li><img src="/static/images/place-24px.svg"> Zemljevid prireditev</li>
+                            </ul>
+                            <h6 class="h-szs-section xxl">
+                                Za prijavljene:</h6>
+                            <ul class="ll-szs-muted ll-a-blue ll-szs-wide pb-1 vecmenu">
+                                <li><img src="/static/images/publish-24px.svg"> <a href="/objava-rezultatov">Objava rezultatov</a></li>
+                                <!--li><img src="/static/images/bug_report-24px.svg"> Sporoči napako</li-->
+                            </ul>
+                        </div>
+                        <div class="col-12 p-0 mx-0 my-1">
+                            <h6 class="h-szs-vecmenu-section">
+                                Uporabne povezave</h6>
+                        </div>
+                        <div class="col-12 col-md-6 p-0 m-0">
+                            <ul class="ll-szs-muted ll-a-blue ostalo">
+                                <li><img src="/static/images/link-24px.svg"> <a target="_blank" href="https://www.fide.com/">FIDE</a></li>
+                                <li><img src="/static/images/link-24px.svg"> <a target="_blank" href="http://www.europechess.org/">ECU</a></li>
+                                <li><img src="/static/images/link-24px.svg"> <a target="_blank" href="http://www.iccf.com/">ICCF</a></li>
+                                <li class="nohover w-100"><hr></li>
+                                <li><img src="/static/images/link-24px.svg"> <a target="_blank" href="https://hrvatski-sahovski-savez.hr">Hrvaška šahovska zveza</a></li>
+                                <li><img src="/static/images/link-24px.svg"> <a target="_blank" href="https://www.chess.at">Avstrijska šahovska zveza</a></li>
+                                <li><img src="/static/images/link-24px.svg"> <a target="_blank" href="http://www.federscacchi.it">Italijanska šahovska zveza</a></li>
+                                <li><img src="/static/images/link-24px.svg"> <a target="_blank" href="http://chess.hu">Madžarska šahovska zveza</a></li>
+                                <li class="nohover w-100"><hr></li>
+                                <li><img src="/static/images/link-24px.svg"> <a target="_blank" href="http://www.drustvo-sahpiran.si">Šahovski utrip</a></li>
+                                <li><img src="/static/images/link-24px.svg"> <a target="_blank" href="http://www.sahist.si/">Šahist.si</a></li>
+                                <li><img src="/static/images/link-24px.svg"> <a target="_blank" href="http://sah.posluh.hr">Lovac na damu</a></li>
+                                <li><img src="/static/images/link-24px.svg"> <a target="_blank" href="http://theweekinchess.com/">The Week in Chess</a></li>
+                                <li class="nohover"><hr></li>
+                            </ul>
+                        </div>
+                        <div class="col-12 col-md-6 p-0 m-0">
+                            <ul class="ll-szs-muted ll-a-blue ostalo">
+                                <li><img src="/static/images/link-24px.svg"> <a target="_blank" href="https://en.chessbase.com">ChessBase</a></li>
+                                <li><img src="/static/images/link-24px.svg"> <a target="_blank" href="https://chess24.com/en">Chess24</a></li>
+                                <li><img src="/static/images/link-24px.svg"> <a target="_blank" href="https://www.chess.com">chess.com</a></li>
+                                <li><img src="/static/images/link-24px.svg"> <a target="_blank" href="https://lichess.org">Lichess</a></li>
+                                <li class="nohover w-100"><hr></li>
+                                <li><img src="/static/images/link-24px.svg"> <a target="_blank" href="http://stara.sah-zveza.si" rel="nofollow">Stari portal</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+
+            
+<nav class="navbar navbar-custom-sm navbar-expand-sm px-0 py-0">
+    <button class="m-1 navbar-toggler szs-toggler" type="button" data-toggle="collapse" data-target="#subNavDiv" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span> <span id="toggler"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="subNavDiv">
+        <a id="iskalnik" class="nav-item nav-link text-sm-center"
+            href="/prireditve/iskalnik/">Iskalnik</a>
+        <a id="sistemi" class="nav-item nav-link text-sm-center"
+            href="/podstrani/tekmovalni-sistemi/">Tekmovalni sistemi</a>
+        <a id="koledarnav" class="nav-item nav-link text-sm-center"
+            href="/prireditve/koledar/">Koledar</a>
+            <!-- <a id="mednarodna" class="nav-item nav-link flex-sm-fill text-sm-center"
+            href="/prireditve/mednarodne/">Mednarodna</a> -->
+        <a id="drzavna" class="nav-item nav-link text-sm-center"
+            href="/prireditve/szs/">Tekmovanja ŠZS</a>
+        <a id="kategorizacija" class="nav-item nav-link text-sm-center"
+            href="/prireditve/oks/">Kategorizacija</a>
+    </div>
+</nav>
+
+            
+        </div>
+    </header>
+    
+    <!-- MAIN -->
+    
+    <main id="mainpage" class="w-szs-1200 p-0">
+        <div class="w-100 mx-auto p-0">
+            
+<!--    ..   ..   ..    -->
+<!--       KOLEDAR      -->
+<!--    ..   ..   ..    -->
+<section class="m-0 p-0 mt-5">
+    <!-- ISKALNIK -->
+    <header class="m-0 mb-1 px-0 py-0 border-dark border-bottom w-100">
+        <h5 class="h-szs-section xxl">Iskalnik prireditev</h5>
+    </header>
+    <article class="container-fluid m-0 p-0 bg-szs-alpha">
+        <form method="get" class="row col-12 mb-4">
+            <input type="hidden" name="action" value="filter">
+            <div class="FieldWrapper col-12 col-lg-4 my-2 d-inline-block">
+                <input type="text" name="search" maxlength="50" id="id_search"> <input type="submit" value="Išči">
+            </div>
+            <div class="FieldWrapper col-12 col-lg-8 my-2 d-inline-block">
+                <span class="px-2">Klubska: <input type="checkbox" name="klubska" checked /></span>
+                <span class="px-2">Državna: <input type="checkbox" name="drzavna" checked /></span>
+                <span class="px-2">Mednarodna: <input type="checkbox" name="mednarodna" checked /></span>
+                <span class="px-2">Večdnevna: <input type="checkbox" name="vecdnevna" checked /></span>
+                <span class="px-2">Ciklusi: <input type="checkbox" name="ciklusi" checked /></span>
+                <span class="px-2">Festivali: <input type="checkbox" name="festivali" checked /></span>
+            </div>
+            <div class="d-none d-lg-inline-block col-4"></div>
+            <div class="FieldWrapper col-12 col-lg-8 my-2 d-inline-block">
+                <span class="px-2">Rezultati: <input type="checkbox" name="rezultati"  /></span>
+                <span class="px-2">Povezava: <input type="checkbox" name="povezava"  /></span>
+                <span class="px-2">Zaključen: <input type="checkbox" name="zakljucen"  /></span>
+                <span class="px-1">Leto: <select name="leto" id="id_leto">
+  <option value="0" selected>----</option>
+
+  <option value="2019">2019</option>
+
+  <option value="2020">2020</option>
+
+  <option value="2021">2021</option>
+
+  <option value="2022">2022</option>
+
+  <option value="2023">2023</option>
+
+  <option value="2024">2024</option>
+
+  <option value="2025">2025</option>
+
+  <option value="2026">2026</option>
+
+</select></span>
+                <span class="px-1">Mesec: <select name="mesec" id="id_mesec">
+  <option value="0" selected>----</option>
+
+  <option value="1">Jan</option>
+
+  <option value="2">Feb</option>
+
+  <option value="3">Mar</option>
+
+  <option value="4">Apr</option>
+
+  <option value="5">Maj</option>
+
+  <option value="6">Jun</option>
+
+  <option value="7">Jul</option>
+
+  <option value="8">Avg</option>
+
+  <option value="9">Sep</option>
+
+  <option value="10">Okt</option>
+
+  <option value="11">Nov</option>
+
+  <option value="12">Dec</option>
+
+</select></span>
+                <span class="px-1">Kraj: <select name="kraj" id="id_kraj">
+  <option value="0" selected>----</option>
+
+  <option value="1">1xxx</option>
+
+  <option value="2">2xxx</option>
+
+  <option value="3">3xxx</option>
+
+  <option value="4">4xxx</option>
+
+  <option value="5">5xxx</option>
+
+  <option value="6">6xxx</option>
+
+  <option value="7">7xxx</option>
+
+  <option value="8">8xxx</option>
+
+  <option value="9">9xxx</option>
+
+</select></span>
+            </div>
+        </form>
+        <div>
+            <h3 class="font-italic text-center font-lora bd-szs-y mb-3">Rezultati iskanja</h1>
+            <table id="ITable" class="w-100 table table-sm table-hover">
+                <thead class="thead-light">
+                    <tr id="THR">
+                        <th>TID</th>
+                        <th><a>Naziv</a></th>
+                        <th><a>Datum</a></th>
+                        <th><a>Pošta</a></th>
+                        <th><a>Kraj</a></th>
+                        <th><a>Povezava</a></th>
+                        <th><a>Naložil</a></th>
+                        <th><a>Stanje</a></th>
+                        <th><a>Priloge</a></th>
+                        <!-- dol: '&#x25BC;' gor: '&#x25B2;' -->
+                    </tr>
+                </thead>
+                <tbody id="TBody" class="a-szs-muted">
+                    
+
+    <tr>
+        <td>5784</td>
+        <td><a class="" href="/prireditve/turnir/5784" target="_blank">Zagorje ob Savi 10+5</a></td>
+        <td>23. februar 2027</td>
+        <td>1410</td>
+        <td>Zagorje ob Savi</td>
+        <td class="text-center"></td>
+        <td>Janez Medvešek</td>
+        <td></td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <td>5783</td>
+        <td><a class="" href="/prireditve/turnir/5783" target="_blank">Zagorje ob Savi 7+3</a></td>
+        <td>16. februar 2027</td>
+        <td>1410</td>
+        <td>Zagorje ob Savi</td>
+        <td class="text-center"></td>
+        <td>Janez Medvešek</td>
+        <td></td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <td>5782</td>
+        <td><a class="" href="/prireditve/turnir/5782" target="_blank">Zagorje ob Savi 10+5</a></td>
+        <td>09. februar 2027</td>
+        <td>1410</td>
+        <td>Zagorje ob Savi</td>
+        <td class="text-center"></td>
+        <td>Janez Medvešek</td>
+        <td></td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <td>5781</td>
+        <td><a class="" href="/prireditve/turnir/5781" target="_blank">Zagorje ob Savi 7+3</a></td>
+        <td>02. februar 2027</td>
+        <td>1410</td>
+        <td>Zagorje ob Savi</td>
+        <td class="text-center"></td>
+        <td>Janez Medvešek</td>
+        <td></td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <td>5780</td>
+        <td><a class="" href="/prireditve/turnir/5780" target="_blank">Zagorje ob Savi 10+5</a></td>
+        <td>26. januar 2027</td>
+        <td>1410</td>
+        <td>Zagorje ob Savi</td>
+        <td class="text-center"></td>
+        <td>Janez Medvešek</td>
+        <td></td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <td>5779</td>
+        <td><a class="" href="/prireditve/turnir/5779" target="_blank">Zagorje ob Savi 7+3</a></td>
+        <td>19. januar 2027</td>
+        <td>1410</td>
+        <td>Zagorje ob Savi</td>
+        <td class="text-center"></td>
+        <td>Janez Medvešek</td>
+        <td></td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <td>5778</td>
+        <td><a class="" href="/prireditve/turnir/5778" target="_blank">Zagorje ob Savi 10+5</a></td>
+        <td>12. januar 2027</td>
+        <td>1410</td>
+        <td>Zagorje ob Savi</td>
+        <td class="text-center"></td>
+        <td>Janez Medvešek</td>
+        <td></td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <td>5777</td>
+        <td><a class="" href="/prireditve/turnir/5777" target="_blank">Zagorje ob Savi 7+3</a></td>
+        <td>05. januar 2027</td>
+        <td>1410</td>
+        <td>Zagorje ob Savi</td>
+        <td class="text-center"></td>
+        <td>Janez Medvešek</td>
+        <td></td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <td>6422</td>
+        <td><a class="" href="/prireditve/turnir/6422" target="_blank">3. Odprti šahovski turnir Buče 2026</a></td>
+        <td>26. december 2026</td>
+        <td>3255</td>
+        <td>Buče</td>
+        <td class="text-center"></td>
+        <td></td>
+        <td></td>
+        <td><span class="text-success">&#10004;</a></td>
+    </tr>
+
+    <tr>
+        <td>5776</td>
+        <td><a class="" href="/prireditve/turnir/5776" target="_blank">Zagorje ob Savi 10+5</a></td>
+        <td>22. december 2026</td>
+        <td>1410</td>
+        <td>Zagorje ob Savi</td>
+        <td class="text-center"></td>
+        <td>Janez Medvešek</td>
+        <td></td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <td>5908</td>
+        <td><a class="" href="/prireditve/turnir/5908" target="_blank">ŠK Rudar Trbovlje, pospešeni nedeljski turnir</a></td>
+        <td>20. december 2026</td>
+        <td>1420</td>
+        <td>Trbovlje</td>
+        <td class="text-center"></td>
+        <td>Rado Bajda</td>
+        <td></td>
+        <td><span class="text-success">&#10004;</a></td>
+    </tr>
+
+    <tr>
+        <td>6421</td>
+        <td><a class="" href="/prireditve/turnir/6421" target="_blank">Pokal Marjana Drobneta 2026 9/9</a></td>
+        <td>17. december 2026</td>
+        <td>3260</td>
+        <td>Kozje</td>
+        <td class="text-center"></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <td>5775</td>
+        <td><a class="" href="/prireditve/turnir/5775" target="_blank">Zagorje ob Savi 10+5</a></td>
+        <td>15. december 2026</td>
+        <td>4</td>
+        <td>Zagorje ob Savi</td>
+        <td class="text-center"></td>
+        <td>Janez Medvešek</td>
+        <td></td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <td>6437</td>
+        <td><a class="" href="/prireditve/turnir/6437" target="_blank">Šahovski ciklus Velenje 2026- finale</a></td>
+        <td>12. december 2026</td>
+        <td>3320</td>
+        <td>Velenje</td>
+        <td class="text-center"><a href="https://www.sahovski-klub-velenje.si/domov/ciklus-2026"><img src="/static/images/link-24px.svg"></a></td>
+        <td>Radiša Rajkovič</td>
+        <td></td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <td>5774</td>
+        <td><a class="" href="/prireditve/turnir/5774" target="_blank">Zagorje ob Savi 10+5</a></td>
+        <td>08. december 2026</td>
+        <td>1410</td>
+        <td>Zagorje ob Savi</td>
+        <td class="text-center"></td>
+        <td>Janez Medvešek</td>
+        <td></td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <td>5945</td>
+        <td><a class="" href="/prireditve/turnir/5945" target="_blank">Pokal Slovenskih železnic  2026 10_10</a></td>
+        <td>05. december 2026</td>
+        <td>1000</td>
+        <td>Ljubljana</td>
+        <td class="text-center"><a href="http://www.sah-zeleznicar.com"><img src="/static/images/link-24px.svg"></a></td>
+        <td>Vlastimir Djurdjevič</td>
+        <td></td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <td>6432</td>
+        <td><a class="" href="/prireditve/turnir/6432" target="_blank">Ciklus klubskih turnirjev Tomo Zupan - december</a></td>
+        <td>04. december 2026</td>
+        <td>4000</td>
+        <td>Kranj</td>
+        <td class="text-center"><a href="https://www.tomo-zupan.org"><img src="/static/images/link-24px.svg"></a></td>
+        <td>Blaž Kosmač</td>
+        <td></td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <td>5722</td>
+        <td><a class="" href="/prireditve/turnir/5722" target="_blank">ŠK Rudar Trbovlje, 3+2</a></td>
+        <td>03. december 2026</td>
+        <td>1420</td>
+        <td>Trbovlje</td>
+        <td class="text-center"></td>
+        <td>Rado Bajda</td>
+        <td></td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <td>5773</td>
+        <td><a class="" href="/prireditve/turnir/5773" target="_blank">Zagorje ob Savi 7+3</a></td>
+        <td>01. december 2026</td>
+        <td>1410</td>
+        <td>Zagorje ob Savi</td>
+        <td class="text-center"></td>
+        <td>Janez Medvešek</td>
+        <td></td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <td>5772</td>
+        <td><a class="" href="/prireditve/turnir/5772" target="_blank">Zagorje ob Savi 10+5</a></td>
+        <td>24. november 2026</td>
+        <td>1410</td>
+        <td>Zagorje ob Savi</td>
+        <td class="text-center"></td>
+        <td>Janez Medvešek</td>
+        <td></td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <td>6436</td>
+        <td><a class="" href="/prireditve/turnir/6436" target="_blank">Šahovski ciklus Velenje 2026- turnir 4</a></td>
+        <td>22. november 2026</td>
+        <td>3320</td>
+        <td>Velenje</td>
+        <td class="text-center"><a href="https://www.sahovski-klub-velenje.si/domov/ciklus-2026"><img src="/static/images/link-24px.svg"></a></td>
+        <td>Radiša Rajkovič</td>
+        <td></td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <td>6420</td>
+        <td><a class="" href="/prireditve/turnir/6420" target="_blank">Pokal Marjana Drobneta 2026 8/9</a></td>
+        <td>19. november 2026</td>
+        <td>3260</td>
+        <td>Kozje</td>
+        <td class="text-center"></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <td>5771</td>
+        <td><a class="" href="/prireditve/turnir/5771" target="_blank">Zagorje ob Savi 7+3</a></td>
+        <td>17. november 2026</td>
+        <td>1410</td>
+        <td>Zagorje ob Savi</td>
+        <td class="text-center"></td>
+        <td>Janez Medvešek</td>
+        <td></td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <td>5907</td>
+        <td><a class="" href="/prireditve/turnir/5907" target="_blank">ŠK Rudar Trbovlje, pospešeni nedeljski turnir</a></td>
+        <td>15. november 2026</td>
+        <td>1420</td>
+        <td>Trbovlje</td>
+        <td class="text-center"></td>
+        <td>Rado Bajda</td>
+        <td></td>
+        <td><span class="text-success">&#10004;</a></td>
+    </tr>
+
+    <tr>
+        <td>5944</td>
+        <td><a class="" href="/prireditve/turnir/5944" target="_blank">Pokal Slovenskih železnic  2026 9_10</a></td>
+        <td>14. november 2026</td>
+        <td>1000</td>
+        <td>Ljubljana</td>
+        <td class="text-center"></td>
+        <td>Vlastimir Djurdjevič</td>
+        <td></td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <td>5770</td>
+        <td><a class="" href="/prireditve/turnir/5770" target="_blank">Zagorje ob Savi 10+5</a></td>
+        <td>10. november 2026</td>
+        <td>1410</td>
+        <td>Zagorje ob Savi</td>
+        <td class="text-center"></td>
+        <td>Janez Medvešek</td>
+        <td></td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <td>6431</td>
+        <td><a class="" href="/prireditve/turnir/6431" target="_blank">Ciklus klubskih turnirjev Tomo Zupan - november</a></td>
+        <td>06. november 2026</td>
+        <td>4000</td>
+        <td>Kranj</td>
+        <td class="text-center"><a href="https://www.tomo-zupan.org"><img src="/static/images/link-24px.svg"></a></td>
+        <td>Blaž Kosmač</td>
+        <td></td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <td>5721</td>
+        <td><a class="" href="/prireditve/turnir/5721" target="_blank">ŠK Rudar Trbovlje, 3+2</a></td>
+        <td>05. november 2026</td>
+        <td>1420</td>
+        <td>Trbovlje</td>
+        <td class="text-center"></td>
+        <td>Rado Bajda</td>
+        <td></td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <td>5769</td>
+        <td><a class="" href="/prireditve/turnir/5769" target="_blank">Zagorje ob Savi 7+3</a></td>
+        <td>03. november 2026</td>
+        <td>1410</td>
+        <td>Zagorje ob Savi</td>
+        <td class="text-center"></td>
+        <td>Janez Medvešek</td>
+        <td></td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <td>5768</td>
+        <td><a class="" href="/prireditve/turnir/5768" target="_blank">Zagorje ob Savi 10+5</a></td>
+        <td>27. oktober 2026</td>
+        <td>1410</td>
+        <td>Zagorje ob Savi</td>
+        <td class="text-center"></td>
+        <td>Janez Medvešek</td>
+        <td></td>
+        <td></td>
+    </tr>
+
+
+                </tbody>
+            </table>
+            <div id="Paginacija" aria-describe="Listanje po prireditvah" class="col-12">
+                
+    <ul class="pagination pagination-sm justify-content-center align-items-streach">
+        
+        <li class="page-item disabled"><a class="page-link " href="/prireditve/iskalnik/?action=filter&amp;search=&amp;klubska=on&amp;drzavna=on&amp;mednarodna=on&amp;vecdnevna=on&amp;ciklusi=on&amp;festivali=on&amp;kraj=0&amp;leto=0&amp;mesec=0&page=1">1</a></li>
+        
+        
+        <li class="page-item disabled"><a class="page-link " href="/prireditve/iskalnik/?action=filter&amp;search=&amp;klubska=on&amp;drzavna=on&amp;mednarodna=on&amp;vecdnevna=on&amp;ciklusi=on&amp;festivali=on&amp;kraj=0&amp;leto=0&amp;mesec=0&page=-9">&#x25C0;&#x25C0;</a></li>
+        
+        
+        <li class="page-item disabled"><a class="page-link " href="/prireditve/iskalnik/?action=filter&amp;search=&amp;klubska=on&amp;drzavna=on&amp;mednarodna=on&amp;vecdnevna=on&amp;ciklusi=on&amp;festivali=on&amp;kraj=0&amp;leto=0&amp;mesec=0&page=0">&#x25C0;</a></li>
+        
+        <li class="page-item active"><a class="page-link " href="/prireditve/iskalnik/" href="#">1</a></li>
+        
+        <li class="page-item"><a class="page-link " href="/prireditve/iskalnik/?action=filter&amp;search=&amp;klubska=on&amp;drzavna=on&amp;mednarodna=on&amp;vecdnevna=on&amp;ciklusi=on&amp;festivali=on&amp;kraj=0&amp;leto=0&amp;mesec=0&page=2">&#x25B6;</a></li>
+        
+        
+        <li class="page-item"><a class="page-link " href="/prireditve/iskalnik/?action=filter&amp;search=&amp;klubska=on&amp;drzavna=on&amp;mednarodna=on&amp;vecdnevna=on&amp;ciklusi=on&amp;festivali=on&amp;kraj=0&amp;leto=0&amp;mesec=0&page=11">&#x25B6;&#x25B6;</a></li>
+        
+        
+        <li class="page-item"><a class="page-link " href="/prireditve/iskalnik/?action=filter&amp;search=&amp;klubska=on&amp;drzavna=on&amp;mednarodna=on&amp;vecdnevna=on&amp;ciklusi=on&amp;festivali=on&amp;kraj=0&amp;leto=0&amp;mesec=0&page=206">206</a></li>
+        
+    </ul>
+
+
+            </div>
+        </div>
+    </article>
+</section>
+
+        </div>
+    </main>
+    
+    <!-- The Generic Modal -->
+    <div class="modal fade" id="genModal">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
+    <!-- The Search Modal -->
+    <div class="modal fade" id="searchModal">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content" id="iskalnik">
+                <!-- Modal Header -->
+<div class="modal-header">
+    <h3 class="modal-title bd-szs-y w-100 text-center">Najdi na portalu ŠZS</h3>
+    <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+</div>
+<!-- Modal Body -->
+<div class="modal-body">
+    <div class="py-0 m-0 bg-szs-alpha">
+        <form class="form-inline js-post-najdi d-flex mx-3" action="/najdi/">
+            <input class="form-control px-2 bg-szs-alpha-25 flex-fill" type="search" placeholder="Vnesite iskalni niz" aria-label="Search" name='najdi'>
+            <input class="btn btn-primary ml-2 flex-shrink-0" type="submit" value="Najdi">
+        </form>
+    </div>
+    <div class="mt-3" id="rez_iskanja">
+    </div>
+</div>
+<!-- Modal footer -->
+<div class="modal-footer bd-szs-y mx-3">
+    <button type="button" class="btn btn-danger" data-dismiss="modal">Zapri</button>
+</div>
+
+            </div>
+        </div>
+    </div>
+    
+    
+    <footer class="p-0 m-0">
+        
+        <!-- FOOTER - JUMBOTRON BS4 -->
+        <div class="jumbotron font-raleway mb-0 pt-0 pb-3 jumbo-szs-footer">
+            <div class="container-fluid w-szs-1200 pt-3 pb-5">
+                <div class="row m-0 p-0">
+                    <div class="col-6 col-md-3 order-1 text-left px-1 mx-0 d-inline-block">
+                        <figure class="w-100 p-0 m-0">
+                            <a href="/"><img src="/static/images/zveza_logo_white.png" class="footer-szs-logo"></a>
+                        </figure>
+                        <div class="m-0 p-0 d-none d-md-block">
+                            <p class="font-weight-bold pb-0 mb-0">Šahovska zveza Slovenije</p>
+                            <p class="header-szs-p">Bravničarjeva 13, 1000 Ljubljana<br>Slovenija </p>
+                            <p class="header-szs-p">T: 01/436 58 00<br>
+                                E: info@sah-zveza.si<br>
+                                TRR: SI56 1910 0001 0000 463</p>
+                        </div>
+                    </div>
+                    <div class="col-6 order-2 d-md-none bd-szs-footer-white">
+                        <p class="font-weight-bold pb-0 mb-0">Šahovska zveza Slovenije</p>
+                        <p class="header-szs-p pb-2">Bravničarjeva 13, 1000 Ljubljana<br>Slovenija </p>
+                        <p class="header-szs-p pb-2">T: 01/436 58 00<br>
+                            E: info@sah-zveza.si</p>
+                        <p class="header-szs-p">TRR: SI56 1910 0001 0000 463</p>
+                    </div>
+                    <div class="col-6 col-md-3 order-4 order-md-3 text-left px-2 bd-szs-footer-white">
+                        <p class="font-weight-bold p-0 m-0">Hitre povezave</p>
+                        <ul class="footer-szs-ul">
+                            <li><a target="_blank" href="https://www.fide.com/">FIDE (www.fide.com)</a></li>
+                            <li><a target="_blank" href="http://www.europechess.org/">ECU (www.europechess.org)</a></li>
+                            <li><a target="_blank" href="http://www.iccf.com/">ICCF (www.iccf.com)</a></li>
+                            <li><a target="_blank" href="https://hrvatski-sahovski-savez.hr">Hrvaška šahovska zveza</a></li>
+                            <li><a target="_blank" href="https://www.chess.at">Avstrijska šahovska zveza</a></li>
+                            <li><a target="_blank" href="http://www.federscacchi.it">Italijanska šahovska zveza</a></li>
+                            <li><a target="_blank" href="http://chess.hu">Madžarska šahovska zveza</a></li>
+                        </ul>
+                        <div class="m-0 p-0 d-block d-md-none">
+                            <p class="font-weight-bold p-0 m-0">Meniji</p>
+                            <ul class="footer-szs-ul">
+                                <li><a href="/">
+                                    Šahovska zveza Slovenije</a></li>
+                                <li><a href="/klubi/">
+                                    Klubi</a></li>
+                                <li><a href="/igralci/">
+                                    Igralci</a></li>
+                                <li><a href="/sodniki/">
+                                    Sodniki</a></li>
+                                <li><a href="/prireditve/">
+                                    Turnirji</a></li>
+                                <li><a href="/trenerji/">
+                                    Trenerstvo</a></li>
+                                <li><a href="/solski-sah/">
+                                    Mladinski šah</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 order-3 order-md-4 text-left px-2 bd-szs-footer-md-white">
+                        <p class="font-weight-bold p-0 m-0">Mediji in šahovski portali</p>
+                        <ul class="footer-szs-ul">
+                            <li><a target="_blank" href="http://www.drustvo-sahpiran.si">Šahovski utrip</a></li>
+                            <li><a target="_blank" href="http://www.sahist.si/">Šahist.si</a></li>
+                            <li><a target="_blank" href="http://sah.posluh.hr">Lovac na damu</a></li>
+                            <li><a target="_blank" href="http://theweekinchess.com/">The Week in Chess</a></li>
+                            <li><a target="_blank" href="https://en.chessbase.com">ChessBase</a></li>
+                            <li><a target="_blank" href="https://chess24.com/en">Chess24</a></li>
+                            <li><a target="_blank" href="https://www.chess.com">chess.com</a></li>
+                            <li><a target="_blank" href="https://lichess.org">Lichess</a></li>
+                        </ul>
+                        <p class="d-inline-block font-weight-bold d-md-none py-2"><a href="/sahovska-misel/">
+                            Šahovska misel</a></p>
+                        <p class="font-weight-bold p-0 m-0"><a target="_blank" href="http://stara.sah-zveza.si" rel="nofollow">Stari portal</a></p>
+                    </div>
+                    <div class="col-3 d-none d-md-block order-5 text-left px-2 bd-szs-footer-white">
+                        <p class="font-weight-bold p-0 m-0">Meniji</p>
+                        <ul class="footer-szs-ul">
+                            <li><a href="/">
+                                Šahovska zveza Slovenije</a></li>
+                            <li><a href="/klubi/">
+                                Klubi</a></li>
+                            <li><a href="/igralci/">
+                                Igralci</a></li>
+                            <li><a href="/sodniki/">
+                                Sodniki</a></li>
+                            <li><a href="/prireditve/">
+                                Turnirji</a></li>
+                            <li><a href="/trenerji/">
+                                Trenerstvo</a></li>
+                            <li><a href="/podstrani/solski-in-mladinski-sah">
+                                Mladinski šah</a></li>
+                            <li><a href="/sahovska-misel/">
+                                Šahovska misel</a></li>
+                        </ul>
+                    </div>
+                    <!-- <div class="px-1 px-md-3 px-lg-5 w-50 text-center social">
+                            <a href="#" class="fa fa-facebook"></a>
+                            <a href="#" class="fa fa-twitter"></a>
+                            <a href="#" class="fa fa-skype"></a>
+                            <a href="#" class="fa fa-youtube"></a>
+                            <a href="#" class="fa fa-google"></a>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+        
+    </footer>
+
+    <!-- SKRIPTE -->
+    <!-- JQuery -->
+    
+    <script type="text/javascript" src="/static/js/jquery-3.3.1.min.js"></script>
+    
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="/static/js/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <!-- <script type="text/javascript" src="/static/js/mdb.min.js"></script> -->
+
+    
+    <script type="text/javascript" src="/static/cookielaw/js/cookielaw.js"></script>
+    
+
+    
+    <script src="/static/js/szs-javno_0_2_3.js"></script>
+    
+</body>
+</html>
