@@ -101,6 +101,15 @@ try
     })
     .ConfigurePrimaryHttpMessageHandler(CrawlHttpHandler.Create);
 
+    // Der slowakische Verbandskalender. Eigener Client wie die uebrigen fremden Hosts; groesserer
+    // Zeitrahmen, weil ein Durchgang die Detailseite JE TURNIER nachholt (mit Pause dazwischen).
+    builder.Services.AddHttpClient<ChessSkCalendarService>(client =>
+    {
+        client.DefaultRequestHeaders.Add("User-Agent", "ChessResultsCrawler/1.0 (+RookHub)");
+        client.Timeout = TimeSpan.FromSeconds(30);
+    })
+    .ConfigurePrimaryHttpMessageHandler(CrawlHttpHandler.Create);
+
     builder.Services.AddHttpClient("Gluetun",
         client => GluetunClientSetup.Configure(client, builder.Configuration));
     builder.Services.AddScoped<HtmlParserService>();
