@@ -73,12 +73,14 @@ try
     builder.Services.AddHttpClient<FideCalendarService>(client =>
     {
         client.DefaultRequestHeaders.Add("User-Agent", "ChessResultsCrawler/1.0 (+RookHub)");
-        client.Timeout = TimeSpan.FromSeconds(30);
+        // Unbegrenzt, weil das Zeitlimit JE VERSUCH beim Wiederholungs-Handler liegt (30 s):
+        // HttpClient.Timeout gilt fuer alle Versuche ZUSAMMEN und liess die Wiederholung nie zum Zug kommen.
+        client.Timeout = Timeout.InfiniteTimeSpan;
     })
     // Derselbe Handler: dieser Client laeuft durch denselben Tunnel (network_mode: service:gluetun)
     // und trifft nach einer Rotation dieselben toten Verbindungen.
     .ConfigurePrimaryHttpMessageHandler(CrawlHttpHandler.Create)
-    .AddHttpMessageHandler<RotateOnConnectFailureHandler>();
+    .WithExitRotationRetry(30);
 
     // Der italienische Verbandskalender: wieder ein eigener Host, also ein eigener Client mit
     // demselben Handler. Groesserer Zeitrahmen als bei FIDE — die Trefferliste traegt ALLE Felder
@@ -86,10 +88,12 @@ try
     builder.Services.AddHttpClient<FsiCalendarService>(client =>
     {
         client.DefaultRequestHeaders.Add("User-Agent", "ChessResultsCrawler/1.0 (+RookHub)");
-        client.Timeout = TimeSpan.FromSeconds(90);
+        // Unbegrenzt, weil das Zeitlimit JE VERSUCH beim Wiederholungs-Handler liegt (90 s):
+        // HttpClient.Timeout gilt fuer alle Versuche ZUSAMMEN und liess die Wiederholung nie zum Zug kommen.
+        client.Timeout = Timeout.InfiniteTimeSpan;
     })
     .ConfigurePrimaryHttpMessageHandler(CrawlHttpHandler.Create)
-    .AddHttpMessageHandler<RotateOnConnectFailureHandler>();
+    .WithExitRotationRetry(90);
 
     // Der slowenische Verbandskalender. Eigener Client wie die uebrigen fremden Hosts.
     //
@@ -99,20 +103,24 @@ try
     builder.Services.AddHttpClient<SzsCalendarService>(client =>
     {
         client.DefaultRequestHeaders.Add("User-Agent", "ChessResultsCrawler/1.0 (+RookHub)");
-        client.Timeout = TimeSpan.FromSeconds(30);
+        // Unbegrenzt, weil das Zeitlimit JE VERSUCH beim Wiederholungs-Handler liegt (30 s):
+        // HttpClient.Timeout gilt fuer alle Versuche ZUSAMMEN und liess die Wiederholung nie zum Zug kommen.
+        client.Timeout = Timeout.InfiniteTimeSpan;
     })
     .ConfigurePrimaryHttpMessageHandler(CrawlHttpHandler.Create)
-    .AddHttpMessageHandler<RotateOnConnectFailureHandler>();
+    .WithExitRotationRetry(30);
 
     // Der slowakische Verbandskalender. Eigener Client wie die uebrigen fremden Hosts; groesserer
     // Zeitrahmen, weil ein Durchgang die Detailseite JE TURNIER nachholt (mit Pause dazwischen).
     builder.Services.AddHttpClient<ChessSkCalendarService>(client =>
     {
         client.DefaultRequestHeaders.Add("User-Agent", "ChessResultsCrawler/1.0 (+RookHub)");
-        client.Timeout = TimeSpan.FromSeconds(30);
+        // Unbegrenzt, weil das Zeitlimit JE VERSUCH beim Wiederholungs-Handler liegt (30 s):
+        // HttpClient.Timeout gilt fuer alle Versuche ZUSAMMEN und liess die Wiederholung nie zum Zug kommen.
+        client.Timeout = Timeout.InfiniteTimeSpan;
     })
     .ConfigurePrimaryHttpMessageHandler(CrawlHttpHandler.Create)
-    .AddHttpMessageHandler<RotateOnConnectFailureHandler>();
+    .WithExitRotationRetry(30);
 
     // Der ungarische Verbandskalender. GROSSZUEGIGER Zeitrahmen: der Endpunkt braucht fuer seine
     // 31 kB rund 75 Sekunden (am 2026-09-08 gemessen) — mit dem ueblichen halben Minuten-Limit
@@ -120,50 +128,60 @@ try
     builder.Services.AddHttpClient<ChessHuCalendarService>(client =>
     {
         client.DefaultRequestHeaders.Add("User-Agent", "ChessResultsCrawler/1.0 (+RookHub)");
-        client.Timeout = TimeSpan.FromSeconds(180);
+        // Unbegrenzt, weil das Zeitlimit JE VERSUCH beim Wiederholungs-Handler liegt (180 s):
+        // HttpClient.Timeout gilt fuer alle Versuche ZUSAMMEN und liess die Wiederholung nie zum Zug kommen.
+        client.Timeout = Timeout.InfiniteTimeSpan;
     })
     .ConfigurePrimaryHttpMessageHandler(CrawlHttpHandler.Create)
-    .AddHttpMessageHandler<RotateOnConnectFailureHandler>();
+    .WithExitRotationRetry(180);
 
     // Der tschechische Verbandskalender. Ein Abruf, aber ein grosser (rund 300 kB HTML fuer
     // 89 Eintraege in drei Laschen).
     builder.Services.AddHttpClient<ChessCzCalendarService>(client =>
     {
         client.DefaultRequestHeaders.Add("User-Agent", "ChessResultsCrawler/1.0 (+RookHub)");
-        client.Timeout = TimeSpan.FromSeconds(60);
+        // Unbegrenzt, weil das Zeitlimit JE VERSUCH beim Wiederholungs-Handler liegt (60 s):
+        // HttpClient.Timeout gilt fuer alle Versuche ZUSAMMEN und liess die Wiederholung nie zum Zug kommen.
+        client.Timeout = Timeout.InfiniteTimeSpan;
     })
     .ConfigurePrimaryHttpMessageHandler(CrawlHttpHandler.Create)
-    .AddHttpMessageHandler<RotateOnConnectFailureHandler>();
+    .WithExitRotationRetry(60);
 
     // Der polnische Verbandskalender. Alte Infrastruktur (PHP 5.2), deshalb defensiv: ein Abruf
     // fuer die Liste, und die Detailseiten holt der Aufrufer einzeln und gedeckelt.
     builder.Services.AddHttpClient<ChessArbiterCalendarService>(client =>
     {
         client.DefaultRequestHeaders.Add("User-Agent", "ChessResultsCrawler/1.0 (+RookHub)");
-        client.Timeout = TimeSpan.FromSeconds(60);
+        // Unbegrenzt, weil das Zeitlimit JE VERSUCH beim Wiederholungs-Handler liegt (60 s):
+        // HttpClient.Timeout gilt fuer alle Versuche ZUSAMMEN und liess die Wiederholung nie zum Zug kommen.
+        client.Timeout = Timeout.InfiniteTimeSpan;
     })
     .ConfigurePrimaryHttpMessageHandler(CrawlHttpHandler.Create)
-    .AddHttpMessageHandler<RotateOnConnectFailureHandler>();
+    .WithExitRotationRetry(60);
 
     // Die Turnierdatenbank des Deutschen Schachbunds. Grosszuegiger Zeitrahmen: ein Durchgang holt
     // zwei Seiten je Region und haelt dazwischen die Wartezeit ein, die die robots.txt nennt.
     builder.Services.AddHttpClient<SchachbundCalendarService>(client =>
     {
         client.DefaultRequestHeaders.Add("User-Agent", "ChessResultsCrawler/1.0 (+RookHub)");
-        client.Timeout = TimeSpan.FromSeconds(45);
+        // Unbegrenzt, weil das Zeitlimit JE VERSUCH beim Wiederholungs-Handler liegt (45 s):
+        // HttpClient.Timeout gilt fuer alle Versuche ZUSAMMEN und liess die Wiederholung nie zum Zug kommen.
+        client.Timeout = Timeout.InfiniteTimeSpan;
     })
     .ConfigurePrimaryHttpMessageHandler(CrawlHttpHandler.Create)
-    .AddHttpMessageHandler<RotateOnConnectFailureHandler>();
+    .WithExitRotationRetry(45);
 
     // Der englische Verbandskalender. Zwei geblaetterte Endpunkte je Durchgang, dazwischen die
     // Wartezeit aus der robots.txt der Quelle.
     builder.Services.AddHttpClient<EcfCalendarService>(client =>
     {
         client.DefaultRequestHeaders.Add("User-Agent", "ChessResultsCrawler/1.0 (+RookHub)");
-        client.Timeout = TimeSpan.FromSeconds(60);
+        // Unbegrenzt, weil das Zeitlimit JE VERSUCH beim Wiederholungs-Handler liegt (60 s):
+        // HttpClient.Timeout gilt fuer alle Versuche ZUSAMMEN und liess die Wiederholung nie zum Zug kommen.
+        client.Timeout = Timeout.InfiniteTimeSpan;
     })
     .ConfigurePrimaryHttpMessageHandler(CrawlHttpHandler.Create)
-    .AddHttpMessageHandler<RotateOnConnectFailureHandler>();
+    .WithExitRotationRetry(60);
 
     // Die sechs Quellen der dritten Runde. Alle nach demselben Muster wie die uebrigen fremden
     // Hosts: eigener Client, eigener Name, derselbe Handler.
@@ -173,60 +191,74 @@ try
     builder.Services.AddHttpClient<IcuCalendarService>(client =>
     {
         client.DefaultRequestHeaders.Add("User-Agent", "ChessResultsCrawler/1.0 (+RookHub)");
-        client.Timeout = TimeSpan.FromSeconds(60);
+        // Unbegrenzt, weil das Zeitlimit JE VERSUCH beim Wiederholungs-Handler liegt (60 s):
+        // HttpClient.Timeout gilt fuer alle Versuche ZUSAMMEN und liess die Wiederholung nie zum Zug kommen.
+        client.Timeout = Timeout.InfiniteTimeSpan;
     })
     .ConfigurePrimaryHttpMessageHandler(CrawlHttpHandler.Create)
-    .AddHttpMessageHandler<RotateOnConnectFailureHandler>();
+    .WithExitRotationRetry(60);
 
     builder.Services.AddHttpClient<FfeCalendarService>(client =>
     {
         client.DefaultRequestHeaders.Add("User-Agent", "ChessResultsCrawler/1.0 (+RookHub)");
-        client.Timeout = TimeSpan.FromSeconds(60);
+        // Unbegrenzt, weil das Zeitlimit JE VERSUCH beim Wiederholungs-Handler liegt (60 s):
+        // HttpClient.Timeout gilt fuer alle Versuche ZUSAMMEN und liess die Wiederholung nie zum Zug kommen.
+        client.Timeout = Timeout.InfiniteTimeSpan;
     })
     .ConfigurePrimaryHttpMessageHandler(CrawlHttpHandler.Create)
-    .AddHttpMessageHandler<RotateOnConnectFailureHandler>();
+    .WithExitRotationRetry(60);
 
     builder.Services.AddHttpClient<SjakkCalendarService>(client =>
     {
         client.DefaultRequestHeaders.Add("User-Agent", "ChessResultsCrawler/1.0 (+RookHub)");
-        client.Timeout = TimeSpan.FromSeconds(60);
+        // Unbegrenzt, weil das Zeitlimit JE VERSUCH beim Wiederholungs-Handler liegt (60 s):
+        // HttpClient.Timeout gilt fuer alle Versuche ZUSAMMEN und liess die Wiederholung nie zum Zug kommen.
+        client.Timeout = Timeout.InfiniteTimeSpan;
     })
     .ConfigurePrimaryHttpMessageHandler(CrawlHttpHandler.Create)
-    .AddHttpMessageHandler<RotateOnConnectFailureHandler>();
+    .WithExitRotationRetry(60);
 
     builder.Services.AddHttpClient<ChessScotlandCalendarService>(client =>
     {
         client.DefaultRequestHeaders.Add("User-Agent", "ChessResultsCrawler/1.0 (+RookHub)");
-        client.Timeout = TimeSpan.FromSeconds(60);
+        // Unbegrenzt, weil das Zeitlimit JE VERSUCH beim Wiederholungs-Handler liegt (60 s):
+        // HttpClient.Timeout gilt fuer alle Versuche ZUSAMMEN und liess die Wiederholung nie zum Zug kommen.
+        client.Timeout = Timeout.InfiniteTimeSpan;
     })
     .ConfigurePrimaryHttpMessageHandler(CrawlHttpHandler.Create)
-    .AddHttpMessageHandler<RotateOnConnectFailureHandler>();
+    .WithExitRotationRetry(60);
 
     builder.Services.AddHttpClient<WcuCalendarService>(client =>
     {
         client.DefaultRequestHeaders.Add("User-Agent", "ChessResultsCrawler/1.0 (+RookHub)");
-        client.Timeout = TimeSpan.FromSeconds(60);
+        // Unbegrenzt, weil das Zeitlimit JE VERSUCH beim Wiederholungs-Handler liegt (60 s):
+        // HttpClient.Timeout gilt fuer alle Versuche ZUSAMMEN und liess die Wiederholung nie zum Zug kommen.
+        client.Timeout = Timeout.InfiniteTimeSpan;
     })
     .ConfigurePrimaryHttpMessageHandler(CrawlHttpHandler.Create)
-    .AddHttpMessageHandler<RotateOnConnectFailureHandler>();
+    .WithExitRotationRetry(60);
 
     // Die Niederlande verlangen in ihrer robots.txt 15 Sekunden zwischen zwei Abrufen. Bei zwei
     // Seiten ist das ein Durchgang von rund 17 Sekunden — der Zeitrahmen muss das aushalten.
     builder.Services.AddHttpClient<KnsbCalendarService>(client =>
     {
         client.DefaultRequestHeaders.Add("User-Agent", "ChessResultsCrawler/1.0 (+RookHub)");
-        client.Timeout = TimeSpan.FromSeconds(90);
+        // Unbegrenzt, weil das Zeitlimit JE VERSUCH beim Wiederholungs-Handler liegt (90 s):
+        // HttpClient.Timeout gilt fuer alle Versuche ZUSAMMEN und liess die Wiederholung nie zum Zug kommen.
+        client.Timeout = Timeout.InfiniteTimeSpan;
     })
     .ConfigurePrimaryHttpMessageHandler(CrawlHttpHandler.Create)
-    .AddHttpMessageHandler<RotateOnConnectFailureHandler>();
+    .WithExitRotationRetry(90);
 
     builder.Services.AddHttpClient<FrsahCalendarService>(client =>
     {
         client.DefaultRequestHeaders.Add("User-Agent", "ChessResultsCrawler/1.0 (+RookHub)");
-        client.Timeout = TimeSpan.FromSeconds(60);
+        // Unbegrenzt, weil das Zeitlimit JE VERSUCH beim Wiederholungs-Handler liegt (60 s):
+        // HttpClient.Timeout gilt fuer alle Versuche ZUSAMMEN und liess die Wiederholung nie zum Zug kommen.
+        client.Timeout = Timeout.InfiniteTimeSpan;
     })
     .ConfigurePrimaryHttpMessageHandler(CrawlHttpHandler.Create)
-    .AddHttpMessageHandler<RotateOnConnectFailureHandler>();
+    .WithExitRotationRetry(60);
 
     builder.Services.AddHttpClient("Gluetun",
         client => GluetunClientSetup.Configure(client, builder.Configuration));
@@ -315,3 +347,17 @@ finally
 }
 
 public partial class Program { }
+
+/// <summary>
+/// Haengt die Wiederholung ueber einen anderen VPN-Ausgang an einen Quellen-Client und legt das
+/// Zeitlimit JE VERSUCH fest. Der Client selbst laeuft unbegrenzt — sein Zeitlimit haette fuer
+/// alle Versuche zusammen gegolten und die Wiederholung damit ausgehebelt.
+/// </summary>
+internal static class ExitRotationRetryExtensions
+{
+    public static IHttpClientBuilder WithExitRotationRetry(this IHttpClientBuilder builder, int attemptSeconds) =>
+        builder.AddHttpMessageHandler(sp => new RotateOnConnectFailureHandler(
+            sp.GetRequiredService<VpnReadinessGate>(),
+            sp.GetRequiredService<ILogger<RotateOnConnectFailureHandler>>(),
+            TimeSpan.FromSeconds(attemptSeconds)));
+}

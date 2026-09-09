@@ -34,12 +34,19 @@ public class RotateOnConnectFailureHandler : DelegatingHandler
 
     private readonly VpnReadinessGate _vpnGate;
     private readonly ILogger<RotateOnConnectFailureHandler> _logger;
+    private readonly TimeSpan _attemptTimeout;
 
+    /// <param name="attemptTimeout">Zeitlimit JE VERSUCH. Es steht hier und nicht mehr als
+    /// <c>HttpClient.Timeout</c>, weil das fuer die GANZE Sendung gilt — also fuer alle Versuche
+    /// zusammen. Mit dem 30-s-Limit der Quelle war nach dem ersten Fehlversuch Schluss, und die
+    /// Wiederholung kam nie zum Zug (am 2026-09-09 an der Slowakei gemessen: 500 nach genau 30 s).
+    /// Der Client steht deshalb auf unbegrenzt, die Schranke liegt je Versuch hier.</param>
     public RotateOnConnectFailureHandler(VpnReadinessGate vpnGate,
-        ILogger<RotateOnConnectFailureHandler> logger)
+        ILogger<RotateOnConnectFailureHandler> logger, TimeSpan attemptTimeout)
     {
         _vpnGate = vpnGate;
         _logger = logger;
+        _attemptTimeout = attemptTimeout;
     }
 
     protected override async Task<HttpResponseMessage> SendAsync(
@@ -48,9 +55,11 @@ public class RotateOnConnectFailureHandler : DelegatingHandler
         var host = request.RequestUri?.Host ?? "?";
         for (var attempt = 1; ; attempt++)
         {
+            using var attemptCts = CancellationTokenSource.CreateLinkedTokenSource(ct);
+            attemptCts.CancelAfter(_attemptTimeout);
             try
             {
-                return await base.SendAsync(request, ct);
+                return await base.SendAsync(request, attemptCts.Token);
             }
             catch (Exception ex) when (IsConnectFailure(ex, ct) && attempt < MaxAttempts)
             {
