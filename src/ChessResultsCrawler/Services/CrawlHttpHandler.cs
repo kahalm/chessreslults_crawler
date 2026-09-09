@@ -39,10 +39,29 @@ public static class CrawlHttpHandler
     /// </summary>
     internal static readonly TimeSpan PoolTimeout = TimeSpan.FromSeconds(1);
 
+    /// <summary>
+    /// Wie lange auf das ZUSTANDEKOMMEN der Verbindung gewartet wird — getrennt vom Zeitlimit der
+    /// ganzen Anfrage.
+    ///
+    /// <para>Ohne das frisst ein Host, den der VPN-Ausgang gar nicht erreicht, das volle Zeitlimit
+    /// seiner Quelle. Am 2026-09-09 auf Dev gemessen: <c>federscacchi.com</c> (Italien) und
+    /// <c>frsah.ro</c> (Rumaenien) kamen ueber den AirVPN-Ausgang nicht einmal zu einer
+    /// TCP-Verbindung (<c>time_connect=0</c> nach ueber zwei Minuten), waehrend beide vom Host
+    /// direkt erreichbar sind. Der naechtliche Durchgang wartete dafuer 90 bzw. 60 Sekunden — jede
+    /// Nacht, mit derselben Antwort. Ein Verbindungsaufbau, der laenger als das hier braucht, ist
+    /// ueber einen VPN kein langsamer Host mehr, sondern ein nicht erreichbarer: chessarbiter
+    /// verbindet sich in 28 ms.</para>
+    ///
+    /// <para>Das Zeitlimit der Quellen bleibt unangetastet — es deckt das LESEN einer grossen Seite
+    /// ab (Italien 1,25 MB), und das darf lange dauern.</para>
+    /// </summary>
+    internal static readonly TimeSpan ConnectTimeout = TimeSpan.FromSeconds(20);
+
     public static SocketsHttpHandler Create() => new()
     {
         AllowAutoRedirect = false,
         PooledConnectionIdleTimeout = PoolTimeout,
         PooledConnectionLifetime = PoolTimeout,
+        ConnectTimeout = ConnectTimeout,
     };
 }

@@ -40,4 +40,22 @@ public class CrawlHttpHandlerTests
         // soll die Verbindung durchaus wiederverwendet werden.
         Assert.True(handler.PooledConnectionIdleTimeout > TimeSpan.Zero);
     }
+
+    /// <summary>
+    /// Ein Host, den der VPN-Ausgang nicht erreicht, darf nicht das ganze Zeitlimit seiner Quelle
+    /// verbrauchen. Gemessen 2026-09-09: Italien und Rumaenien kamen ueber den Ausgang zu keiner
+    /// TCP-Verbindung und kosteten den naechtlichen Durchgang 90 bzw. 60 Sekunden — jede Nacht.
+    /// Deutlich unter dem kuerzesten Quellen-Zeitlimit (30 s), damit der Unterschied ueberhaupt
+    /// wirkt, und ueber jedem echten Verbindungsaufbau (chessarbiter: 28 ms).
+    /// </summary>
+    [Fact]
+    public void Create_GibtEinenNichtErreichbarenHostSchnellAuf()
+    {
+        var handler = CrawlHttpHandler.Create();
+
+        Assert.True(handler.ConnectTimeout > TimeSpan.FromSeconds(5),
+            "zu knapp fuer einen TLS-Handschlag ueber einen VPN");
+        Assert.True(handler.ConnectTimeout <= TimeSpan.FromSeconds(30),
+            $"ConnectTimeout {handler.ConnectTimeout} spart gegenueber dem Quellen-Zeitlimit nichts");
+    }
 }
