@@ -78,10 +78,15 @@ public class ParsedChessArbiterDetail
 /// rueckwaerts weiter.</item>
 /// <item><b>Die Detailseite ist server-gerendert und englisch beschriftet.</b> Die Recherche
 /// hatte hier eine JavaScript-Datei (<c>capro_tournament.js</c>) erwartet — die gibt es nicht
-/// (404). Stattdessen liefert <c>/turnieje/{jahr}/ti_{id}</c> 8,5 kB fertiges HTML, in dem jede
+/// (404). Stattdessen liefert <c>/turnieje/{jahr}/ti_{id}/</c> — <b>mit Schraegstrich am Ende</b>,
+/// sonst kommt eine 301 auf genau diese Adresse — 8,5 kB fertiges HTML, in dem jede
 /// Angabe als <c>Tr("Start date:","")</c> beschriftet ist und ihr Wert in der naechsten Zelle
 /// steht. Daraus kommen Enddatum, Bedenkzeit, Rundenzahl, System — und die TEILNEHMERZAHL, die
-/// chess-results und FIDE fuer kuenftige Turniere grundsaetzlich nicht nennen.</item>
+/// chess-results und FIDE fuer kuenftige Turniere grundsaetzlich nicht nennen.
+/// <b>Aber nur ein Teil der Turniere hat so eine Seite</b>: in einer Stichprobe von 14 waren es
+/// 3 — die uebrigen liefern 4,1 kB JavaScript-Huelle ohne eine einzige Angabe (das Turnier-Paket
+/// der Veranstalter entscheidet das, nicht der Verband). Fuer die gibt es hier nichts zu holen,
+/// und <c>ParseDetail</c> gibt dort <c>null</c> zurueck.</item>
 /// </list>
 ///
 /// <para>Rechtslage (2026-09-08 geprueft): keine <c>robots.txt</c> (404), keine
@@ -127,7 +132,13 @@ public class ChessArbiterCalendarService
         if (!YearPattern.IsMatch(year) || !IdPattern.IsMatch(id))
             throw new InvalidOperationException($"Refusing malformed tournament key: {year}/{id}");
 
-        var target = new Uri($"https://{AllowedHost}/turnieje/{year}/ti_{id}");
+        // Der SCHRAEGSTRICH am Ende ist Pflicht: ohne ihn antwortet chessarbiter mit 301 auf
+        // genau dieselbe Adresse MIT Schraegstrich, und der Crawl-Handler folgt Umleitungen
+        // bewusst nicht (`AllowAutoRedirect = false`) — die Antwort ist dann kein 2xx, und der
+        // Aufruf gab `null` zurueck. Am 2026-09-09 auf Dev nachgemessen: alle 150 Detailabrufe
+        // eines Durchgangs endeten so, und weil ein Turnier ohne gelesene Detailseite Kandidat
+        // bleibt, holte jeder weitere Durchgang dieselben Seiten erneut. Mit Schraegstrich: 200.
+        var target = new Uri($"https://{AllowedHost}/turnieje/{year}/ti_{id}/");
         EnsureAllowedTarget(target);
 
         using var response = await _http.GetAsync(target, ct);

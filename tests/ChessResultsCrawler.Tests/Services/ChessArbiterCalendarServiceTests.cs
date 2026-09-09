@@ -1,6 +1,7 @@
 using ChessResultsCrawler.Services;
 using Microsoft.Extensions.Logging;
 using Moq;
+using System.Net;
 
 namespace ChessResultsCrawler.Tests.Services;
 
@@ -185,6 +186,37 @@ public class ChessArbiterCalendarServiceTests
             () => service.FetchDetailAsync(year, id));
     }
 
+    [Fact]
+    public async Task FetchDetailAsync_HoltDieAdresseMitSchraegstrich()
+    {
+        // Ohne Schraegstrich antwortet chessarbiter 301 auf genau dieselbe Adresse MIT — und der
+        // Crawl-Handler folgt Umleitungen bewusst nicht. Am 2026-09-09 endeten dadurch ALLE 150
+        // Detailabrufe eines Durchgangs ohne Ergebnis, und die Turniere blieben Kandidaten: jeder
+        // weitere Durchgang holte dieselben Seiten erneut.
+        var recorder = new RecordingHandler(File.ReadAllText(
+            Path.Combine(AppContext.BaseDirectory, "Fixtures", "chessarbiter-detail.html")));
+        var service = new ChessArbiterCalendarService(
+            new HttpClient(recorder), Mock.Of<ILogger<ChessArbiterCalendarService>>());
+
+        var detail = await service.FetchDetailAsync("2026", "291");
+
+        Assert.NotNull(recorder.LastUrl);
+        Assert.Equal("https://www.chessarbiter.com/turnieje/2026/ti_291/", recorder.LastUrl);
+        Assert.NotNull(detail);
+    }
+
+    [Fact]
+    public async Task FetchDetailAsync_EineUmleitungIstKeinErgebnis()
+    {
+        // Der Handler folgt nicht — eine 301 muss deshalb als „nichts geholt" ankommen und nicht
+        // als leeres, aber gueltiges Ergebnis (das waere ein Turnier, das nie wieder gefragt wird).
+        var service = new ChessArbiterCalendarService(
+            new HttpClient(new RecordingHandler("", HttpStatusCode.MovedPermanently)),
+            Mock.Of<ILogger<ChessArbiterCalendarService>>());
+
+        Assert.Null(await service.FetchDetailAsync("2026", "291"));
+    }
+
     // ----- Hilfen ------------------------------------------------------------
 
     private static string Row(string year, string id, string name, string date) =>
@@ -196,6 +228,19 @@ public class ChessArbiterCalendarServiceTests
          """;
 
     private static string Wrap(string rows) => $"<html><body><table>{rows}</table></body></html>";
+
+    /// <summary>Merkt sich die angefragte Adresse und antwortet mit vorgegebenem Inhalt.</summary>
+    private sealed class RecordingHandler(string body, HttpStatusCode status = HttpStatusCode.OK)
+        : HttpMessageHandler
+    {
+        public string? LastUrl { get; private set; }
+
+        protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage r, CancellationToken ct)
+        {
+            LastUrl = r.RequestUri?.ToString();
+            return Task.FromResult(new HttpResponseMessage(status) { Content = new StringContent(body) });
+        }
+    }
 
     private sealed class ThrowingHandler : HttpMessageHandler
     {
