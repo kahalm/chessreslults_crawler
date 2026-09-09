@@ -1,0 +1,756 @@
+[
+ {
+  "id": 32090,
+  "date": "2026-09-09T01:30:25",
+  "date_gmt": "2026-09-08T23:30:25",
+  "modified": "2026-09-09T01:30:26",
+  "modified_gmt": "2026-09-08T23:30:26",
+  "slug": "jeugdweekendtoernooi-leiden-2027-07-03",
+  "status": "publish",
+  "type": "event",
+  "link": "https://schaakbond.nl/event/jeugdweekendtoernooi-leiden-2027-07-03/",
+  "title": {
+   "rendered": "Jeugdweekendtoernooi Leiden"
+  },
+  "content": {
+   "rendered": "<p>Weekendtoernooi met langere bedenktijden. In de hoogste groepen 55min+10s, in de lagere groepen 35+10s</p>\n",
+   "protected": false
+  },
+  "excerpt": {
+   "rendered": "<p>Weekendtoernooi met langere bedenktijden. In de hoogste groepen 55min+10s, in de lagere groepen 35+10s</p>\n",
+   "protected": false
+  },
+  "author": 2,
+  "featured_media": 0,
+  "menu_order": 0,
+  "template": "",
+  "meta": {
+   "_acf_changed": false,
+   "footnotes": ""
+  },
+  "event-category": [
+   59,
+   34,
+   33
+  ],
+  "bond": [
+   45
+  ],
+  "speed": [
+   36
+  ],
+  "class_list": [
+   "post-32090",
+   "event",
+   "type-event",
+   "status-publish",
+   "hentry",
+   "event-category-jeugd",
+   "event-category-niet-uitgelicht",
+   "event-category-schaakkalender",
+   "bond-leidsche-schaakbond-leisb",
+   "speed-normaalschaak"
+  ],
+  "acf": []
+ },
+ {
+  "id": 32127,
+  "date": "2026-09-09T01:30:24",
+  "date_gmt": "2026-09-08T23:30:24",
+  "modified": "2026-09-09T01:30:25",
+  "modified_gmt": "2026-09-08T23:30:25",
+  "slug": "17e-wlc-weekendtoernooi-2027-05-28",
+  "status": "publish",
+  "type": "event",
+  "link": "https://schaakbond.nl/event/17e-wlc-weekendtoernooi-2027-05-28/",
+  "title": {
+   "rendered": "17e WLC Weekendtoernooi"
+  },
+  "content": {
+   "rendered": "<p>Zes ronden Zwitsers op rating in twee groepen.  Het hoogst geëindigde lid in groep A is persoonlijk kampioen van de NBSB</p>\n",
+   "protected": false
+  },
+  "excerpt": {
+   "rendered": "<p>Zes ronden Zwitsers op rating in twee groepen. Het hoogst geëindigde lid in groep A is persoonlijk kampioen van de NBSB</p>\n",
+   "protected": false
+  },
+  "author": 2,
+  "featured_media": 0,
+  "menu_order": 0,
+  "template": "",
+  "meta": {
+   "_acf_changed": false,
+   "footnotes": ""
+  },
+  "event-category": [
+   58,
+   34,
+   33,
+   57
+  ],
+  "bond": [
+   40
+  ],
+  "speed": [
+   36
+  ],
+  "class_list": [
+   "post-32127",
+   "event",
+   "type-event",
+   "status-publish",
+   "hentry",
+   "event-category-meerdaags",
+   "event-category-niet-uitgelicht",
+   "event-category-schaakkalender",
+   "event-category-senior",
+   "bond-noord-brabantse-schaak-bond-nbsb",
+   "speed-normaalschaak"
+  ],
+  "acf": []
+ },
+ {
+  "id": 30266,
+  "date": "2026-09-09T01:30:26",
+  "date_gmt": "2026-09-08T23:30:26",
+  "modified": "2026-09-09T01:30:26",
+  "modified_gmt": "2026-09-08T23:30:26",
+  "slug": "zomeravondcompetitie-2027-07-19",
+  "status": "publish",
+  "type": "event",
+  "link": "https://schaakbond.nl/event/zomeravondcompetitie-2027-07-19/",
+  "title": {
+   "rendered": "Zomeravondcompetitie"
+  },
+  "content": {
+   "rendered": "<p>Open rapidcompetitie over voor KNSB en NBSB leden en huisschakers op 5 maandagavonden: 4 partijen per avond. Aantal keer deelnemen is geheel vrij (1x t/m 5x).<br />\nJe kunt je inschrijven per avond voor 19 en 26 juli en 9, 16 en 23 augustus. Voor één van de avonden waarop je niet kunt krijg je een bye van 2 punten (4x remise). Ook bij een week afwezigheid kun je dus toch meedoen voor een finaleplaats. Op 23 augustus vindt de finale plaats tussen de top 6 van het klassement na 4 avonden.</p>\n",
+   "protected": false
+  },
+  "excerpt": {
+   "rendered": "<p>Open rapidcompetitie over voor KNSB en NBSB leden en huisschakers op 5 maandagavonden: 4 partijen per avond. Aantal keer deelnemen is geheel vrij (1x t/m 5x). Je kunt je inschrijven per avond voor 19 en 26 juli en 9, 16 en 23 augustus. Voor één van de avonden waarop je niet kunt krijg je een [&hellip;]</p>\n",
+   "protected": false
+  },
+  "author": 2,
+  "featured_media": 0,
+  "menu_order": 0,
+  "template": "",
+  "meta": {
+   "_acf_changed": false,
+   "footnotes": ""
+  },
+  "event-category": [
+   59,
+   58,
+   34,
+   33,
+   57
+  ],
+  "bond": [
+   40
+  ],
+  "speed": [
+   37
+  ],
+  "class_list": [
+   "post-30266",
+   "event",
+   "type-event",
+   "status-publish",
+   "hentry",
+   "event-category-jeugd",
+   "event-category-meerdaags",
+   "event-category-niet-uitgelicht",
+   "event-category-schaakkalender",
+   "event-category-senior",
+   "bond-noord-brabantse-schaak-bond-nbsb",
+   "speed-rapidschaak"
+  ],
+  "acf": []
+ },
+ {
+  "id": 30267,
+  "date": "2026-09-09T01:30:26",
+  "date_gmt": "2026-09-08T23:30:26",
+  "modified": "2026-09-09T01:30:26",
+  "modified_gmt": "2026-09-08T23:30:26",
+  "slug": "zomeravondcompetitie-2027-07-26",
+  "status": "publish",
+  "type": "event",
+  "link": "https://schaakbond.nl/event/zomeravondcompetitie-2027-07-26/",
+  "title": {
+   "rendered": "Zomeravondcompetitie"
+  },
+  "content": {
+   "rendered": "<p>Open rapidcompetitie over voor KNSB en NBSB leden en huisschakers op 5 maandagavonden: 4 partijen per avond. Aantal keer deelnemen is geheel vrij (1x t/m 5x).<br />\nJe kunt je inschrijven per avond voor 19 en 26 juli en 9, 16 en 23 augustus. Voor één van de avonden waarop je niet kunt krijg je een bye van 2 punten (4x remise). Ook bij een week afwezigheid kun je dus toch meedoen voor een finaleplaats. Op 23 augustus vindt de finale plaats tussen de top 6 van het klassement na 4 avonden.</p>\n",
+   "protected": false
+  },
+  "excerpt": {
+   "rendered": "<p>Open rapidcompetitie over voor KNSB en NBSB leden en huisschakers op 5 maandagavonden: 4 partijen per avond. Aantal keer deelnemen is geheel vrij (1x t/m 5x). Je kunt je inschrijven per avond voor 19 en 26 juli en 9, 16 en 23 augustus. Voor één van de avonden waarop je niet kunt krijg je een [&hellip;]</p>\n",
+   "protected": false
+  },
+  "author": 2,
+  "featured_media": 0,
+  "menu_order": 0,
+  "template": "",
+  "meta": {
+   "_acf_changed": false,
+   "footnotes": ""
+  },
+  "event-category": [
+   59,
+   58,
+   34,
+   33,
+   57
+  ],
+  "bond": [
+   40
+  ],
+  "speed": [
+   37
+  ],
+  "class_list": [
+   "post-30267",
+   "event",
+   "type-event",
+   "status-publish",
+   "hentry",
+   "event-category-jeugd",
+   "event-category-meerdaags",
+   "event-category-niet-uitgelicht",
+   "event-category-schaakkalender",
+   "event-category-senior",
+   "bond-noord-brabantse-schaak-bond-nbsb",
+   "speed-rapidschaak"
+  ],
+  "acf": []
+ },
+ {
+  "id": 32712,
+  "date": "2026-09-09T01:30:26",
+  "date_gmt": "2026-09-08T23:30:26",
+  "modified": "2026-09-09T01:30:26",
+  "modified_gmt": "2026-09-08T23:30:26",
+  "slug": "zomeravond-snelschaaktoernooi-2027-08-23",
+  "status": "publish",
+  "type": "event",
+  "link": "https://schaakbond.nl/event/zomeravond-snelschaaktoernooi-2027-08-23/",
+  "title": {
+   "rendered": "Zomeravond snelschaaktoernooi"
+  },
+  "content": {
+   "rendered": "<p>Open snelschaaktoernooi over voor KNSB en NBSB leden en huisschakers. 8 partijen met speeltempo 5 min.p.p.p.p. + 2 sec increment.<br />\nToernooi resultaten tellen niet mee voor de KNSB Blitz rating.</p>\n",
+   "protected": false
+  },
+  "excerpt": {
+   "rendered": "<p>Open snelschaaktoernooi over voor KNSB en NBSB leden en huisschakers. 8 partijen met speeltempo 5 min.p.p.p.p. + 2 sec increment. Toernooi resultaten tellen niet mee voor de KNSB Blitz rating.</p>\n",
+   "protected": false
+  },
+  "author": 2,
+  "featured_media": 0,
+  "menu_order": 0,
+  "template": "",
+  "meta": {
+   "_acf_changed": false,
+   "footnotes": ""
+  },
+  "event-category": [
+   180,
+   59,
+   34,
+   33,
+   57
+  ],
+  "bond": [
+   40
+  ],
+  "speed": [
+   39
+  ],
+  "class_list": [
+   "post-32712",
+   "event",
+   "type-event",
+   "status-publish",
+   "hentry",
+   "event-category-geen-lidmaatschap-nodig",
+   "event-category-jeugd",
+   "event-category-niet-uitgelicht",
+   "event-category-schaakkalender",
+   "event-category-senior",
+   "bond-noord-brabantse-schaak-bond-nbsb",
+   "speed-snelschaak"
+  ],
+  "acf": []
+ },
+ {
+  "id": 32856,
+  "date": "2026-09-09T01:30:25",
+  "date_gmt": "2026-09-08T23:30:25",
+  "modified": "2026-09-09T01:30:25",
+  "modified_gmt": "2026-09-08T23:30:25",
+  "slug": "29e-van-voorden-snelschaaktoernooi-2027-06-05",
+  "status": "publish",
+  "type": "event",
+  "link": "https://schaakbond.nl/event/29e-van-voorden-snelschaaktoernooi-2027-06-05/",
+  "title": {
+   "rendered": "29e Van Voorden Snelschaaktoernooi"
+  },
+  "content": {
+   "rendered": "<p>Een gezellig schaaktoernooi  van Schaakvereniging Bommelerwaard waar volgens het systeem Amsterdam gespeeld wordt.</p>\n",
+   "protected": false
+  },
+  "excerpt": {
+   "rendered": "<p>Een gezellig schaaktoernooi van Schaakvereniging Bommelerwaard waar volgens het systeem Amsterdam gespeeld wordt.</p>\n",
+   "protected": false
+  },
+  "author": 2,
+  "featured_media": 0,
+  "menu_order": 0,
+  "template": "",
+  "meta": {
+   "_acf_changed": false,
+   "footnotes": ""
+  },
+  "event-category": [
+   180,
+   178,
+   177,
+   179,
+   59,
+   34,
+   33,
+   57
+  ],
+  "bond": [
+   38
+  ],
+  "speed": [
+   39
+  ],
+  "class_list": [
+   "post-32856",
+   "event",
+   "type-event",
+   "status-publish",
+   "hentry",
+   "event-category-geen-lidmaatschap-nodig",
+   "event-category-gemiddeld",
+   "event-category-geschikt-voor-beginners",
+   "event-category-gevorderd",
+   "event-category-jeugd",
+   "event-category-niet-uitgelicht",
+   "event-category-schaakkalender",
+   "event-category-senior",
+   "bond-stichts-gooise-schaakbond-sgs",
+   "speed-snelschaak"
+  ],
+  "acf": []
+ },
+ {
+  "id": 30338,
+  "date": "2026-09-09T01:30:25",
+  "date_gmt": "2026-09-08T23:30:25",
+  "modified": "2026-09-09T01:30:25",
+  "modified_gmt": "2026-09-08T23:30:25",
+  "slug": "nk-online-schaken-voor-de-jeugd-fgh-2027-06-11",
+  "status": "publish",
+  "type": "event",
+  "link": "https://schaakbond.nl/event/nk-online-schaken-voor-de-jeugd-fgh-2027-06-11/",
+  "title": {
+   "rendered": "NK Online Schaken voor de jeugd, FGH"
+  },
+  "content": {
+   "rendered": "<p>Voor de jongste jeugd tot en met 9 jaar (geboren in 2018 of later). Er zijn 4 groepen, Topgroepen F geboren in 2018, G geboren in 2019, H geboren in 2020of later en Open groep FGH geboren in. 2018 of later. De open groep is voor huisschakers, spelers zonder rating of lage rating. Heb je je geplaatst voor.de Nationale Pupillendag dan speel je in een Topgroep.</p>\n",
+   "protected": false
+  },
+  "excerpt": {
+   "rendered": "<p>Voor de jongste jeugd tot en met 9 jaar (geboren in 2018 of later). Er zijn 4 groepen, Topgroepen F geboren in 2018, G geboren in 2019, H geboren in 2020of later en Open groep FGH geboren in. 2018 of later. De open groep is voor huisschakers, spelers zonder rating of lage rating. Heb je [&hellip;]</p>\n",
+   "protected": false
+  },
+  "author": 2,
+  "featured_media": 0,
+  "menu_order": 0,
+  "template": "",
+  "meta": {
+   "_acf_changed": false,
+   "footnotes": ""
+  },
+  "event-category": [
+   61,
+   59,
+   34,
+   33
+  ],
+  "bond": [
+   44
+  ],
+  "speed": [
+   39
+  ],
+  "class_list": [
+   "post-30338",
+   "event",
+   "type-event",
+   "status-publish",
+   "hentry",
+   "event-category-internetschaak",
+   "event-category-jeugd",
+   "event-category-niet-uitgelicht",
+   "event-category-schaakkalender",
+   "bond-knsb-overig",
+   "speed-snelschaak"
+  ],
+  "acf": []
+ },
+ {
+  "id": 30333,
+  "date": "2026-09-09T01:30:24",
+  "date_gmt": "2026-09-08T23:30:24",
+  "modified": "2026-09-09T01:30:24",
+  "modified_gmt": "2026-09-08T23:30:24",
+  "slug": "nk-345-online-bo-individueel-2027-05-12",
+  "status": "publish",
+  "type": "event",
+  "link": "https://schaakbond.nl/event/nk-345-online-bo-individueel-2027-05-12/",
+  "title": {
+   "rendered": "NK 345 Online BO individueel"
+  },
+  "content": {
+   "rendered": "<p>Alle online scholenkampioenschappen individueel worden onder de noemer NK online schaken voor jeugd op het platform van Tornelo.com gespeeld.</p>\n",
+   "protected": false
+  },
+  "excerpt": {
+   "rendered": "<p>Alle online scholenkampioenschappen individueel worden onder de noemer NK online schaken voor jeugd op het platform van Tornelo.com gespeeld.</p>\n",
+   "protected": false
+  },
+  "author": 2,
+  "featured_media": 0,
+  "menu_order": 0,
+  "template": "",
+  "meta": {
+   "_acf_changed": false,
+   "footnotes": ""
+  },
+  "event-category": [
+   61,
+   59,
+   34,
+   33
+  ],
+  "bond": [
+   44
+  ],
+  "speed": [
+   39
+  ],
+  "class_list": [
+   "post-30333",
+   "event",
+   "type-event",
+   "status-publish",
+   "hentry",
+   "event-category-internetschaak",
+   "event-category-jeugd",
+   "event-category-niet-uitgelicht",
+   "event-category-schaakkalender",
+   "bond-knsb-overig",
+   "speed-snelschaak"
+  ],
+  "acf": []
+ },
+ {
+  "id": 30327,
+  "date": "2026-09-09T01:30:23",
+  "date_gmt": "2026-09-08T23:30:23",
+  "modified": "2026-09-09T01:30:23",
+  "modified_gmt": "2026-09-08T23:30:23",
+  "slug": "knsb-d-competitie-4e-ronde-tog-maasstad-87-voor-doven-en-slechthorende-2027-04-10",
+  "status": "publish",
+  "type": "event",
+  "link": "https://schaakbond.nl/event/knsb-d-competitie-4e-ronde-tog-maasstad-87-voor-doven-en-slechthorende-2027-04-10/",
+  "title": {
+   "rendered": "KNSB D- Competitie 4e ronde TOG -Maasstad &#8217;87 (Voor Doven en Slechthorende)"
+  },
+  "content": {
+   "rendered": "<p>alleen voor doven en slechthorende, ben jij doven of slechthorende? jij bent hartelijk welkom langs kijken!</p>\n",
+   "protected": false
+  },
+  "excerpt": {
+   "rendered": "<p>alleen voor doven en slechthorende, ben jij doven of slechthorende? jij bent hartelijk welkom langs kijken!</p>\n",
+   "protected": false
+  },
+  "author": 2,
+  "featured_media": 0,
+  "menu_order": 0,
+  "template": "",
+  "meta": {
+   "_acf_changed": false,
+   "footnotes": ""
+  },
+  "event-category": [
+   59,
+   34,
+   33,
+   57
+  ],
+  "bond": [
+   44
+  ],
+  "speed": [
+   36
+  ],
+  "class_list": [
+   "post-30327",
+   "event",
+   "type-event",
+   "status-publish",
+   "hentry",
+   "event-category-jeugd",
+   "event-category-niet-uitgelicht",
+   "event-category-schaakkalender",
+   "event-category-senior",
+   "bond-knsb-overig",
+   "speed-normaalschaak"
+  ],
+  "acf": []
+ },
+ {
+  "id": 30587,
+  "date": "2026-09-09T01:30:23",
+  "date_gmt": "2026-09-08T23:30:23",
+  "modified": "2026-09-09T01:30:23",
+  "modified_gmt": "2026-09-08T23:30:23",
+  "slug": "31ste-j-de-kluyver-jeugdschaaktoernooi-van-spijkenisse-2027-04-10",
+  "status": "publish",
+  "type": "event",
+  "link": "https://schaakbond.nl/event/31ste-j-de-kluyver-jeugdschaaktoernooi-van-spijkenisse-2027-04-10/",
+  "title": {
+   "rendered": "31ste J. de Kluyver jeugdschaaktoernooi van Spijkenisse"
+  },
+  "content": {
+   "rendered": "<p>Op zaterdag 10 april 2027 wordt voor de 31e keer het J. de Kluyver jeugdschaaktoernooi van Spijkenisse en de 22e editie van het Forum Invitatietoernooi gehouden.</p>\n<p>Ook dit jaar weer op onze prachtige clublocatie De Boekenberg in Spijkenisse. Het toernooi is voor alle niveaus, dus ook de jongsten kunnen hier hun eerste ervaring opdoen bij een Zwitsers ingedeeld toernooi.</p>\n<p>We schaken in 6 leeftijdsklassen, A(t/m 25 jaar) en B t/m F.<br />\nBegeleiders, en ouders, kunnen ook dit jaar weer mee schaken met de A groep.<br />\nDe inschrijving van de A t/m F groepen start op zaterdag 28 november 2026 loopt door tot zaterdag 10 april 2027, 09.45 uur.</p>\n",
+   "protected": false
+  },
+  "excerpt": {
+   "rendered": "<p>Op zaterdag 10 april 2027 wordt voor de 31e keer het J. de Kluyver jeugdschaaktoernooi van Spijkenisse en de 22e editie van het Forum Invitatietoernooi gehouden. Ook dit jaar weer op onze prachtige clublocatie De Boekenberg in Spijkenisse. Het toernooi is voor alle niveaus, dus ook de jongsten kunnen hier hun eerste ervaring opdoen bij [&hellip;]</p>\n",
+   "protected": false
+  },
+  "author": 2,
+  "featured_media": 0,
+  "menu_order": 0,
+  "template": "",
+  "meta": {
+   "_acf_changed": false,
+   "footnotes": ""
+  },
+  "event-category": [
+   59,
+   34,
+   33
+  ],
+  "bond": [
+   49
+  ],
+  "speed": [
+   37
+  ],
+  "class_list": [
+   "post-30587",
+   "event",
+   "type-event",
+   "status-publish",
+   "hentry",
+   "event-category-jeugd",
+   "event-category-niet-uitgelicht",
+   "event-category-schaakkalender",
+   "bond-rotterdamse-schaakbond-rsb",
+   "speed-rapidschaak"
+  ],
+  "acf": []
+ },
+ {
+  "id": 30269,
+  "date": "2026-09-09T01:30:26",
+  "date_gmt": "2026-09-08T23:30:26",
+  "modified": "2026-09-09T01:30:26",
+  "modified_gmt": "2026-09-08T23:30:26",
+  "slug": "zomeravondcompetitie-2027-08-09",
+  "status": "publish",
+  "type": "event",
+  "link": "https://schaakbond.nl/event/zomeravondcompetitie-2027-08-09/",
+  "title": {
+   "rendered": "Zomeravondcompetitie"
+  },
+  "content": {
+   "rendered": "<p>Open rapidcompetitie over voor KNSB en NBSB leden en huisschakers op 5 maandagavonden: 4 partijen per avond. Aantal keer deelnemen is geheel vrij (1x t/m 5x).<br />\nJe kunt je inschrijven per avond voor 19 en 26 juli en 9, 16 en 23 augustus. Voor één van de avonden waarop je niet kunt krijg je een bye van 2 punten (4x remise). Ook bij een week afwezigheid kun je dus toch meedoen voor een finaleplaats. Op 23 augustus vindt de finale plaats tussen de top 6 van het klassement na 4 avonden.</p>\n",
+   "protected": false
+  },
+  "excerpt": {
+   "rendered": "<p>Open rapidcompetitie over voor KNSB en NBSB leden en huisschakers op 5 maandagavonden: 4 partijen per avond. Aantal keer deelnemen is geheel vrij (1x t/m 5x). Je kunt je inschrijven per avond voor 19 en 26 juli en 9, 16 en 23 augustus. Voor één van de avonden waarop je niet kunt krijg je een [&hellip;]</p>\n",
+   "protected": false
+  },
+  "author": 2,
+  "featured_media": 0,
+  "menu_order": 0,
+  "template": "",
+  "meta": {
+   "_acf_changed": false,
+   "footnotes": ""
+  },
+  "event-category": [
+   59,
+   58,
+   34,
+   33,
+   57
+  ],
+  "bond": [
+   40
+  ],
+  "speed": [
+   37
+  ],
+  "class_list": [
+   "post-30269",
+   "event",
+   "type-event",
+   "status-publish",
+   "hentry",
+   "event-category-jeugd",
+   "event-category-meerdaags",
+   "event-category-niet-uitgelicht",
+   "event-category-schaakkalender",
+   "event-category-senior",
+   "bond-noord-brabantse-schaak-bond-nbsb",
+   "speed-rapidschaak"
+  ],
+  "acf": []
+ },
+ {
+  "id": 30357,
+  "date": "2026-09-09T01:30:18",
+  "date_gmt": "2026-09-08T23:30:18",
+  "modified": "2026-09-09T01:30:19",
+  "modified_gmt": "2026-09-08T23:30:19",
+  "slug": "keistad-schaakvierkamp-2026-11-27",
+  "status": "publish",
+  "type": "event",
+  "link": "https://schaakbond.nl/event/keistad-schaakvierkamp-2026-11-27/",
+  "title": {
+   "rendered": "Keistad Schaakvierkamp"
+  },
+  "content": {
+   "rendered": "<p>Op 27 en 28 november is de Keistad schaakvierkamp in Amersfoort. Je speelt drie partijen klassiek tegen tegenstanders van ongeveer dezelfde sterkte.</p>\n",
+   "protected": false
+  },
+  "excerpt": {
+   "rendered": "<p>Op 27 en 28 november is de Keistad schaakvierkamp in Amersfoort. Je speelt drie partijen klassiek tegen tegenstanders van ongeveer dezelfde sterkte.</p>\n",
+   "protected": false
+  },
+  "author": 2,
+  "featured_media": 0,
+  "menu_order": 0,
+  "template": "",
+  "meta": {
+   "_acf_changed": false,
+   "footnotes": ""
+  },
+  "event-category": [
+   34,
+   33
+  ],
+  "bond": [
+   38
+  ],
+  "speed": [
+   36
+  ],
+  "class_list": [
+   "post-30357",
+   "event",
+   "type-event",
+   "status-publish",
+   "hentry",
+   "event-category-niet-uitgelicht",
+   "event-category-schaakkalender",
+   "bond-stichts-gooise-schaakbond-sgs",
+   "speed-normaalschaak"
+  ],
+  "acf": []
+ },
+ {
+  "id": 32688,
+  "date": "2026-09-09T01:30:18",
+  "date_gmt": "2026-09-08T23:30:18",
+  "modified": "2026-09-09T01:30:18",
+  "modified_gmt": "2026-09-08T23:30:18",
+  "slug": "onk-nsvg-2026-2026-11-26",
+  "status": "publish",
+  "type": "event",
+  "link": "https://schaakbond.nl/event/onk-nsvg-2026-2026-11-26/",
+  "title": {
+   "rendered": "ONK NSVG 2026"
+  },
+  "content": {
+   "rendered": "<p>6 rondig open toernooi voor zienden en visueel gehandicapten</p>\n",
+   "protected": false
+  },
+  "excerpt": {
+   "rendered": "<p>6 rondig open toernooi voor zienden en visueel gehandicapten</p>\n",
+   "protected": false
+  },
+  "author": 2,
+  "featured_media": 0,
+  "menu_order": 0,
+  "template": "",
+  "meta": {
+   "_acf_changed": false,
+   "footnotes": ""
+  },
+  "event-category": [
+   181,
+   180,
+   178,
+   177,
+   179,
+   59,
+   58,
+   34,
+   185,
+   182,
+   183,
+   33,
+   57
+  ],
+  "bond": [
+   44
+  ],
+  "speed": [
+   36
+  ],
+  "class_list": [
+   "post-32688",
+   "event",
+   "type-event",
+   "status-publish",
+   "hentry",
+   "event-category-clublidmaatschap",
+   "event-category-geen-lidmaatschap-nodig",
+   "event-category-gemiddeld",
+   "event-category-geschikt-voor-beginners",
+   "event-category-gevorderd",
+   "event-category-jeugd",
+   "event-category-meerdaags",
+   "event-category-niet-uitgelicht",
+   "event-category-persoonlijk-knsb-lidmaatschap",
+   "event-category-ratinglidmaatschap",
+   "event-category-ratinglidmaatschap-via-inschrijving-toernooi",
+   "event-category-schaakkalender",
+   "event-category-senior",
+   "bond-knsb-overig",
+   "speed-normaalschaak"
+  ],
+  "acf": []
+ }
+]

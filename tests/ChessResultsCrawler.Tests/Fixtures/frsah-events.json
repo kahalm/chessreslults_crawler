@@ -1,0 +1,137 @@
+{
+ "events": [
+  {
+   "id": 41501,
+   "title": "Craiova Grand Prix",
+   "url": "https://frsah.ro/event/craiova-grand-prix/",
+   "all_day": true,
+   "start_date": "2026-09-12 00:00:00",
+   "end_date": "2026-09-13 23:59:59",
+   "venue": {
+    "id": 41502,
+    "venue": "Sala Polivalentă – strada Știrbei Vodă nr.32, Craiova",
+    "address": "Știrbei Vodă 32",
+    "city": "Craiova",
+    "province": "Dolj",
+    "country": "Romania"
+   },
+   "categories": [],
+   "tags": []
+  },
+  {
+   "id": 41669,
+   "title": "Concurs de ȘAH PION CAMPION",
+   "url": "https://frsah.ro/event/concurs-de-sah-pion-campion-4/",
+   "all_day": true,
+   "start_date": "2026-09-12 00:00:00",
+   "end_date": "2026-09-12 23:59:59",
+   "venue": {
+    "id": 33749,
+    "venue": "Tg-Mureș, Piața Republicii nr. 47, sala de la etaj, intrarea prin curte",
+    "address": null,
+    "city": null,
+    "province": null,
+    "country": null
+   },
+   "categories": [],
+   "tags": []
+  },
+  {
+   "id": 41988,
+   "title": "Grand Prix MegaChess la Mega Mall 2026 &#8211; Etapa a IV-a",
+   "url": "https://frsah.ro/event/grand-prix-megachess-la-mega-mall-2026-etapa-a-iv-a/",
+   "all_day": true,
+   "start_date": "2026-09-13 00:00:00",
+   "end_date": "2026-09-13 23:59:59",
+   "venue": {
+    "id": 40839,
+    "venue": "Mega Mall Bucuresti &#8211; B-dul Pierre de Coubertin 3-5, Etaj 2",
+    "address": null,
+    "city": null,
+    "province": null,
+    "country": null
+   },
+   "categories": [],
+   "tags": []
+  },
+  {
+   "id": 41743,
+   "title": "CHECK &#038; MATE &#8211; Ediția a 2-a",
+   "url": "https://frsah.ro/event/check-mate-editia-a-2-a/",
+   "all_day": true,
+   "start_date": "2026-11-05 00:00:00",
+   "end_date": "2026-11-08 23:59:59",
+   "venue": {
+    "id": 41745,
+    "venue": "CATTIA (Centrul de Afaceri, Transfer Tehnologic și Incubator de Afaceri) &#8211; Strada Institutului 35, 500484 Brașov",
+    "address": null,
+    "city": null,
+    "province": null,
+    "country": null
+   },
+   "categories": [],
+   "tags": []
+  },
+  {
+   "id": 42172,
+   "title": "TURNEUL ELITE CUP",
+   "url": "https://frsah.ro/event/turneul-elite-cup/",
+   "all_day": true,
+   "start_date": "2026-09-19 00:00:00",
+   "end_date": "2026-09-19 23:59:59",
+   "venue": null,
+   "categories": [],
+   "tags": []
+  },
+  {
+   "id": 41596,
+   "title": "Campionatul Național pe echipe &#8211; Divizia A",
+   "url": "https://frsah.ro/event/campionatul-national-pe-echipe-divizia-a/",
+   "all_day": true,
+   "start_date": "2026-10-05 00:00:00",
+   "end_date": "2026-10-11 23:59:59",
+   "venue": null,
+   "categories": [],
+   "tags": []
+  },
+  {
+   "id": 41420,
+   "title": "Trofeul ”Cavalerii Mării Negre”  Năvodari &#8211; Ediția a III-a",
+   "url": "https://frsah.ro/event/trofeul-cavalerii-marii-negre-navodari-editia-a-iii-a/",
+   "all_day": true,
+   "start_date": "2026-10-28 00:00:00",
+   "end_date": "2026-11-01 23:59:59",
+   "venue": {
+    "id": 31372,
+    "venue": "Centrul de Afaceri Năvodari",
+    "address": null,
+    "city": null,
+    "province": null,
+    "country": null
+   },
+   "categories": [],
+   "tags": []
+  },
+  {
+   "id": 42043,
+   "title": "Cupa Diosig 2026",
+   "url": "https://frsah.ro/event/cupa-diosig-2026/",
+   "all_day": true,
+   "start_date": "2026-10-03 00:00:00",
+   "end_date": "2026-10-04 23:59:59",
+   "venue": {
+    "id": 34099,
+    "venue": "Restaurant Cataleya",
+    "address": null,
+    "city": null,
+    "province": null,
+    "country": null
+   },
+   "categories": [],
+   "tags": []
+  }
+ ],
+ "rest_url": "https://frsah.ro/wp-json/tribe/events/v1/events/?page=1&per_page=50",
+ "total": 8,
+ "total_pages": 1
+}
