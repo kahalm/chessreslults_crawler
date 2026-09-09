@@ -198,11 +198,12 @@ public class ChessArbiterCalendarServiceTests
         var service = new ChessArbiterCalendarService(
             new HttpClient(recorder), Mock.Of<ILogger<ChessArbiterCalendarService>>());
 
-        var detail = await service.FetchDetailAsync("2026", "291");
+        var result = await service.FetchDetailAsync("2026", "291");
 
         Assert.NotNull(recorder.LastUrl);
         Assert.Equal("https://www.chessarbiter.com/turnieje/2026/ti_291/", recorder.LastUrl);
-        Assert.NotNull(detail);
+        Assert.Equal(ChessArbiterDetailOutcome.Parsed, result.Outcome);
+        Assert.NotNull(result.Detail);
     }
 
     [Fact]
@@ -214,7 +215,28 @@ public class ChessArbiterCalendarServiceTests
             new HttpClient(new RecordingHandler("", HttpStatusCode.MovedPermanently)),
             Mock.Of<ILogger<ChessArbiterCalendarService>>());
 
-        Assert.Null(await service.FetchDetailAsync("2026", "291"));
+        var result = await service.FetchDetailAsync("2026", "291");
+
+        // NICHT `Empty`: eine Umleitung ist keine Auskunft ueber das Turnier, sie muss wiederholt
+        // werden. Genau diese Verwechslung wuerde ein Turnier fuer immer als „nichts da" abhaken.
+        Assert.Equal(ChessArbiterDetailOutcome.Unavailable, result.Outcome);
+        Assert.Null(result.Detail);
+    }
+
+    [Fact]
+    public async Task FetchDetailAsync_SeiteOhneAngaben_istEineEndgueltigeAuskunft()
+    {
+        // Der haeufige Fall dieser Quelle: 200 mit einer JavaScript-Huelle, in der keine einzige
+        // Angabe steht. Das ist ETWAS ANDERES als „nicht zu holen" — der Aufrufer darf es sich
+        // merken und das Turnier nie wieder fragen.
+        var service = new ChessArbiterCalendarService(
+            new HttpClient(new RecordingHandler("<html><body>nur Geruest</body></html>")),
+            Mock.Of<ILogger<ChessArbiterCalendarService>>());
+
+        var result = await service.FetchDetailAsync("2026", "291");
+
+        Assert.Equal(ChessArbiterDetailOutcome.Empty, result.Outcome);
+        Assert.Null(result.Detail);
     }
 
     // ----- Hilfen ------------------------------------------------------------

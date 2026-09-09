@@ -45,9 +45,16 @@ public class ChessArbiterCalendarController : ControllerBase
     public async Task<ActionResult<ChessArbiterDetailResponse>> Detail(
         [FromQuery] string year, [FromQuery] string id, CancellationToken ct = default)
     {
-        var detail = await _chessArbiter.FetchDetailAsync(year, id, ct);
-        return detail is null
-            ? NotFound()
-            : Ok(ChessArbiterDetailResponse.FromParsed(detail));
+        var result = await _chessArbiter.FetchDetailAsync(year, id, ct);
+        // 204 heisst „gefragt, die Seite traegt keine Angaben" — eine ENDGUELTIGE Auskunft, die der
+        // Aufrufer sich merken darf. 404 bleibt dem Fall „nicht zu holen" (Netz, Umleitung, Fehler
+        // der Quelle) und muss wiederholt werden. Beides als 404 zu melden kostete RookHub jede
+        // Nacht sein ganzes Abruf-Budget an denselben ~480 Turnieren ohne Datenseite.
+        return result.Outcome switch
+        {
+            ChessArbiterDetailOutcome.Parsed => Ok(ChessArbiterDetailResponse.FromParsed(result.Detail!)),
+            ChessArbiterDetailOutcome.Empty => NoContent(),
+            _ => NotFound(),
+        };
     }
 }

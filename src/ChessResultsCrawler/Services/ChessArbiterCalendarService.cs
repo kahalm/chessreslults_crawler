@@ -34,6 +34,36 @@ public class ParsedChessArbiterEvent
 }
 
 /// <summary>Was die Detailseite EINES polnischen Turniers zusaetzlich hergibt.</summary>
+/// <summary>
+/// Wie eine Detail-Abfrage ausgegangen ist. Der Unterschied zwischen den letzten beiden ist der
+/// ganze Zweck dieses Typs: <b>„Seite geholt, sie traegt keine Angaben"</b> ist eine endgueltige
+/// Auskunft — der Aufrufer darf sie sich merken und nie wieder fragen. <b>„Nicht zu holen"</b> ist
+/// keine Auskunft und muss wiederholt werden. Beides als <c>null</c> zurueckzugeben hiess: der
+/// Aufrufer fragt die rund 480 polnischen Turniere OHNE server-gerenderte Seite jede Nacht erneut
+/// und verbraucht damit sein ganzes Abruf-Budget an ihnen (gemessen 2026-09-09).
+/// </summary>
+public enum ChessArbiterDetailOutcome
+{
+    /// <summary>Seite geholt und Angaben gelesen.</summary>
+    Parsed,
+
+    /// <summary>Seite geholt, aber ohne eine einzige Angabe — bei dieser Quelle der HAEUFIGE Fall:
+    /// nur ein Teil der Turniere hat eine server-gerenderte Seite, die uebrigen liefern eine
+    /// JavaScript-Huelle (Stichprobe 2026-09-09: 3 von 14 mit Angaben).</summary>
+    Empty,
+
+    /// <summary>Nicht zu holen (Netzfehler, Umleitung, 4xx/5xx der Quelle).</summary>
+    Unavailable,
+}
+
+/// <summary>Ergebnis einer Detail-Abfrage: Ausgang plus die Angaben, wenn es welche gab.</summary>
+public readonly record struct ChessArbiterDetailResult(
+    ChessArbiterDetailOutcome Outcome, ParsedChessArbiterDetail? Detail)
+{
+    public static readonly ChessArbiterDetailResult Empty = new(ChessArbiterDetailOutcome.Empty, null);
+    public static readonly ChessArbiterDetailResult Unavailable = new(ChessArbiterDetailOutcome.Unavailable, null);
+}
+
 public class ParsedChessArbiterDetail
 {
     public DateOnly? StartDate { get; set; }
@@ -126,7 +156,12 @@ public class ChessArbiterCalendarService
         return events;
     }
 
-    public async Task<ParsedChessArbiterDetail?> FetchDetailAsync(
+    /// <summary>
+    /// Die Detailseite EINES Turniers. Unterscheidet „geholt, keine Angaben" von „nicht zu holen"
+    /// (siehe <see cref="ChessArbiterDetailOutcome"/>) — beides als <c>null</c> zu melden liess den
+    /// Aufrufer die Turniere ohne Datenseite endlos erneut fragen.
+    /// </summary>
+    public async Task<ChessArbiterDetailResult> FetchDetailAsync(
         string year, string id, CancellationToken ct = default)
     {
         if (!YearPattern.IsMatch(year) || !IdPattern.IsMatch(id))
@@ -143,9 +178,12 @@ public class ChessArbiterCalendarService
 
         using var response = await _http.GetAsync(target, ct);
         var html = await response.Content.ReadAsStringAsync(ct);
-        if (!response.IsSuccessStatusCode) return null;
+        if (!response.IsSuccessStatusCode) return ChessArbiterDetailResult.Unavailable;
 
-        return ParseDetail(html);
+        var detail = ParseDetail(html);
+        return detail is null
+            ? ChessArbiterDetailResult.Empty
+            : new ChessArbiterDetailResult(ChessArbiterDetailOutcome.Parsed, detail);
     }
 
     private static readonly Regex YearPattern = new(@"^\d{4}$", RegexOptions.Compiled);
