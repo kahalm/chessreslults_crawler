@@ -260,15 +260,6 @@ try
     .ConfigurePrimaryHttpMessageHandler(CrawlHttpHandler.Create)
     .WithExitRotationRetry(60);
 
-    // Der slowakische Verbandskalender — eine echte JSON-Schnittstelle, deshalb kurzer
-    // Zeitrahmen: 78 Turniere sind 32 KB.
-    builder.Services.AddHttpClient<SszCalendarService>(client =>
-    {
-        client.DefaultRequestHeaders.Add("User-Agent", "ChessResultsCrawler/1.0 (+RookHub)");
-        client.Timeout = TimeSpan.FromSeconds(30);
-    })
-    .ConfigurePrimaryHttpMessageHandler(CrawlHttpHandler.Create);
-
     builder.Services.AddHttpClient("Gluetun",
         client => GluetunClientSetup.Configure(client, builder.Configuration));
     builder.Services.AddScoped<HtmlParserService>();
