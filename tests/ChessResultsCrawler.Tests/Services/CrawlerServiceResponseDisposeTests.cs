@@ -62,7 +62,7 @@ public class CrawlerServiceResponseDisposeTests : IDisposable
         }).Build();
         var factory = Mock.Of<IHttpClientFactory>(f => f.CreateClient("Gluetun") == new HttpClient());
         return new CrawlerService(new HttpClient(handler), factory, new HtmlParserService(),
-            _db, Mock.Of<ILogger<CrawlerService>>(), config);
+            _db, Mock.Of<ILogger<CrawlerService>>(), config, TestVpnGate.Unused());
     }
 
     [Fact]

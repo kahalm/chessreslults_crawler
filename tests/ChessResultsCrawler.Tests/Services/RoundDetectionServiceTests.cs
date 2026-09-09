@@ -56,7 +56,7 @@ public class RoundDetectionServiceTests : IDisposable
         }).Build();
         var factory = Mock.Of<IHttpClientFactory>(f => f.CreateClient("Gluetun") == new HttpClient());
         var crawler = new CrawlerService(new HttpClient(handler), factory, new HtmlParserService(),
-            _db, Mock.Of<ILogger<CrawlerService>>(), config);
+            _db, Mock.Of<ILogger<CrawlerService>>(), config, TestVpnGate.Unused());
         var sut = new RoundDetectionService(crawler, new HtmlParserService(), _db,
             new MemoryCache(new MemoryCacheOptions()));
 
@@ -81,7 +81,7 @@ public class RoundDetectionServiceTests : IDisposable
         }).Build();
         var factory = Mock.Of<IHttpClientFactory>(f => f.CreateClient("Gluetun") == new HttpClient());
         var crawler = new CrawlerService(new HttpClient(handler), factory, new HtmlParserService(),
-            _db, Mock.Of<ILogger<CrawlerService>>(), config);
+            _db, Mock.Of<ILogger<CrawlerService>>(), config, TestVpnGate.Unused());
         var sut = new RoundDetectionService(crawler, new HtmlParserService(), _db,
             new MemoryCache(new MemoryCacheOptions()));
 

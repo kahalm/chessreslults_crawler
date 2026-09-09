@@ -15,6 +15,7 @@ public class CrawlerService
 {
     private readonly HttpClient _httpClient;
     private readonly HttpClient _gluetunClient;
+    private readonly VpnReadinessGate _vpnGate;
     private readonly HtmlParserService _parser;
     private readonly AppDbContext _db;
     private readonly ILogger<CrawlerService> _logger;
@@ -27,6 +28,19 @@ public class CrawlerService
     private readonly int _vpnRestartPauseMs;
     private readonly int _minDelayMs;
     private static readonly SemaphoreSlim _rateLimiter = new(1, 1);
+
+    /// <summary>
+    /// Derselbe Riegel, den <see cref="ThrottleAsync"/> haelt — sichtbar, weil der Wechsel des
+    /// VPN-Ausgangs ihn ebenfalls braucht: waehrend stop→pause→start ist der Tunnel unten, und in
+    /// diesem Fenster darf keine Crawl-Anfrage unterwegs sein. Die Rotation selbst liegt seit
+    /// 2026-09-09 in <see cref="VpnReadinessGate"/>, weil sie auch von den Quellen-Abrufen
+    /// gebraucht wird; der Riegel bleibt hier, weil hier die Anfragen entstehen.
+    /// </summary>
+    internal static SemaphoreSlim CrawlGate => _rateLimiter;
+
+    /// <summary>Nach einem Ausgangswechsel: der erste Abruf ueber die neue Verbindung soll den
+    /// vollen Mindestabstand abwarten. Gehoert zum Riegel und bleibt deshalb hier.</summary>
+    internal static void ResetThrottleClock() => _lastRequest = DateTime.UtcNow;
     private static DateTime _lastRequest = DateTime.MinValue;
     private static int _requestCount;
     /// <summary>
@@ -58,9 +72,10 @@ public class CrawlerService
     private static readonly TimeSpan MaxRetryAfter = TimeSpan.FromMinutes(5);
 
     public CrawlerService(HttpClient httpClient, IHttpClientFactory httpClientFactory, HtmlParserService parser, AppDbContext db,
-        ILogger<CrawlerService> logger, IConfiguration configuration)
+        ILogger<CrawlerService> logger, IConfiguration configuration, VpnReadinessGate vpnGate)
     {
         _httpClient = httpClient;
+        _vpnGate = vpnGate;
         _gluetunClient = httpClientFactory.CreateClient("Gluetun");
         _parser = parser;
         _db = db;
@@ -775,127 +790,6 @@ public class CrawlerService
         }
     }
 
-    /// <summary>
-    /// Startet den VPN-Tunnel neu (stop→pause→start). Läuft UNTER dem Rate-Limiter-Lock, weil der
-    /// Tunnel dabei kurz unten ist und in dieser Phase kein Crawl-Request rausgehen darf. Bewusst
-    /// KURZ gehalten: die rein informative Public-IP-Ermittlung (bis zu 5 s Polling) wird detached
-    /// außerhalb des Locks geloggt, damit wartende Crawls nicht zusätzlich blockiert werden.
-    /// Nimmt bewusst KEIN Aufrufer-Token entgegen (siehe Kommentar im Rumpf).
-    /// </summary>
-    private async Task RestartVpnTunnelAsync()
-    {
-        var statusUrl = $"{_gluetunApiUrl}/v1/vpn/status";
-        // stop→pause→start ist eine ATOMARE Einheit: sobald das stop draußen ist, MUSS ein start
-        // folgen. Deshalb läuft die Rotation bewusst NICHT mit dem Aufrufer-Token — bricht der
-        // Request ab (RookHub-Proxy timeoutet nach 30 s, während der Rate-Limiter bis 60 s warten
-        // lässt) oder trifft ein Shutdown/Deploy genau dieses Fenster, bliebe der gluetun-Tunnel
-        // dauerhaft "stopped": jeder weitere Crawl scheitert dann auf Verbindungsebene, bis nach
-        // 20 fehlgeschlagenen Requests zufällig die nächste Rotation ein start sendet.
-        // Stattdessen ein eigener, kurzer Timeout-Token + garantierter Recovery-start.
-        var stopSent = false;
-        try
-        {
-            using var rotationCts = new CancellationTokenSource(
-                TimeSpan.FromMilliseconds(_vpnRestartPauseMs + VpnControlTimeoutMs));
-
-            _logger.LogInformation("Rotating VPN IP...");
-            // VOR dem Senden setzen: wirft das stop-PUT selbst (Timeout, Verbindungsabbruch beim
-            // Antwort-Lesen), kann gluetun den Request trotzdem schon ausgeführt und den Tunnel
-            // gestoppt haben. Erst nach der Bestätigung zu setzen hieße: genau im gefährlichsten
-            // Fall läuft kein Recovery — der Tunnel bliebe dauerhaft "stopped". Ein überflüssiges
-            // Recovery-„running" ist dagegen harmlos (idempotent).
-            stopSent = true;
-            await _gluetunClient.PutAsync(statusUrl, NewVpnStatusContent("stopped"), rotationCts.Token);
-            await Task.Delay(_vpnRestartPauseMs, rotationCts.Token);
-            await _gluetunClient.PutAsync(statusUrl, NewVpnStatusContent("running"), rotationCts.Token);
-            stopSent = false;   // start durch → kein Recovery nötig
-            // Nach der Rotation den Rate-Limiter-Zeitstempel zuruecksetzen, damit die
-            // erste Anfrage ueber die neue Verbindung den vollen DelayMs-Abstand abwartet.
-            _lastRequest = DateTime.UtcNow;
-        }
-        catch (Exception ex)
-        {
-            _logger.LogWarning(ex, "VPN rotation failed (non-critical)");
-            if (stopSent)
-                await TryRecoverVpnStartAsync(statusUrl);
-            return;
-        }
-
-        // Neue Public-IP NICHT mehr im Lock ermitteln (kostete bis zu 5 s Blockade aller Crawls).
-        // Detached best-effort loggen, sobald gluetun die neue IP kennt.
-        LogNewPublicIpDetached();
-    }
-
-    /// <summary>Baut den gluetun-Statusbody neu — ein HttpContent ist nur EINMAL sendbar.</summary>
-    private static StringContent NewVpnStatusContent(string status) =>
-        new($$"""{"status":"{{status}}"}""", Encoding.UTF8, "application/json");
-
-    /// <summary>
-    /// Letzte Rettung nach einer abgebrochenen/fehlgeschlagenen Rotation: das start-PUT wird noch
-    /// einmal gefeuert, damit kein gestoppter Tunnel zurückbleibt. Bewusst ohne jeden Aufrufer-
-    /// Token und mit eigenem kurzen Timeout — genau der Abbruch war ja die Ursache.
-    /// </summary>
-    private async Task TryRecoverVpnStartAsync(string statusUrl)
-    {
-        try
-        {
-            using var cts = new CancellationTokenSource(TimeSpan.FromMilliseconds(VpnControlTimeoutMs));
-            await _gluetunClient.PutAsync(statusUrl, NewVpnStatusContent("running"), cts.Token);
-            _logger.LogWarning("VPN rotation abgebrochen — Tunnel per Recovery-start reaktiviert");
-        }
-        catch (Exception ex)
-        {
-            // Hier ist der Tunnel womöglich wirklich unten → Error, damit der Alert greift.
-            _logger.LogError(ex, "VPN recovery start failed — Tunnel bleibt moeglicherweise gestoppt");
-        }
-    }
-
-    /// <summary>
-    /// Ermittelt + loggt die neue Public-IP nach einer Rotation OHNE den Rate-Limiter zu halten
-    /// (fire-and-forget, best-effort — rein zur Korrelation in ES/Kibana).
-    /// </summary>
-    private void LogNewPublicIpDetached()
-    {
-        _ = Task.Run(async () =>
-        {
-            try
-            {
-                var newIp = await TryGetPublicIpAsync(CancellationToken.None);
-                using var _ = LogContext.PushProperty("LogTags", "crawl");
-                if (newIp is not null)
-                    _logger.LogInformation("VPN IP rotated → {NewIp}", newIp);
-                else
-                    _logger.LogInformation("VPN IP rotated (neue IP nicht ermittelbar)");
-            }
-            catch (Exception ex)
-            {
-                _logger.LogDebug(ex, "detached publicip logging failed");
-            }
-        });
-    }
-
-    /// <summary>
-    /// Fragt die aktuelle Public-IP beim gluetun-Control-Server ab (best-effort, non-critical).
-    /// gluetun braucht nach dem Reconnect kurz, bis die neue IP ermittelt ist → kurzes Polling.
-    /// </summary>
-    private async Task<string?> TryGetPublicIpAsync(CancellationToken ct)
-    {
-        for (int attempt = 0; attempt < 5; attempt++)
-        {
-            try
-            {
-                await Task.Delay(1000, ct);
-                var json = await _gluetunClient.GetStringAsync($"{_gluetunApiUrl}/v1/publicip/ip", ct);
-                var ip = ParsePublicIp(json);
-                if (!string.IsNullOrWhiteSpace(ip)) return ip;
-            }
-            catch (Exception ex)
-            {
-                _logger.LogDebug(ex, "publicip query attempt {Attempt} failed", attempt + 1);
-            }
-        }
-        return null;
-    }
 
     /// <summary>Extrahiert die <c>public_ip</c> aus der gluetun-Antwort von <c>/v1/publicip/ip</c>.</summary>
     public static string? ParsePublicIp(string json)
@@ -1325,14 +1219,14 @@ public class CrawlerService
             // unten, also DARF ohnehin kein Crawl-Request raus. Die anschließende, rein informative
             // Public-IP-Ermittlung (bis zu 5×1 s Polling, nur fürs Logging) lief früher ebenfalls
             // im Lock und blockierte alle wartenden Crawls ~5 s zusätzlich (Timeout-Risiko) →
-            // läuft jetzt detached außerhalb des Locks (siehe RestartVpnTunnelAsync).
+            // läuft jetzt detached außerhalb des Locks (siehe VpnReadinessGate.RotateWhileGateHeldAsync).
             _requestCount++;
             if (_requestCount >= _rotateAfterRequests)
             {
                 _requestCount = 0;
                 // Bewusst ohne ct: die Rotation muss auch bei Request-Abbruch zu Ende laufen,
-                // sonst bleibt der Tunnel gestoppt (siehe RestartVpnTunnelAsync).
-                await RestartVpnTunnelAsync();
+                // sonst bleibt der Tunnel gestoppt (siehe VpnReadinessGate.RotateWhileGateHeldAsync).
+                await _vpnGate.RotateWhileGateHeldAsync();
             }
 
             var elapsed = (DateTime.UtcNow - _lastRequest).TotalMilliseconds;

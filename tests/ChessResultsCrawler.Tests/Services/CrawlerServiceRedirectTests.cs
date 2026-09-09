@@ -38,7 +38,7 @@ public class CrawlerServiceRedirectTests : IDisposable
         }).Build();
         var httpClientFactory = Mock.Of<IHttpClientFactory>(f => f.CreateClient("Gluetun") == new HttpClient());
         return new CrawlerService(new HttpClient(handler), httpClientFactory, new HtmlParserService(),
-            _db, Mock.Of<ILogger<CrawlerService>>(), config);
+            _db, Mock.Of<ILogger<CrawlerService>>(), config, TestVpnGate.Unused());
     }
 
     private static HttpResponseMessage Redirect(HttpStatusCode code, string location)

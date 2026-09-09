@@ -71,7 +71,7 @@ public class CrawlerServiceTeamPairingsTests : IDisposable
         }).Build();
         var factory = Mock.Of<IHttpClientFactory>(f => f.CreateClient("Gluetun") == new HttpClient());
         var svc = new CrawlerService(new HttpClient(new StubHandler(html)), factory, new HtmlParserService(),
-            _db, Mock.Of<ILogger<CrawlerService>>(), config);
+            _db, Mock.Of<ILogger<CrawlerService>>(), config, TestVpnGate.Unused());
 
         await svc.CrawlTeamPairingsAsync(tournament, "https://chess-results.com/tnr1.aspx?lan=0",
             new List<int> { 1 }, CancellationToken.None);

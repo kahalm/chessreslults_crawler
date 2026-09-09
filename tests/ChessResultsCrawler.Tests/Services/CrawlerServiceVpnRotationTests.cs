@@ -82,7 +82,7 @@ public class CrawlerServiceVpnRotationTests : IDisposable
         }).Build();
 
         var service = new CrawlerService(crawl, factory, new HtmlParserService(), _db,
-            Mock.Of<ILogger<CrawlerService>>(), config);
+            Mock.Of<ILogger<CrawlerService>>(), config, TestVpnGate.From(factory, config));
 
         // Act: ein Fetch → genau eine Rotation.
         var body = await service.FetchPageAsync("https://chess-results.com/tnr1.aspx?lan=0", "art=0");
@@ -136,7 +136,7 @@ public class CrawlerServiceVpnRotationTests : IDisposable
         }).Build();
 
         var service = new CrawlerService(crawl, factory, new HtmlParserService(), _db,
-            Mock.Of<ILogger<CrawlerService>>(), config);
+            Mock.Of<ILogger<CrawlerService>>(), config, TestVpnGate.From(factory, config));
 
         // Der Fetch selbst darf am gecancelten Token scheitern — die Rotation nicht.
         try
@@ -192,7 +192,7 @@ public class CrawlerServiceVpnRotationTests : IDisposable
         }).Build();
 
         var service = new CrawlerService(crawl, factory, new HtmlParserService(), _db,
-            Mock.Of<ILogger<CrawlerService>>(), config);
+            Mock.Of<ILogger<CrawlerService>>(), config, TestVpnGate.From(factory, config));
 
         await service.FetchPageAsync("https://chess-results.com/tnr1.aspx?lan=0", "art=0", CancellationToken.None);
 

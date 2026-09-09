@@ -56,7 +56,7 @@ public class CrawlerServiceTests : IDisposable
         var logger = Mock.Of<ILogger<CrawlerService>>();
         var httpClientFactory = Mock.Of<IHttpClientFactory>(f =>
             f.CreateClient("Gluetun") == new HttpClient());
-        return new CrawlerService(httpClient, httpClientFactory, parser, _db, logger, BuildConfig(crawlMaxAttempts, maxResponseBytes));
+        return new CrawlerService(httpClient, httpClientFactory, parser, _db, logger, BuildConfig(crawlMaxAttempts, maxResponseBytes), TestVpnGate.Unused());
     }
 
     [Fact]

@@ -77,7 +77,8 @@ try
     })
     // Derselbe Handler: dieser Client laeuft durch denselben Tunnel (network_mode: service:gluetun)
     // und trifft nach einer Rotation dieselben toten Verbindungen.
-    .ConfigurePrimaryHttpMessageHandler(CrawlHttpHandler.Create);
+    .ConfigurePrimaryHttpMessageHandler(CrawlHttpHandler.Create)
+    .AddHttpMessageHandler<RotateOnConnectFailureHandler>();
 
     // Der italienische Verbandskalender: wieder ein eigener Host, also ein eigener Client mit
     // demselben Handler. Groesserer Zeitrahmen als bei FIDE — die Trefferliste traegt ALLE Felder
@@ -87,7 +88,8 @@ try
         client.DefaultRequestHeaders.Add("User-Agent", "ChessResultsCrawler/1.0 (+RookHub)");
         client.Timeout = TimeSpan.FromSeconds(90);
     })
-    .ConfigurePrimaryHttpMessageHandler(CrawlHttpHandler.Create);
+    .ConfigurePrimaryHttpMessageHandler(CrawlHttpHandler.Create)
+    .AddHttpMessageHandler<RotateOnConnectFailureHandler>();
 
     // Der slowenische Verbandskalender. Eigener Client wie die uebrigen fremden Hosts.
     //
@@ -99,7 +101,8 @@ try
         client.DefaultRequestHeaders.Add("User-Agent", "ChessResultsCrawler/1.0 (+RookHub)");
         client.Timeout = TimeSpan.FromSeconds(30);
     })
-    .ConfigurePrimaryHttpMessageHandler(CrawlHttpHandler.Create);
+    .ConfigurePrimaryHttpMessageHandler(CrawlHttpHandler.Create)
+    .AddHttpMessageHandler<RotateOnConnectFailureHandler>();
 
     // Der slowakische Verbandskalender. Eigener Client wie die uebrigen fremden Hosts; groesserer
     // Zeitrahmen, weil ein Durchgang die Detailseite JE TURNIER nachholt (mit Pause dazwischen).
@@ -108,7 +111,8 @@ try
         client.DefaultRequestHeaders.Add("User-Agent", "ChessResultsCrawler/1.0 (+RookHub)");
         client.Timeout = TimeSpan.FromSeconds(30);
     })
-    .ConfigurePrimaryHttpMessageHandler(CrawlHttpHandler.Create);
+    .ConfigurePrimaryHttpMessageHandler(CrawlHttpHandler.Create)
+    .AddHttpMessageHandler<RotateOnConnectFailureHandler>();
 
     // Der ungarische Verbandskalender. GROSSZUEGIGER Zeitrahmen: der Endpunkt braucht fuer seine
     // 31 kB rund 75 Sekunden (am 2026-09-08 gemessen) — mit dem ueblichen halben Minuten-Limit
@@ -118,7 +122,8 @@ try
         client.DefaultRequestHeaders.Add("User-Agent", "ChessResultsCrawler/1.0 (+RookHub)");
         client.Timeout = TimeSpan.FromSeconds(180);
     })
-    .ConfigurePrimaryHttpMessageHandler(CrawlHttpHandler.Create);
+    .ConfigurePrimaryHttpMessageHandler(CrawlHttpHandler.Create)
+    .AddHttpMessageHandler<RotateOnConnectFailureHandler>();
 
     // Der tschechische Verbandskalender. Ein Abruf, aber ein grosser (rund 300 kB HTML fuer
     // 89 Eintraege in drei Laschen).
@@ -127,7 +132,8 @@ try
         client.DefaultRequestHeaders.Add("User-Agent", "ChessResultsCrawler/1.0 (+RookHub)");
         client.Timeout = TimeSpan.FromSeconds(60);
     })
-    .ConfigurePrimaryHttpMessageHandler(CrawlHttpHandler.Create);
+    .ConfigurePrimaryHttpMessageHandler(CrawlHttpHandler.Create)
+    .AddHttpMessageHandler<RotateOnConnectFailureHandler>();
 
     // Der polnische Verbandskalender. Alte Infrastruktur (PHP 5.2), deshalb defensiv: ein Abruf
     // fuer die Liste, und die Detailseiten holt der Aufrufer einzeln und gedeckelt.
@@ -136,7 +142,8 @@ try
         client.DefaultRequestHeaders.Add("User-Agent", "ChessResultsCrawler/1.0 (+RookHub)");
         client.Timeout = TimeSpan.FromSeconds(60);
     })
-    .ConfigurePrimaryHttpMessageHandler(CrawlHttpHandler.Create);
+    .ConfigurePrimaryHttpMessageHandler(CrawlHttpHandler.Create)
+    .AddHttpMessageHandler<RotateOnConnectFailureHandler>();
 
     // Die Turnierdatenbank des Deutschen Schachbunds. Grosszuegiger Zeitrahmen: ein Durchgang holt
     // zwei Seiten je Region und haelt dazwischen die Wartezeit ein, die die robots.txt nennt.
@@ -145,7 +152,8 @@ try
         client.DefaultRequestHeaders.Add("User-Agent", "ChessResultsCrawler/1.0 (+RookHub)");
         client.Timeout = TimeSpan.FromSeconds(45);
     })
-    .ConfigurePrimaryHttpMessageHandler(CrawlHttpHandler.Create);
+    .ConfigurePrimaryHttpMessageHandler(CrawlHttpHandler.Create)
+    .AddHttpMessageHandler<RotateOnConnectFailureHandler>();
 
     // Der englische Verbandskalender. Zwei geblaetterte Endpunkte je Durchgang, dazwischen die
     // Wartezeit aus der robots.txt der Quelle.
@@ -154,7 +162,8 @@ try
         client.DefaultRequestHeaders.Add("User-Agent", "ChessResultsCrawler/1.0 (+RookHub)");
         client.Timeout = TimeSpan.FromSeconds(60);
     })
-    .ConfigurePrimaryHttpMessageHandler(CrawlHttpHandler.Create);
+    .ConfigurePrimaryHttpMessageHandler(CrawlHttpHandler.Create)
+    .AddHttpMessageHandler<RotateOnConnectFailureHandler>();
 
     // Die sechs Quellen der dritten Runde. Alle nach demselben Muster wie die uebrigen fremden
     // Hosts: eigener Client, eigener Name, derselbe Handler.
@@ -166,35 +175,40 @@ try
         client.DefaultRequestHeaders.Add("User-Agent", "ChessResultsCrawler/1.0 (+RookHub)");
         client.Timeout = TimeSpan.FromSeconds(60);
     })
-    .ConfigurePrimaryHttpMessageHandler(CrawlHttpHandler.Create);
+    .ConfigurePrimaryHttpMessageHandler(CrawlHttpHandler.Create)
+    .AddHttpMessageHandler<RotateOnConnectFailureHandler>();
 
     builder.Services.AddHttpClient<FfeCalendarService>(client =>
     {
         client.DefaultRequestHeaders.Add("User-Agent", "ChessResultsCrawler/1.0 (+RookHub)");
         client.Timeout = TimeSpan.FromSeconds(60);
     })
-    .ConfigurePrimaryHttpMessageHandler(CrawlHttpHandler.Create);
+    .ConfigurePrimaryHttpMessageHandler(CrawlHttpHandler.Create)
+    .AddHttpMessageHandler<RotateOnConnectFailureHandler>();
 
     builder.Services.AddHttpClient<SjakkCalendarService>(client =>
     {
         client.DefaultRequestHeaders.Add("User-Agent", "ChessResultsCrawler/1.0 (+RookHub)");
         client.Timeout = TimeSpan.FromSeconds(60);
     })
-    .ConfigurePrimaryHttpMessageHandler(CrawlHttpHandler.Create);
+    .ConfigurePrimaryHttpMessageHandler(CrawlHttpHandler.Create)
+    .AddHttpMessageHandler<RotateOnConnectFailureHandler>();
 
     builder.Services.AddHttpClient<ChessScotlandCalendarService>(client =>
     {
         client.DefaultRequestHeaders.Add("User-Agent", "ChessResultsCrawler/1.0 (+RookHub)");
         client.Timeout = TimeSpan.FromSeconds(60);
     })
-    .ConfigurePrimaryHttpMessageHandler(CrawlHttpHandler.Create);
+    .ConfigurePrimaryHttpMessageHandler(CrawlHttpHandler.Create)
+    .AddHttpMessageHandler<RotateOnConnectFailureHandler>();
 
     builder.Services.AddHttpClient<WcuCalendarService>(client =>
     {
         client.DefaultRequestHeaders.Add("User-Agent", "ChessResultsCrawler/1.0 (+RookHub)");
         client.Timeout = TimeSpan.FromSeconds(60);
     })
-    .ConfigurePrimaryHttpMessageHandler(CrawlHttpHandler.Create);
+    .ConfigurePrimaryHttpMessageHandler(CrawlHttpHandler.Create)
+    .AddHttpMessageHandler<RotateOnConnectFailureHandler>();
 
     // Die Niederlande verlangen in ihrer robots.txt 15 Sekunden zwischen zwei Abrufen. Bei zwei
     // Seiten ist das ein Durchgang von rund 17 Sekunden — der Zeitrahmen muss das aushalten.
@@ -203,14 +217,16 @@ try
         client.DefaultRequestHeaders.Add("User-Agent", "ChessResultsCrawler/1.0 (+RookHub)");
         client.Timeout = TimeSpan.FromSeconds(90);
     })
-    .ConfigurePrimaryHttpMessageHandler(CrawlHttpHandler.Create);
+    .ConfigurePrimaryHttpMessageHandler(CrawlHttpHandler.Create)
+    .AddHttpMessageHandler<RotateOnConnectFailureHandler>();
 
     builder.Services.AddHttpClient<FrsahCalendarService>(client =>
     {
         client.DefaultRequestHeaders.Add("User-Agent", "ChessResultsCrawler/1.0 (+RookHub)");
         client.Timeout = TimeSpan.FromSeconds(60);
     })
-    .ConfigurePrimaryHttpMessageHandler(CrawlHttpHandler.Create);
+    .ConfigurePrimaryHttpMessageHandler(CrawlHttpHandler.Create)
+    .AddHttpMessageHandler<RotateOnConnectFailureHandler>();
 
     builder.Services.AddHttpClient("Gluetun",
         client => GluetunClientSetup.Configure(client, builder.Configuration));
@@ -220,6 +236,9 @@ try
     builder.Services.AddSingleton<IBackgroundTaskQueue, BackgroundTaskQueue>();
     // Gate, das den ersten Crawl nach dem Start bis zur VPN-Tunnel-Bereitschaft zurückhält.
     builder.Services.AddSingleton<VpnReadinessGate>();
+    // Wiederholt einen Quellen-Abruf ueber einen ANDEREN VPN-Ausgang, wenn keine Verbindung
+    // zustande kommt (mehrere Verbaende sperren ganze Hosting-Netze, und zwar verschiedene).
+    builder.Services.AddTransient<RotateOnConnectFailureHandler>();
     builder.Services.AddHostedService<BackgroundTaskWorker>();
     // Periodisches Lebenszeichen nach ES (Standard 60 s) → log-watcher erkennt toten Crawler.
     builder.Services.AddHostedService<HeartbeatService>();

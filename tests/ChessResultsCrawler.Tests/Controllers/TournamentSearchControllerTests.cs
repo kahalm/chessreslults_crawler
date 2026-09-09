@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Moq;
+using ChessResultsCrawler.Tests.Services;
 
 namespace ChessResultsCrawler.Tests.Controllers;
 
@@ -163,7 +164,7 @@ public class TournamentSearchControllerTests : IDisposable
 
         var factory = Mock.Of<IHttpClientFactory>(f => f.CreateClient("Gluetun") == new HttpClient());
         var crawler = new CrawlerService(new HttpClient(handler), factory, new HtmlParserService(), _db,
-            Mock.Of<ILogger<CrawlerService>>(), config);
+            Mock.Of<ILogger<CrawlerService>>(), config, TestVpnGate.Unused());
 
         return new TournamentSearchController(crawler);
     }

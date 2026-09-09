@@ -147,7 +147,7 @@ public class CrawlerServiceTournamentSearchTests : IDisposable
 
         var httpClientFactory = Mock.Of<IHttpClientFactory>(f => f.CreateClient("Gluetun") == new HttpClient());
         return new CrawlerService(httpClient, httpClientFactory, new HtmlParserService(), _db,
-            Mock.Of<ILogger<CrawlerService>>(), config);
+            Mock.Of<ILogger<CrawlerService>>(), config, TestVpnGate.Unused());
     }
 
     private static HttpResponseMessage Ok(string body) =>
