@@ -228,6 +228,18 @@ try
     .ConfigurePrimaryHttpMessageHandler(CrawlHttpHandler.Create)
     .WithExitRotationRetry(60);
 
+    // Kanada: zwei Abrufe (Seite fuer den Dateinamen, dann die Datei). Keine Wartezeit in der
+    // robots.txt — sie ist woertlich nur „User-agent: *" ohne eine einzige Regel.
+    builder.Services.AddHttpClient<CfcCalendarService>(client =>
+    {
+        client.DefaultRequestHeaders.Add("User-Agent", "ChessResultsCrawler/1.0 (+RookHub)");
+        // Unbegrenzt, weil das Zeitlimit JE VERSUCH beim Wiederholungs-Handler liegt (60 s):
+        // HttpClient.Timeout gilt fuer alle Versuche ZUSAMMEN und liess die Wiederholung nie zum Zug kommen.
+        client.Timeout = Timeout.InfiniteTimeSpan;
+    })
+    .ConfigurePrimaryHttpMessageHandler(CrawlHttpHandler.Create)
+    .WithExitRotationRetry(60);
+
     builder.Services.AddHttpClient<WcuCalendarService>(client =>
     {
         client.DefaultRequestHeaders.Add("User-Agent", "ChessResultsCrawler/1.0 (+RookHub)");
